@@ -5,7 +5,6 @@ import Indstillinger from "./pages/Indstillinger";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
 
-/*hej*/
 function App() {
   return (
     <div className="mobile_view">
