@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Lister from "./pages/lister";
+import Lister from "./pages/Lister";
 import Bruger from "./pages/Bruger";
 import Indstillinger from "./pages/Indstillinger";
 import Nav from "./components/Nav";
