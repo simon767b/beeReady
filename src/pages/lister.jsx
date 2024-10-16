@@ -1,4 +1,4 @@
-import List from "../components/list";
+import List from "../components/List";
 
 export default function Lister() {
   return (
