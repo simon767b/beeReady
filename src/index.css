@@ -20,7 +20,7 @@
 
   /* --- font weights --- */
   --ekstraLight: 200;
-  --lightItalic: italic 300;
+  --light: 300;
   --regular: 400;
   --semiBold: 600;
 
@@ -30,6 +30,11 @@
   --fontsizeM: 1rem; /* 16px */
   --fontsizeL: 1.5rem; /* 24px */
   --fontsizeXL: 2rem; /* 32px */
+
+  /* --- variables for hexagons --- */
+  --hex_width: 105px;
+  --hex_margin: 5px;
+  --f: calc(1.732 * var(--hex_width) + 4 * var(--m) - 1px);
 }
 
 /* --- reset --- */
@@ -128,38 +133,67 @@ body {
 
 /* Lister */
 
-.beehive {
-  align-items: center;
-  aspect-ratio: cos(30deg);
-  background: var(--color3);
-  /* clip-path makes hexagon shape */
-  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+main .lister {
+  /* idea for grid from https://codepen.io/t_afif/pen/zYoZBOy */
   display: flex;
-  flex-direction: column;
-  font-weight: var(--semiBold);
-  height: 125px;
-  justify-content: center;
-  overflow: hidden;
-  position: relative;
 }
 
-.beehive h6 {
+.beehive {
+  margin: 0 1rem;
+}
+
+.hexagon {
+  /* aspect-ratio: cos(30deg); */
+  background: var(--color3);
+  /* clip-path makes hexagon shape */
+  /* clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0); */
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  display: inline-block;
+  font-weight: var(--semiBold);
+  height: 125px;
+  margin: var(--hex_margin);
+  margin-bottom: calc(var(--hex_margin) - var(--hex_width) * 0.2885);
+  /* overflow: hidden; */
+  position: relative;
+  width: var(--hex_width);
+}
+
+.beehive::before {
+  content: "";
+  float: left;
+  height: 120%;
+  shape-outside: repeating-linear-gradient(
+    #0000 0 calc(var(--f) - 3px),
+    #000 0 var(--f)
+  );
+  width: calc(var(--hex_width) / 2 + var(--hex_margin));
+}
+
+.hex_content {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.hexagon h6 {
   font-size: var(--fontsizeM);
 }
 
-.beehive .date {
+.hexagon .date {
   font-size: var(--fontsizeXS);
 }
 
-.beehive img {
+.hexagon img {
   padding: 2% 0;
 }
 
-.beehive .item_count {
+.hexagon .item_count {
   font-size: var(--fontsizeS);
 }
 
-.beehive .wave {
+.hexagon .wave {
   /* to make the wave shape */
   --mask: radial-gradient(89.44px at 25% 120px, #000 99%, #0000 101%)
       calc(25% - 80px) 0/160px 100%,
