@@ -1,21 +1,25 @@
 export default function List() {
-  function calcItemCount() {
-    const itemsChecked = 17;
-    const itemsTotal = 20;
-    const hexHeight = 125;
+  const itemsChecked = 10;
+  const itemsTotal = 20;
+  const hexHeight = 125;
 
+  function calcItemCount() {
     const itemsDone = (hexHeight / itemsTotal) * itemsChecked;
-    return itemsDone;
+    const itemsPercent = itemsDone / hexHeight * 100;
+    return itemsPercent;
   }
-  const itemsDone = calcItemCount();
+  const itemsPercent = calcItemCount();
+  console.log(itemsPercent);
 
   return (
     <section className="beehive">
       <h6>Riga</h6>
       <p className="date">Maj 2024</p>
       <img src="\img\icons\tourist.svg" alt="Turist ikon" />
-      <p className="item_count">17/20</p>
-      <div className="wave" style={{ height: itemsDone }}></div>
+      <p className="item_count">
+        {itemsChecked}/{itemsTotal}
+      </p>
+      <div className="wave"></div>
     </section>
   );
 }

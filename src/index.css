@@ -170,6 +170,7 @@ body {
   /* other wave styling */
   background-color: var(--color7);
   bottom: 0;
+  height: 100px;
   position: absolute;
   width: 100%;
   z-index: -1;
