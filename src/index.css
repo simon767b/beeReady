@@ -58,6 +58,28 @@ body {
   max-width: 480px;
   height: 100%;
   font-family: "Nunito", sans-serif;
+  position: relative;
+}
+
+/* Navbar */
+.navbar {
+  background-color: var(--color9);
+  width: 100%;
+  max-width: 480px;
+
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translate(-50%, 0%);
+}
+
+.navbar_navitems {
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar img {
+  width: 30px;
 }
 
 /*-------------------------------------------------------------------------------------------------
