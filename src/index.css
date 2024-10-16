@@ -129,6 +129,13 @@ body {
 /* Lister */
 
 .beehive {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  margin: 0 1rem;
+}
+
+.hexagon {
   align-items: center;
   aspect-ratio: cos(30deg);
   background: var(--color3);
@@ -143,23 +150,23 @@ body {
   position: relative;
 }
 
-.beehive h6 {
+.hexagon h6 {
   font-size: var(--fontsizeM);
 }
 
-.beehive .date {
+.hexagon .date {
   font-size: var(--fontsizeXS);
 }
 
-.beehive img {
+.hexagon img {
   padding: 2% 0;
 }
 
-.beehive .item_count {
+.hexagon .item_count {
   font-size: var(--fontsizeS);
 }
 
-.beehive .wave {
+.hexagon .wave {
   /* to make the wave shape */
   --mask:
     radial-gradient(89.44px at 25% 120px,#000 99%,#0000 101%) calc(25% - 80px) 0/160px 100%,

@@ -10,7 +10,7 @@ export default function List() {
   }
 
   return (
-    <section className="beehive">
+    <section className="hexagon">
       <h6>Riga</h6>
       <p className="date">Maj 2024</p>
       <img src="\img\icons\tourist.svg" alt="Turist ikon" />
