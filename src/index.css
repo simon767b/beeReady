@@ -49,10 +49,11 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: var(--text);
 }
 
 #root {
-  background-color: var(--color9);
+  background-color: var(--background);
   width: 100%;
   max-width: 480px;
   height: 100%;
