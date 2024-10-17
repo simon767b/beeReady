@@ -9,16 +9,15 @@ import Pakkeliste from "./pages/Pakkeliste";
 function App() {
   return (
     <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route index element={<Lister />} />
-          <Route path="/Bruger" element={<Bruger />} />
-          <Route path="/Indstillinger" element={<Indstillinger />} />
-          <Route path="/Pakkeliste" element={<Pakkeliste />} />
-
-        </Routes>
-        <Nav />
-      </BrowserRouter>
+      <Header />
+      <Routes>
+        <Route index element={<Lister />} />
+        <Route path="/Bruger" element={<Bruger />} />
+        <Route path="/Indstillinger" element={<Indstillinger />} />
+        <Route path="/Pakkeliste" element={<Pakkeliste />} />
+      </Routes>
+      <Nav />
+    </BrowserRouter>
   );
 }
 export default App;
