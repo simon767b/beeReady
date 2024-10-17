@@ -3,22 +3,24 @@ import PlusButton from "../components/PlusButton";
 
 export default function Lister() {
   return (
-    <main className="lister">
-      <section className="beehive">
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-        <List />
-      </section>
-      <PlusButton></PlusButton>
-    </main>
+    <>
+      <main className="lister">
+        <section className="beehive">
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <PlusButton></PlusButton>
+        </section>
+      </main>
+    </>
   );
 }
