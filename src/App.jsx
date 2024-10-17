@@ -10,6 +10,7 @@ import LogInd from "./pages/LogInd";
 
 function App() {
   const [side, setSide] = useState(false);
+  const [mainUrl, setMainUrl] = useState(window.location.href);
 
   useEffect(() => {
     let url = window.location.href;
@@ -25,7 +26,12 @@ function App() {
     <BrowserRouter>
       {side ? <Header /> : null}
       <Routes>
-        <Route index element={<Lister />} />
+        <Route
+          index
+          element={<Lister />}
+          mainUrl={mainUrl}
+          setMainUrl={setMainUrl}
+        />
         <Route path="/Bruger" element={<Bruger />} />
         <Route path="/Indstillinger" element={<Indstillinger />} />
         <Route path="/Pakkeliste" element={<Pakkeliste />} />

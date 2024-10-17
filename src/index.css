@@ -22,6 +22,7 @@
   --ekstraLight: 200;
   --light: 300;
   --regular: 400;
+  --medium: 500;
   --semiBold: 600;
 
   /* --- font sizes --- */
@@ -39,6 +40,17 @@
   box-sizing: border-box;
   text-decoration: none;
   list-style: none;
+}
+
+/* buttons */
+button {
+  padding: 10px 20px;
+  background-color: var(--color4);
+  color: var(--text);
+  border: none;
+  font-family: "Nunito", serif;
+  font-weight: var(--regular);
+  font-size: var(--fontsizeM);
 }
 
 /*-------------------------------------------------------------------------------------------------
@@ -141,6 +153,65 @@ main {
 
 /* Lister */
 
+.gradient {
+  background: linear-gradient(to top, var(--background), transparent);
+  bottom: 0;
+  height: 50%;
+  position: fixed;
+  width: 100%;
+  user-select: none;
+}
+
+.lister form {
+  align-items: center;
+  background-color: var(--color3);
+  border-radius: 1px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+
+.lister form div {
+  display: flex;
+  gap: 1rem;
+  padding: 1% 2%;
+}
+
+.lister form div img {
+  width: var(--fontsizeM);
+}
+
+.lister form div input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 1% 2%;
+}
+
+.lister form div input::placeholder {
+  color: var(--color10);
+  font-size: var(--fontsizeS);
+  font-weight: var(--medium);
+}
+
+.lister form button {
+  background-color: var(--color7);
+  border: none;
+  color: var(--color10);
+  font-size: var(--fontsizeS);
+  font-weight: var(--medium);
+  height: 100%;
+  margin: 0;
+  outline: none;
+  padding: 1% 2%;
+}
+
+.lister form button img {
+  width: var(--fontsizeS);
+}
+
+/* bikube mønster */
+
 .beehive {
   align-items: center;
   display: grid;
@@ -230,7 +301,8 @@ main {
   padding-top: 75px;
 }
 
-.packinglist-header, .packinglist-info {
+.packinglist-header,
+.packinglist-info {
   display: flex;
   justify-content: space-between;
 }
@@ -242,11 +314,16 @@ main {
   font-size: var(--fontsizeS);
 }
 
-.packinglist h1, .packinglist h2, .packinglist h4, .packinglist p, .packinglist li {
+.packinglist h1,
+.packinglist h2,
+.packinglist h4,
+.packinglist p,
+.packinglist li {
   font-weight: var(--regular);
 }
 
-.packinglist h1, .packinglist h2 {
+.packinglist h1,
+.packinglist h2 {
   font-size: var(--fontsizeL);
 }
 
@@ -317,6 +394,9 @@ main {
 
 /* Log ind */
 .biGIF {
+  width: 210px;
+
+  animation: flyvBi 2s ease-in-out forwards;
 }
 
 /* Indstillinger */
@@ -327,6 +407,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 
   background-color: var(--color6);
   scale: 0.5;
