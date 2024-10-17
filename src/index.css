@@ -141,6 +141,15 @@ main {
 
 /* Lister */
 
+.gradient {
+  background: linear-gradient(to top, var(--background), transparent);
+  bottom: 0;
+  height: 50%;
+  position: fixed;
+  width: 100%;
+  user-select: none;
+}
+
 .beehive {
   align-items: center;
   display: grid;
@@ -327,6 +336,7 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 10;
 
   background-color: var(--color6);
   scale: 0.5;
