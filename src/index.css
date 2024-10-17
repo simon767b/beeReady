@@ -115,7 +115,6 @@ main {
   max-width: 100%;
   position: fixed;
   top: 0px;
-
 }
 
 .logo-header {
@@ -224,19 +223,24 @@ main .lister {
 }
 
 /* Pakkeliste */
-.packinglist-header, .packinglist-info {
+.packinglist-header,
+.packinglist-info {
   display: flex;
   justify-content: space-between;
 }
 
-.packinglist h1, .packinglist h2, .packinglist h4, .packinglist p, .packinglist li {
+.packinglist h1,
+.packinglist h2,
+.packinglist h4,
+.packinglist p,
+.packinglist li {
   font-weight: var(--regular);
 }
 
 .linje-moenster {
   height: 1.5px;
   flex-direction: row;
-  background-image: url('img/linje-moenster.svg');
+  background-image: url("img/linje-moenster.svg");
   background-size: cover;
   width: 100%;
   background-size: auto 100%;
@@ -245,12 +249,12 @@ main .lister {
 
 .category {
   display: flex;
-padding: 1.25rem;
-flex-direction: column;
-align-items: flex-start;
-/* align-self: stretch; */
-background-color: var(--color4);
-gap: 0.8rem;
+  padding: 1.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  /* align-self: stretch; */
+  background-color: var(--color4);
+  gap: 0.8rem;
 }
 
 .category-header {
@@ -275,39 +279,53 @@ gap: 0.8rem;
   font-style: italic;
 }
 
-
 .category li {
   display: flex;
   gap: 1rem;
 }
 
-
 /* Bruger */
 
 /* Log ind */
+.biGIF {
+}
 
 /* Indstillinger */
 
 /* Plusknap */
 .plusButton_border {
-  position: fixed;
-  bottom: 10%;
-  left: 65%;
-  transform: translate(-50%, -50%);
-
   height: 54px;
   display: flex;
   align-items: center;
   justify-content: center;
 
   background-color: var(--color6);
-  scale: 2;
+  scale: 0.5;
+
+  /* Hexagon*/
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  height: 125px;
+  /* overflow: hidden; */
+  position: relative;
+  width: 105px;
 }
 
 .plusButton {
   height: 52px;
   background-color: var(--color5);
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Hexagon*/
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  height: 125px;
+  /* overflow: hidden; */
+  position: relative;
+  width: 105px;
+  scale: 0.9;
 }
 
 .plus_button_plus {
@@ -317,37 +335,18 @@ gap: 0.8rem;
   background-color: var(--text);
   border-radius: 200px;
   rotate: 90deg;
+  scale: 2;
 }
 
 .plusButton p {
-  font-size: var(--fontsizeXS);
+  font-size: 7px;
   font-weight: var(--semiBold);
+  scale: 3;
 }
 
 .rotated {
   rotate: 0deg;
   transition: all 2s ease-in-out;
-}
-
-/* de forskellige kuber */
-.manuel {
-  bottom: 10%;
-  left: 60%;
-}
-
-.auto {
-  bottom: 18%;
-  left: 62.5%;
-}
-
-.skabelon {
-  bottom: 18%;
-  left: 57.5%;
-}
-
-.genbrug {
-  bottom: 10%;
-  left: 55%;
 }
 
 /*-------------------------------------------------------------------------------------------------
