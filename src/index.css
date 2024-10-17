@@ -61,7 +61,7 @@ body {
 #root {
   background-color: var(--background);
   width: 100%;
-  max-width: 480px;
+  /* max-width: 480px; */ /* mobil skærm på computer*/
   height: 100%;
   font-family: "Nunito", sans-serif;
   position: relative;
