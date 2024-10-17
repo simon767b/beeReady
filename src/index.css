@@ -30,11 +30,6 @@
   --fontsizeM: 1rem; /* 16px */
   --fontsizeL: 1.5rem; /* 24px */
   --fontsizeXL: 2rem; /* 32px */
-
-  /* --- variables for hexagons --- */
-  --hex_width: 105px;
-  --hex_margin: 5px;
-  --f: calc(1.732 * var(--hex_width) + 4 * var(--m) - 1px);
 }
 
 /* --- reset --- */
@@ -144,40 +139,46 @@ main {
 
 /* Lister */
 
-main .lister {
-  /* idea for grid from https://codepen.io/t_afif/pen/zYoZBOy */
-  display: flex;
-}
-
 .beehive {
-  margin: 0 1rem;
+  align-items: center;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  justify-items: center;
+  margin: 22.5px auto 0;
+  width: 345px;
 }
 
 .hexagon {
-  /* aspect-ratio: cos(30deg); */
+  aspect-ratio: cos(30deg);
   background: var(--color3);
   /* clip-path makes hexagon shape */
-  /* clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0); */
-  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  display: inline-block;
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
   font-weight: var(--semiBold);
+  grid-column: span 2;
+  grid-row: span 5;
   height: 125px;
-  margin: var(--hex_margin);
-  margin-bottom: calc(var(--hex_margin) - var(--hex_width) * 0.2885);
-  /* overflow: hidden; */
+  margin-top: -22.5px;
   position: relative;
-  width: var(--hex_width);
 }
 
-.beehive::before {
-  content: "";
-  float: left;
-  height: 120%;
-  shape-outside: repeating-linear-gradient(
-    #0000 0 calc(var(--f) - 3px),
-    #000 0 var(--f)
-  );
-  width: calc(var(--hex_width) / 2 + var(--hex_margin));
+.beehive .hexagon:nth-child(5n + 2) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.beehive .hexagon:nth-child(5n + 4) {
+  justify-self: end;
+}
+
+.beehive .hexagon:nth-child(5n + 5) {
+  justify-self: start;
+}
+
+.beehive .hexagon:nth-child(5n + 4),
+.beehive .hexagon:nth-child(5n + 5) {
+  grid-column: span 3;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .hex_content {
