@@ -1,7 +1,6 @@
-export default function Check() {
+export default function Check({ checked, onChange }) {
     return (
-        <>
-        <p>jidw</p>
-        </>)
+        <input type="checkbox" checked={checked} onChange={onChange} />
+     );
  }
  

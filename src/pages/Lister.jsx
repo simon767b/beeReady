@@ -18,8 +18,23 @@ export default function Lister() {
           <List />
           <List />
           <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
+          <List />
           <PlusButton></PlusButton>
         </section>
+        <div className="gradient"></div>
       </main>
     </>
   );
