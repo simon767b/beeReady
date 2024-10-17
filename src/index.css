@@ -43,6 +43,7 @@
   margin: 0;
   box-sizing: border-box;
   text-decoration: none;
+  list-style: none;
 }
 
 /*-------------------------------------------------------------------------------------------------
@@ -51,11 +52,15 @@
 
 body {
   width: 100dvw;
-  height: 100dvh;
+  /* height: 100dvh; */
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
   background-color: var(--text);
+}
+
+main {
+  margin: 0 1rem;
 }
 
 #root {
@@ -64,13 +69,14 @@ body {
   /* max-width: 480px; */ /* mobil skærm på computer*/
   height: 100%;
   font-family: "Nunito", sans-serif;
-  position: relative;
-  padding-top: 6rem;
+  /* position: relative; */
+  padding: 6rem 0;
+  min-height: 100dvh;
 }
 
 /* Navbar */
 .navbar {
-  background-color: var(--color9);
+  background-color: var(--color7);
   width: 100%;
   max-width: 480px;
 
@@ -103,13 +109,19 @@ body {
   font-size: var(--fontsizeS);
 }
 
-/* Header */
+/* header */
 .header {
+  background-color: var(--background);
+  max-width: 100%;
+  position: fixed;
+  top: 0px;
+
+}
+
+.logo-header {
   background-color: var(--background);
   max-width: calc(480px - 2rem);
   height: 5rem;
-  position: fixed;
-  top: 0px;
   display: flex;
   align-items: end;
   justify-content: space-between;
@@ -211,7 +223,64 @@ main .lister {
   z-index: -1;
 }
 
-/* Pakkelsite */
+/* Pakkeliste */
+.packinglist-header, .packinglist-info {
+  display: flex;
+  justify-content: space-between;
+}
+
+.packinglist h1, .packinglist h2, .packinglist h4, .packinglist p, .packinglist li {
+  font-weight: var(--regular);
+}
+
+.linje-moenster {
+  height: 1.5px;
+  flex-direction: row;
+  background-image: url('img/linje-moenster.svg');
+  background-size: cover;
+  width: 100%;
+  background-size: auto 100%;
+  margin: 1rem 0;
+}
+
+.category {
+  display: flex;
+padding: 1.25rem;
+flex-direction: column;
+align-items: flex-start;
+/* align-self: stretch; */
+background-color: var(--color4);
+gap: 0.8rem;
+}
+
+.category-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.category-header div {
+  display: flex;
+  gap: 1rem;
+}
+
+.category ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.category li:last-child {
+  font-weight: var(--light);
+  font-style: italic;
+}
+
+
+.category li {
+  display: flex;
+  gap: 1rem;
+}
+
 
 /* Bruger */
 

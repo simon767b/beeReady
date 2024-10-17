@@ -4,20 +4,21 @@ import Bruger from "./pages/Bruger";
 import Indstillinger from "./pages/Indstillinger";
 import Nav from "./components/Nav";
 import Header from "./components/Header";
+import Pakkeliste from "./pages/Pakkeliste";
 
 function App() {
   return (
-    <div className="mobile_view">
-      <BrowserRouter>
+    <BrowserRouter>
         <Header />
         <Routes>
           <Route index element={<Lister />} />
           <Route path="/Bruger" element={<Bruger />} />
           <Route path="/Indstillinger" element={<Indstillinger />} />
+          <Route path="/Pakkeliste" element={<Pakkeliste />} />
+
         </Routes>
         <Nav />
       </BrowserRouter>
-    </div>
   );
 }
 export default App;
