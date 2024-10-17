@@ -110,7 +110,6 @@ main {
   max-width: 100%;
   position: fixed;
   top: 0px;
-
 }
 
 .logo-header {
@@ -144,8 +143,9 @@ main {
   align-items: center;
   display: grid;
   grid-template-columns: repeat(6, auto);
-  grid-template-rows: repeat(auto, 25px);
   justify-items: center;
+  margin: 22.5px auto 0;
+  width: 345px;
 }
 
 .hexagon {
@@ -157,7 +157,13 @@ main {
   grid-column: span 2;
   grid-row: span 5;
   height: 125px;
+  margin-top: -22.5px;
   position: relative;
+}
+
+.beehive .hexagon:nth-child(5n + 2) {
+  margin-left: 10px;
+  margin-right: 10px;
 }
 
 .beehive .hexagon:nth-child(5n + 4) {
@@ -171,7 +177,8 @@ main {
 .beehive .hexagon:nth-child(5n + 4),
 .beehive .hexagon:nth-child(5n + 5) {
   grid-column: span 3;
-  margin: 0 1.5%;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .hex_content {
@@ -217,19 +224,24 @@ main {
 }
 
 /* Pakkeliste */
-.packinglist-header, .packinglist-info {
+.packinglist-header,
+.packinglist-info {
   display: flex;
   justify-content: space-between;
 }
 
-.packinglist h1, .packinglist h2, .packinglist h4, .packinglist p, .packinglist li {
+.packinglist h1,
+.packinglist h2,
+.packinglist h4,
+.packinglist p,
+.packinglist li {
   font-weight: var(--regular);
 }
 
 .linje-moenster {
   height: 1.5px;
   flex-direction: row;
-  background-image: url('img/linje-moenster.svg');
+  background-image: url("img/linje-moenster.svg");
   background-size: cover;
   width: 100%;
   background-size: auto 100%;
@@ -238,12 +250,12 @@ main {
 
 .category {
   display: flex;
-padding: 1.25rem;
-flex-direction: column;
-align-items: flex-start;
-/* align-self: stretch; */
-background-color: var(--color4);
-gap: 0.8rem;
+  padding: 1.25rem;
+  flex-direction: column;
+  align-items: flex-start;
+  /* align-self: stretch; */
+  background-color: var(--color4);
+  gap: 0.8rem;
 }
 
 .category-header {
@@ -268,12 +280,10 @@ gap: 0.8rem;
   font-style: italic;
 }
 
-
 .category li {
   display: flex;
   gap: 1rem;
 }
-
 
 /* Bruger */
 

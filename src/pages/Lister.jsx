@@ -17,6 +17,7 @@ export default function Lister() {
         <List />
         <List />
         <List />
+        <List />
       </section>
       <PlusButton></PlusButton>
     </main>
