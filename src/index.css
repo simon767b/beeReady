@@ -41,6 +41,17 @@
   list-style: none;
 }
 
+/* buttons */
+button {
+  padding: 10px 20px;
+  background-color: var(--color4);
+  color: var(--text);
+  border: none;
+  font-family: "Nunito", serif;
+  font-weight: var(--regular);
+  font-size: var(--fontsizeM);
+}
+
 /*-------------------------------------------------------------------------------------------------
 -----------------------------------------------forside---------------------------------------------
 --------------------------------------------------------------------------------------------------*/
@@ -289,6 +300,9 @@ main {
 
 /* Log ind */
 .biGIF {
+  width: 210px;
+
+  animation: flyvBi 2s ease-in-out forwards;
 }
 
 /* Indstillinger */
