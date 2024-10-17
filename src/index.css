@@ -57,6 +57,7 @@ body {
   justify-content: center;
   /* align-items: center; */
   background-color: var(--text);
+  border-radius: 1px;
 }
 
 main {
@@ -115,7 +116,7 @@ main {
   max-width: 100%;
   position: fixed;
   top: 0px;
-
+  z-index: 10;
 }
 
 .logo-header {
@@ -224,13 +225,44 @@ main .lister {
 }
 
 /* Pakkeliste */
+.packinglist {
+  padding-top: 75px;
+}
+
 .packinglist-header, .packinglist-info {
   display: flex;
   justify-content: space-between;
 }
 
+.packinglist-info button {
+  background-color: var(--color3);
+  border: none;
+  padding: 4px 6px;
+  font-size: var(--fontsizeS);
+}
+
 .packinglist h1, .packinglist h2, .packinglist h4, .packinglist p, .packinglist li {
   font-weight: var(--regular);
+}
+
+.packinglist h1, .packinglist h2 {
+  font-size: var(--fontsizeL);
+}
+
+.packinglist h4 {
+  font-size: var(--fontsizeS);
+}
+
+.packinglist li {
+  font-size: var(--fontsizeM);
+}
+
+.packinglist-fixed {
+  position: fixed;
+  background-color: var(--background);
+  width: calc(100% - 30px);
+  top: 5rem;
+  z-index: 7;
 }
 
 .linje-moenster {
@@ -357,3 +389,7 @@ gap: 0.8rem;
 /*-------------------------------------------------------------------------------------------------
 ---------------------------------------------animation---------------------------------------------
 --------------------------------------------------------------------------------------------------*/
+
+.hidden {
+  display: none;
+}
