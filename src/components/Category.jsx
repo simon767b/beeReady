@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Check from "./Check";
 
-export default function Category({ id, name, onUpdateCounts }) {
+export default function Category() {
    const [isExpanded, setIsExpanded] = useState(true);
    const [items, setItems] = useState([
       { id: 1, label: "Laptop 1", checked: false },
@@ -11,51 +11,41 @@ export default function Category({ id, name, onUpdateCounts }) {
       { id: 5, label: "Tilføj element", checked: false },
    ]);
 
-   // Load checked state from localStorage on mount
+   // Effect to load saved items from localStorage
    useEffect(() => {
-      const savedItems = JSON.parse(localStorage.getItem(`category-${id}`)) || [];
-      if (savedItems.length > 0) {
-         setItems(savedItems);
+      const savedItems = localStorage.getItem("items");
+      if (savedItems) {
+         setItems(JSON.parse(savedItems));
       }
-      updateCounts(savedItems.length > 0 ? savedItems : items); // Update counts based on loaded items
    }, []);
 
-   // Update counts whenever items change
+   // Effect to save items to localStorage whenever they change
    useEffect(() => {
-      updateCounts(items);
+      localStorage.setItem("items", JSON.stringify(items));
    }, [items]);
+
+   const handleCheckboxChange = (id) => {
+      setItems((prevItems) =>
+         prevItems.map((item) =>
+            item.id === id ? { ...item, checked: !item.checked } : item
+         )
+      );
+   };
+
+   const totalCheckedItems = items.filter((item) => item.checked).length;
+   const totalItems = items.length - 1; // Assuming the last item is "Tilføj element"
 
    const toggleList = () => {
       setIsExpanded((prevState) => !prevState);
-   };
-
-   const handleCheckboxChange = (id) => {
-      setItems((prevItems) => {
-         const updatedItems = prevItems.map((item) =>
-            item.id === id ? { ...item, checked: !item.checked } : item
-         );
-
-         // Save updated items to localStorage
-         localStorage.setItem(`category-${id}`, JSON.stringify(updatedItems));
-         return updatedItems;
-      });
-   };
-
-   const updateCounts = (updatedItems) => {
-      const totalItems = updatedItems.length - 1; // Exclude "Tilføj element"
-      const totalCheckedItems = updatedItems.filter((item) => item.checked).length;
-
-      // Notify parent component with the current counts
-      onUpdateCounts(totalItems, totalCheckedItems);
    };
 
    return (
       <>
          <div className="category">
             <div className="category-header">
-               <h2>{name}</h2>
+               <h2>Elektronik</h2>
                <div>
-                  <h2>{`${items.filter((item) => item.checked).length}/${items.length - 1}`}</h2>
+                  <h2>{`${totalCheckedItems}/${totalItems}`}</h2>
                   <img
                      src="img/icons/down-arrow.svg"
                      alt="Toggle list"
