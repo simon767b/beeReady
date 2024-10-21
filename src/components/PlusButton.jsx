@@ -1,11 +1,30 @@
 import { useState } from "react";
+import Manuel from "./Manuel";
+import Skabelon from "./Skabelon";
+import Auto from "./Auto";
+import Genbrug from "./Genbrug";
 
 export default function PlusButton() {
   const [open, setOpen] = useState(false);
 
-  function handleClick() {
+  /* Dialog bokse pop op */
+
+  // Track which dialog is open
+  const [openDialog, setOpenDialog] = useState(null); // null means no dialog is open
+
+  const handleClick = () => {
     setOpen(!open);
-  }
+  };
+
+  // Function to open a specific dialog
+  const showDialog = (dialogName) => {
+    setOpenDialog(dialogName);
+  };
+
+  // Function to close any dialog
+  const closeDialog = () => {
+    setOpenDialog(null);
+  };
 
   return (
     <>
@@ -19,11 +38,10 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={handleClick}>
+        <section className="plusButton" onClick={() => showDialog("Manuel")}>
           <p>Manuel</p>
         </section>
       </section>
-
       <section
         className="plusButton_border skabelon"
         style={{
@@ -34,11 +52,10 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={handleClick}>
+        <section className="plusButton" onClick={() => showDialog("Skabelon")}>
           <p>Skabelon</p>
         </section>
       </section>
-
       <section
         className="plusButton_border auto"
         style={{
@@ -49,11 +66,10 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={handleClick}>
+        <section className="plusButton" onClick={() => showDialog("Auto")}>
           <p>Auto</p>
         </section>
       </section>
-
       <section
         className="plusButton_border genbrug"
         style={{
@@ -64,11 +80,10 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={handleClick}>
+        <section className="plusButton" onClick={() => showDialog("Genbrug")}>
           <p>Genbrug</p>
         </section>
       </section>
-
       <section
         className="plusButton_border"
         style={{
@@ -91,6 +106,27 @@ export default function PlusButton() {
           ></div>
         </section>
       </section>
+
+      {/* Dialogs */}
+      <Manuel
+        isOpen={openDialog === "Manuel" ? true : false}
+        onClose={closeDialog}
+      ></Manuel>
+
+      <Skabelon
+        isOpen={openDialog === "Skabelon" ? true : false}
+        onClose={closeDialog}
+      ></Skabelon>
+
+      <Auto
+        isOpen={openDialog === "Auto" ? true : false}
+        onClose={closeDialog}
+      ></Auto>
+
+      <Genbrug
+        isOpen={openDialog === "Genbrug" ? true : false}
+        onClose={closeDialog}
+      ></Genbrug>
     </>
   );
 }

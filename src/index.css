@@ -458,6 +458,65 @@ main {
   transition: all 2s ease-in-out;
 }
 
+/* dialog bokse */
+
+/* The overlay that covers the whole page */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.5); /* Faded background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10; /* Make sure it appears above everything */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out; /* Smooth fade-in/out */
+}
+
+/* The dialog box content */
+.dialog-content {
+  background-color: var(--color4);
+  padding: 20px;
+  border-radius: 8px;
+  position: relative;
+  max-width: 500px; /* Set a max width for the dialog */
+  width: 100%; /* Full width but constrained by max-width */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Drop shadow for depth */
+  transition: all 0.5s ease; /* Smooth scale-in/out */
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dialog-content div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog-content input {
+  height: 100%;
+  background-color: var(--background);
+}
+
+/* The close button */
+.close-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 3px;
+}
+
+.close-btn:hover {
+  background: darkred;
+}
+
 /*-------------------------------------------------------------------------------------------------
 --------------------------------------------Media query--------------------------------------------
 --------------------------------------------------------------------------------------------------*/
