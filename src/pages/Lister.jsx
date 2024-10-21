@@ -1,19 +1,12 @@
 import List from "../components/List";
 import PlusButton from "../components/PlusButton";
+import Sort from "../components/Sort";
 
 export default function Lister() {
   return (
     <>
       <main className="lister">
-        <form>
-          <div>
-            <img className="search" src="img\icons\search.svg" alt="Søg ikon" />
-            <input type="search" placeholder="Søg" />
-          </div>
-          <button>
-            Sortér <img src="img\icons\down-arrow.svg" alt="drop-down pil" />
-          </button>
-        </form>
+      <Sort />
         <section className="beehive">
           <List />
           <List />
