@@ -78,7 +78,7 @@ main {
   height: 100%;
   font-family: "Nunito", sans-serif;
   /* position: relative; */
-  padding: 6rem 0;
+  padding: 5rem 0;
   min-height: 100dvh;
 }
 
@@ -137,7 +137,7 @@ main {
   gap: 1rem;
   overflow: hidden;
   object-position: 50% 50%;
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .logo-img {
@@ -151,7 +151,110 @@ main {
   object-position: left 50%;
 }
 
+/* Søg / Sortér */
+
+.search_sort_container {
+  background-color: var(--background);
+  max-width: calc(480px - 2rem);
+  position: fixed;
+  width: calc(100dvw - 2rem);
+  z-index: 5;
+}
+
+.search_sort_bar {
+  align-items: center;
+  background-color: var(--color3);
+  border-radius: 1px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.search_bar {
+  display: flex;
+  gap: 0.5rem;
+  padding: 1% 2%;
+}
+
+.search_bar img {
+  width: var(--fontsizeM);
+}
+
+.search_bar input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 1% 2%;
+}
+
+.search_bar input::placeholder {
+  color: var(--color10);
+  font-size: var(--fontsizeS);
+  font-weight: var(--medium);
+}
+
+.sort_btn {
+  background-color: var(--color7);
+  border: none;
+  color: var(--color10);
+  font-size: var(--fontsizeS);
+  font-weight: var(--medium);
+  outline: none;
+  padding: 2% 4%;
+  position: relative;
+}
+
+.sort_btn .sort_arrow {
+  max-height: 100%;
+}
+
+.sort_arrow.clicked {
+  rotate: 0deg;
+  transition: rotate ease-in-out 0.5s;
+}
+
+.sort_arrow.unclicked {
+  rotate: -90deg;
+  transition: rotate ease-in-out 0.5s;
+}
+
+.sort_dropdown {
+  background-color: var(--color3);
+  border-radius: 1px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 20px;
+  position: absolute;
+  top: 90%;
+  transform-origin: top;
+  transition: all ease-in-out 0.5s;
+  right: 0;
+  z-index: -1;
+}
+
+.sort_dropdown .option {
+  display: flex;
+  gap: 10px;
+}
+
+.sort_dropdown .option p {
+  white-space: nowrap;
+}
+
+.sort_dropdown.hidden {
+  transform: translateY(-100%);
+}
+
+.sort_dropdown.visible {
+  transform: translateY(0);
+}
+
 /* Lister */
+
+.lister {
+  margin: 0 1rem;
+}
 
 .gradient {
   background: linear-gradient(to top, var(--background), transparent);
@@ -162,53 +265,6 @@ main {
   user-select: none;
 }
 
-.lister form {
-  align-items: center;
-  background-color: var(--color3);
-  border-radius: 1px;
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 5%;
-}
-
-.lister form div {
-  display: flex;
-  gap: 1rem;
-  padding: 1% 2%;
-}
-
-.lister form div img {
-  width: var(--fontsizeM);
-}
-
-.lister form div input {
-  background-color: transparent;
-  border: none;
-  outline: none;
-  padding: 1% 2%;
-}
-
-.lister form div input::placeholder {
-  color: var(--color10);
-  font-size: var(--fontsizeS);
-  font-weight: var(--medium);
-}
-
-.lister form button {
-  background-color: var(--color7);
-  border: none;
-  color: var(--color10);
-  font-size: var(--fontsizeS);
-  font-weight: var(--medium);
-  height: 100%;
-  margin: 0;
-  outline: none;
-}
-
-.lister form button img {
-  width: var(--fontsizeS);
-}
-
 /* bikube mønster */
 
 .beehive {
@@ -216,8 +272,8 @@ main {
   display: grid;
   grid-template-columns: repeat(6, auto);
   justify-items: center;
-  margin: 22.5px auto 0;
-  width: 345px;
+  padding-top: calc(4rem + 22.5px);
+  width: 100%;
 }
 
 .hexagon {
@@ -234,8 +290,8 @@ main {
 }
 
 .beehive .hexagon:nth-child(5n + 2) {
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
 }
 
 .beehive .hexagon:nth-child(5n + 4) {
@@ -249,8 +305,8 @@ main {
 .beehive .hexagon:nth-child(5n + 4),
 .beehive .hexagon:nth-child(5n + 5) {
   grid-column: span 3;
-  margin-left: 5px;
-  margin-right: 5px;
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
 }
 
 .hex_content {
@@ -524,7 +580,3 @@ main {
 /*-------------------------------------------------------------------------------------------------
 ---------------------------------------------animation---------------------------------------------
 --------------------------------------------------------------------------------------------------*/
-
-.hidden {
-  display: none;
-}
