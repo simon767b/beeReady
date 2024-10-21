@@ -23,7 +23,7 @@ function App() {
   }, [side]);
 
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/beeReady/"}>
       {side ? <Header /> : null}
       <Routes>
         <Route
