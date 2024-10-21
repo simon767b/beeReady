@@ -353,7 +353,7 @@ main {
 
 /* Pakkeliste */
 .packinglist {
-  padding-top: 75px;
+  padding-top: calc(1rem + 75px);
 }
 
 .packinglist-header,
