@@ -418,7 +418,7 @@ main {
 .linje-moenster {
   height: 1.5px;
   flex-direction: row;
-  background-image: url("src/assets/img/linje-moenster.svg");
+  background-image: url("img/linje-moenster.svg");
   background-size: cover;
   width: 100%;
   background-size: auto 100%;
