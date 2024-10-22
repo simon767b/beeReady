@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Check from "./Check";
+import CheckEssentials from "./CheckEssentials";
 
 export default function Category() {
    const [isExpanded, setIsExpanded] = useState(true);
@@ -86,7 +86,7 @@ export default function Category() {
                      <li key={item.id}>
                         {item.label !== "Tilføj element" && (
                            <>
-                              <Check
+                              <CheckEssentials
                                  checked={item.checked}
                                  onChange={() => handleCheckboxChange(item.id)}
                               />
@@ -99,7 +99,7 @@ export default function Category() {
                   {/* Conditionally render input field only when isInputVisible is true */}
                   {isInputVisible && (
                      <li key="input-field">
-                        <Check />
+                        <CheckEssentials />
                         <input
                            style={{
                               display: isAddingItem ? "block" : "none", // Change display based on isAddingItem
@@ -120,7 +120,7 @@ export default function Category() {
                      onClick={showInputField}
                      key="tilfoj-element" // Ensure a key is present
                   >
-                     <Check /> Tilføj element
+                     <CheckEssentials /> Tilføj element
                   </li>
                </ul>
             )}

@@ -7,6 +7,7 @@ import Nav from "./components/Nav";
 import Header from "./components/Header";
 import Pakkeliste from "./pages/Pakkeliste";
 import LogInd from "./pages/LogInd";
+import Essentials from "./pages/Essentials";
 
 function App() {
   const [side, setSide] = useState(false);
@@ -36,6 +37,7 @@ function App() {
         <Route path="/Indstillinger" element={<Indstillinger />} />
         <Route path="/Pakkeliste" element={<Pakkeliste />} />
         <Route path="/LogInd" element={<LogInd />} />
+        <Route path="/Essentials" element={<Essentials/>} />
       </Routes>
       {side ? <Nav /> : null}
     </BrowserRouter>
