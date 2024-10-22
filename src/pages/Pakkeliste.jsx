@@ -27,6 +27,7 @@ export default function Pakkeliste() {
             {categories.map(category => (
                <Category key={category.id} name={category.name} />
             ))}
+
          </div>
       </main>
    );
