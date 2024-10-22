@@ -3,15 +3,18 @@ import Check from "./Check";
 
 export default function Category() {
    const [isExpanded, setIsExpanded] = useState(true);
+   const [newItemLabel, setNewItemLabel] = useState(""); // Track the new item label
+   const [isInputVisible, setIsInputVisible] = useState(false); // Track input field visibility
+   const [isAddingItem, setIsAddingItem] = useState(false); // Track if we are adding an item
    const [items, setItems] = useState([
       { id: 1, label: "Laptop 1", checked: false },
       { id: 2, label: "Laptop 2", checked: false },
       { id: 3, label: "Laptop 3", checked: false },
       { id: 4, label: "Laptop 4", checked: false },
+      { id: 5, label: "Tilføj element", checked: false }, // This is the "Add item" button
    ]);
-   const [isAdding, setIsAdding] = useState(false);
-   const [newItemLabel, setNewItemLabel] = useState("");
 
+   // Handle checkbox toggle
    const handleCheckboxChange = (id) => {
       setItems((prevItems) =>
          prevItems.map((item) =>
@@ -20,23 +23,36 @@ export default function Category() {
       );
    };
 
-   const handleAddItem = () => {
-      if (newItemLabel.trim() === "") return;
-      
+   // Add a new item to the list when input loses focus
+   const addItem = () => {
+      if (newItemLabel.trim() === "") {
+         setIsInputVisible(false); // Hide the input field if no item was added
+         setIsAddingItem(false); // Reset adding item state
+         return;
+      }
       const newItem = {
-         id: items.length + 1,
+         id: items.length + 1, // Assign a new ID
          label: newItemLabel,
          checked: false,
       };
+      setItems((prevItems) => [
+         ...prevItems.slice(0, prevItems.length - 1), // Exclude "Tilføj element"
+         newItem,
+         prevItems[prevItems.length - 1], // Add "Tilføj element" back at the end
+      ]);
+      setNewItemLabel(""); // Clear the input field after adding
+      setIsInputVisible(false); // Hide the input field after adding the item
+      setIsAddingItem(false); // Reset adding item state
+   };
 
-      // Prepend the new item to the array
-      setItems((prevItems) => [newItem, ...prevItems]);
-      setNewItemLabel(""); // Clear input after adding
-      setIsAdding(false); // Hide input field after adding
+   // Show input field when "Tilføj element" is clicked
+   const showInputField = () => {
+      setIsInputVisible(true);
+      setIsAddingItem(true); // Set adding item state to true
    };
 
    const totalCheckedItems = items.filter((item) => item.checked).length;
-   const totalItems = items.length;
+   const totalItems = items.length - 1; // Assuming the last item is "Tilføj element"
 
    const toggleList = () => {
       setIsExpanded((prevState) => !prevState);
@@ -46,7 +62,8 @@ export default function Category() {
       <>
          <div className="category">
             <div className="category-header">
-               <h2>{Category.name}</h2>
+               <h2>Category</h2>{" "}
+               {/* Or you can replace with dynamic category name */}
                <div>
                   <h2>{`${totalCheckedItems}/${totalItems}`}</h2>
                   <img
@@ -54,7 +71,9 @@ export default function Category() {
                      alt="Toggle list"
                      onClick={toggleList}
                      style={{
-                        transform: isExpanded ? "rotate(360deg)" : "rotate(270deg)",
+                        transform: isExpanded
+                           ? "rotate(360deg)"
+                           : "rotate(270deg)",
                         transition: "transform 0.5s",
                         cursor: "pointer",
                      }}
@@ -65,32 +84,43 @@ export default function Category() {
                <ul style={{ transition: "transform 0.5s" }}>
                   {items.map((item) => (
                      <li key={item.id}>
-                        <Check
-                           checked={item.checked}
-                           onChange={() => handleCheckboxChange(item.id)}
-                        />
-                        {item.label}
+                        {item.label !== "Tilføj element" && (
+                           <>
+                              <Check
+                                 checked={item.checked}
+                                 onChange={() => handleCheckboxChange(item.id)}
+                              />
+                              {item.label}
+                           </>
+                        )}
                      </li>
                   ))}
-                  <li key="add-item">
-                     {isAdding ? (
-                        <>
-                           <input
-                              type="text"
-                              value={newItemLabel}
-                              onChange={(e) => setNewItemLabel(e.target.value)}
-                              placeholder="New item"
-                           />
-                           <button onClick={handleAddItem}>Add</button>
-                        </>
-                     ) : (
-                        <span
-                           onClick={() => setIsAdding(true)}
-                           style={{ cursor: "pointer", color: "blue" }}
-                        >
-                           Tilføj element
-                        </span>
-                     )}
+
+                  {/* Conditionally render input field only when isInputVisible is true */}
+                  {isInputVisible && (
+                     <li key="input-field">
+                        <Check />
+                        <input
+                           style={{
+                              display: isAddingItem ? "block" : "none", // Change display based on isAddingItem
+                           }}
+                           className="input-category"
+                           type="text"
+                           placeholder="Add new item"
+                           value={newItemLabel}
+                           onChange={(e) => setNewItemLabel(e.target.value)}
+                           onBlur={addItem} // Submit when user clicks away
+                           autoFocus // Automatically focus on the input field when it's shown
+                        />
+                     </li>
+                  )}
+
+                  {/* Always show "Tilføj element" button in its own line */}
+                  <li
+                     onClick={showInputField}
+                     key="tilfoj-element" // Ensure a key is present
+                  >
+                     <Check /> Tilføj element
                   </li>
                </ul>
             )}

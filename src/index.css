@@ -462,6 +462,17 @@ main {
   gap: 1rem;
 }
 
+.input-category {
+background-color: var(--color4);
+border: none;
+height: 21.5px;
+}
+
+/* .category li:nth-last-child(2) {
+  display: none;
+} */
+
+
 /* Bruger */
 
 /* Log ind */
