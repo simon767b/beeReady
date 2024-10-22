@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Check from "./Check";
 
 export default function Category() {
@@ -8,8 +8,9 @@ export default function Category() {
       { id: 2, label: "Laptop 2", checked: false },
       { id: 3, label: "Laptop 3", checked: false },
       { id: 4, label: "Laptop 4", checked: false },
-      { id: 5, label: "Tilføj element", checked: false },
    ]);
+   const [isAdding, setIsAdding] = useState(false);
+   const [newItemLabel, setNewItemLabel] = useState("");
 
    const handleCheckboxChange = (id) => {
       setItems((prevItems) =>
@@ -19,8 +20,23 @@ export default function Category() {
       );
    };
 
+   const handleAddItem = () => {
+      if (newItemLabel.trim() === "") return;
+      
+      const newItem = {
+         id: items.length + 1,
+         label: newItemLabel,
+         checked: false,
+      };
+
+      // Prepend the new item to the array
+      setItems((prevItems) => [newItem, ...prevItems]);
+      setNewItemLabel(""); // Clear input after adding
+      setIsAdding(false); // Hide input field after adding
+   };
+
    const totalCheckedItems = items.filter((item) => item.checked).length;
-   const totalItems = items.length - 1; // Assuming the last item is "Tilføj element"
+   const totalItems = items.length;
 
    const toggleList = () => {
       setIsExpanded((prevState) => !prevState);
@@ -56,6 +72,26 @@ export default function Category() {
                         {item.label}
                      </li>
                   ))}
+                  <li key="add-item">
+                     {isAdding ? (
+                        <>
+                           <input
+                              type="text"
+                              value={newItemLabel}
+                              onChange={(e) => setNewItemLabel(e.target.value)}
+                              placeholder="New item"
+                           />
+                           <button onClick={handleAddItem}>Add</button>
+                        </>
+                     ) : (
+                        <span
+                           onClick={() => setIsAdding(true)}
+                           style={{ cursor: "pointer", color: "blue" }}
+                        >
+                           Tilføj element
+                        </span>
+                     )}
+                  </li>
                </ul>
             )}
          </div>
