@@ -452,6 +452,7 @@ main {
 .packinglist-info {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .packinglist-info button {
@@ -459,6 +460,7 @@ main {
   border: none;
   padding: 4px 6px;
   font-size: var(--fontsizeS);
+  height: 24px;
 }
 
 .packinglist h1,
@@ -535,6 +537,7 @@ main {
 .category li {
   display: flex;
   gap: 1rem;
+  align-items: center;
 }
 
 .input-category {
@@ -547,6 +550,38 @@ height: 21.5px;
   display: none;
 } */
 
+/* Essentials */
+.essentials {
+  padding-top: 66.5px;
+}
+
+.hex_check_essentials {
+  border-radius: 1px;
+  /* clip-path makes hexagon shape */
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hex_check_essentials.outer {
+  background-color: var(--background);
+  height: 27px;
+  position: relative;
+  width: 23px;
+}
+
+.hex_check_essentials.inner {
+  background-color: var(--color7);
+  display: none;
+  height: 23px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  width: 19px;
+}
 
 /* Bruger */
 
