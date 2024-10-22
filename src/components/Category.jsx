@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Check from "./Check";
+import AddElementHex from "./AddElementHex";
 
 export default function Category() {
    const [isExpanded, setIsExpanded] = useState(true);
@@ -120,7 +121,7 @@ export default function Category() {
                      onClick={showInputField}
                      key="tilfoj-element" // Ensure a key is present
                   >
-                     <Check /> Tilføj element
+                     <AddElementHex /> Tilføj element
                   </li>
                </ul>
             )}

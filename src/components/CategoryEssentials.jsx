@@ -1,5 +1,6 @@
 import { useState } from "react";
 import CheckEssentials from "./CheckEssentials";
+import AddElementHex from "./AddElementHex";
 
 export default function Category() {
    const [isExpanded, setIsExpanded] = useState(true);
@@ -120,7 +121,7 @@ export default function Category() {
                      onClick={showInputField}
                      key="tilfoj-element" // Ensure a key is present
                   >
-                     <CheckEssentials /> Tilføj element
+                     <AddElementHex /> Tilføj element
                   </li>
                </ul>
             )}
