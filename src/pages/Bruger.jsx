@@ -18,14 +18,29 @@ export default function Bruger() {
           </article>
           <article>
             <label>
-              Navn:
-              <input type="text" readOnly />
+              E-mail:
+              <input type="text" value={"Patricia77@gmail.com"} readOnly />
+            </label>
+            <button>Skift</button>
+          </article>
+          <article>
+            <label>
+              Telefon:
+              <input type="text" value={"+45 22 49 12 40"} readOnly />
             </label>
             <button>Skift</button>
           </article>
         </section>
+        <article>
+          <button>Tilpas essentials</button>
+          <button>Skift password</button>
+        </article>
       </main>
-      <img className="hex_bg_pattern" src="img\hex_bg_pattern.svg" alt="Bikubemønster baggrund" />
+      <img
+        className="hex_bg_pattern"
+        src="img\hex_bg_pattern.svg"
+        alt="Bikubemønster baggrund"
+      />
     </>
   );
 }
