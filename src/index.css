@@ -28,6 +28,7 @@
   /* --- font sizes --- */
   --fontsizeXS: 0.5rem; /* 8px */
   --fontsizeS: 0.75rem; /* 12px */
+  --fontsizeSM: 0.875rem; /* 14px */
   --fontsizeM: 1rem; /* 16px */
   --fontsizeL: 1.5rem; /* 24px */
   --fontsizeXL: 2rem; /* 32px */
@@ -323,13 +324,17 @@ main {
   width: 100%;
 }
 
+.hex_check.inner.essentials {
+  display: block;
+}
+
 /* Bruger */
 
 .bruger {
+  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  justify-content: center;
 }
 
 .hex_profile_img {
@@ -338,6 +343,7 @@ main {
   /* clip-path makes hexagon shape */
   clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
   height: 121px;
+  position: relative;
   width: 105px;
 }
 
@@ -347,19 +353,36 @@ main {
   /* clip-path makes hexagon shape */
   clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
   height: 108px;
+  left: 6.5px;
   object-fit: cover;
+  position: absolute;
+  top: 6.5px;
   width: 92px;
 }
 
-.user_info article {
+.user_info {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.bruger article {
   display: flex;
   justify-content: space-between;
+  width: 100%;
+}
+
+.user_info button {
+  font-size: var(--fontsizeSM);
+  padding: 0.5em 1.25em;
 }
 
 .user_info label {
   align-items: center;
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
+  width: 100%;
 }
 
 .user_info input {
@@ -369,6 +392,7 @@ main {
   font-size: var(--fontsizeM);
   font-weight: var(--regular);
   outline: none;
+  width: 70%;
 }
 
 .hex_bg_pattern {
@@ -388,7 +412,7 @@ main {
   bottom: 0;
   left: 0;
   position: fixed;
-  transition: all ease-in-out .5s;
+  transition: all ease-in-out 0.5s;
   width: 100%;
   user-select: none;
 }
@@ -490,6 +514,7 @@ main {
 }
 
 /* Pakkeliste */
+
 .packinglist {
   padding-top: calc(1rem + 75px);
 }
@@ -587,9 +612,9 @@ main {
 }
 
 .input-category {
-background-color: var(--color4);
-border: none;
-height: 21.5px;
+  background-color: var(--color4);
+  border: none;
+  height: 21.5px;
 }
 
 /* .category li:nth-last-child(2) {
@@ -597,10 +622,9 @@ height: 21.5px;
 } */
 
 /* Essentials */
-.essentials {
+.packinglist.essentials {
   padding-top: 66.5px;
 }
-
 
 /* Bruger */
 
