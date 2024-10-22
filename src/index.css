@@ -586,10 +586,85 @@ height: 21.5px;
 /* Bruger */
 
 /* Log ind */
+.logind_center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.bi_fixed {
+  position: absolute;
+  top: 0;
+  left: -50%;
+  transform: translate(-50%, -50%);
+  width: 20px;
+
+  animation: flyvBi_top 9s ease-in-out forwards;
+}
+
 .biGIF {
   width: 210px;
+  animation: flyvBi 2s 10s ease-in-out forwards;
+  transform: translate(-150%, 50%);
+  z-index: 99;
+}
 
-  animation: flyvBi 2s ease-in-out forwards;
+.bi_skrift {
+  width: 210px;
+}
+
+.logind_form {
+  background-color: var(--color5);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  width: 90%;
+}
+
+.opacity_vis {
+  opacity: 0;
+  animation: vis 0.5s 11.8s ease-in-out forwards;
+}
+
+.logind_form div {
+  display: flex;
+}
+
+.logind_form div p {
+  width: 60px;
+}
+
+.logind_form div input {
+  width: 100%;
+  border: none;
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeS);
+  padding-left: 5px;
+}
+
+.logind_form h1 {
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeL);
+  font-weight: var(--regular);
+}
+
+.opret_bruger {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.opret_bruger button {
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeS);
 }
 
 /* Indstillinger */
@@ -675,40 +750,106 @@ height: 21.5px;
 .dialog-content {
   background-color: var(--color4);
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 2px;
   position: relative;
-  max-width: 500px; /* Set a max width for the dialog */
-  width: 100%; /* Full width but constrained by max-width */
+  width: 90%; /* Full width but constrained by max-width */
   box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Drop shadow for depth */
   transition: all 0.5s ease; /* Smooth scale-in/out */
 
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+  border: 10px solid var(--color7);
 }
 
 .dialog-content div {
   display: flex;
   justify-content: space-between;
+  width: 100%;
 }
 
 .dialog-content input {
   height: 100%;
   background-color: var(--background);
+  padding-left: 5px;
 }
 
 /* The close button */
 .close-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 5px 10px;
   cursor: pointer;
-  border-radius: 3px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
 }
 
-.close-btn:hover {
-  background: darkred;
+.opret-btn {
+  background-color: var(--color8);
+  width: fit-content;
+  align-self: center;
+}
+
+.dialog_ikons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dialog_input_div p {
+  width: 70px;
+}
+
+.dialog_input_div input {
+  width: 100%;
+  border: none;
+  background-color: var(--background);
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeM);
+  padding-left: 5px;
+}
+
+.dialog_input_div input[type="date"] {
+  background-color: var(--background);
+  outline: 0;
+  padding: 0;
+  margin: 0;
+  padding-left: 5px;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-color: var(--color4);
+}
+
+.dialogform {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Skabeloner */
+.skabelon_boxe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.skabelon_boxe a {
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  background-color: var(--color2);
+  font-size: var(--fontsizeS);
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+  color: var(--color9);
+}
+
+.skabelon_boxe a img {
+  filter: invert(59%) sepia(72%) saturate(432%) hue-rotate(9deg)
+    brightness(101%) contrast(103%);
 }
 
 /*-------------------------------------------------------------------------------------------------
@@ -753,3 +894,81 @@ height: 21.5px;
 /*-------------------------------------------------------------------------------------------------
 ---------------------------------------------animation---------------------------------------------
 --------------------------------------------------------------------------------------------------*/
+@keyframes vis {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes flyvBi {
+  0% {
+    transform: translate(-150%, 50%);
+    scale: 2;
+  }
+  90% {
+    transform: translate(0%, 50%);
+    scale: 2;
+  }
+  100% {
+    transform: translate(0%, 0%);
+    scale: 1;
+  }
+}
+
+@keyframes flyvBi_top {
+  0% {
+    top: 0;
+    left: -50%;
+    transform: translate(-50%, -50%);
+    width: 20px;
+    rotate: 45deg;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    display: inline;
+  }
+
+  50% {
+    top: 10%;
+    left: 150%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    rotate: 22.5deg;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+    display: inline;
+  }
+  51% {
+    top: 10%;
+    left: 150%;
+    transform: translate(-50%, -50%);
+    width: 40px;
+    rotate: -22.5deg;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: inline;
+  }
+  99% {
+    top: 30%;
+    left: -60%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    rotate: -22.5deg;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: inline;
+  }
+
+  100% {
+    top: 30%;
+    left: -60%;
+    transform: translate(-50%, -50%);
+    width: 160px;
+    rotate: -22.5deg;
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    display: none;
+  }
+}
