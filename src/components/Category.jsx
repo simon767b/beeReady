@@ -11,19 +11,6 @@ export default function Category() {
       { id: 5, label: "Tilføj element", checked: false },
    ]);
 
-   // Effect to load saved items from localStorage
-   useEffect(() => {
-      const savedItems = localStorage.getItem("items");
-      if (savedItems) {
-         setItems(JSON.parse(savedItems));
-      }
-   }, []);
-
-   // Effect to save items to localStorage whenever they change
-   useEffect(() => {
-      localStorage.setItem("items", JSON.stringify(items));
-   }, [items]);
-
    const handleCheckboxChange = (id) => {
       setItems((prevItems) =>
          prevItems.map((item) =>
@@ -43,7 +30,7 @@ export default function Category() {
       <>
          <div className="category">
             <div className="category-header">
-               <h2>Elektronik</h2>
+               <h2>{Category.name}</h2>
                <div>
                   <h2>{`${totalCheckedItems}/${totalItems}`}</h2>
                   <img
