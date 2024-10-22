@@ -6,7 +6,7 @@ export default function Lister() {
   return (
     <>
       <main className="lister">
-      <Sort />
+        <Sort />
         <section className="beehive">
           <List />
           <List />
@@ -34,9 +34,8 @@ export default function Lister() {
           <List />
           <List />
           <List />
-          <PlusButton></PlusButton>
+          <PlusButton />
         </section>
-        <div className="gradient"></div>
       </main>
     </>
   );

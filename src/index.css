@@ -174,7 +174,7 @@ main {
 .search_bar {
   display: flex;
   gap: 0.5rem;
-  padding-left: .5rem;
+  padding-left: 0.5rem;
   width: 100%;
 }
 
@@ -185,30 +185,32 @@ main {
 .search_bar input {
   background-color: transparent;
   border: none;
+  color: var(--color10);
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeM);
+  font-weight: var(--medium);
   outline: none;
   width: 100%;
 }
 
 .search_bar input::placeholder {
   color: var(--color10);
-  font-size: var(--fontsizeS);
-  font-weight: var(--medium);
 }
 
 .sort_btn {
   background-color: var(--color7);
   border: none;
   color: var(--color10);
-  font-size: var(--fontsizeS);
   font-weight: var(--medium);
   outline: none;
-  padding: 2% 4%;
+  padding: 1% 2%;
   position: relative;
   white-space: nowrap;
 }
 
 .sort_btn .sort_arrow {
   max-height: 100%;
+  padding: 2%;
 }
 
 .sort_arrow.clicked {
@@ -263,10 +265,19 @@ main {
 .gradient {
   background: linear-gradient(to top, var(--background), transparent);
   bottom: 0;
-  height: 50%;
+  left: 0;
   position: fixed;
+  transition: all ease-in-out .5s;
   width: 100%;
   user-select: none;
+}
+
+.low {
+  height: 50%;
+}
+
+.high {
+  height: 100%;
 }
 
 /* bikube mønster */

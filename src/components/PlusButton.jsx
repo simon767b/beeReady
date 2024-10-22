@@ -6,6 +6,7 @@ import Genbrug from "./Genbrug";
 
 export default function PlusButton() {
   const [open, setOpen] = useState(false);
+  const [gradientClass, setGradientClass] = useState("gradient low");
 
   /* Dialog bokse pop op */
 
@@ -14,6 +15,11 @@ export default function PlusButton() {
 
   const handleClick = () => {
     setOpen(!open);
+    if (!open) {
+      setGradientClass("gradient high");
+    } else {
+      setGradientClass("gradient low");
+    }
   };
 
   // Function to open a specific dialog
@@ -106,6 +112,7 @@ export default function PlusButton() {
           ></div>
         </section>
       </section>
+      <div className={gradientClass}></div>
 
       {/* Dialogs */}
       <Manuel
