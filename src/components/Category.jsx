@@ -24,6 +24,8 @@ export default function Category() {
       );
    };
 
+   
+
    // Add a new item to the list when input loses focus
    const addItem = () => {
       if (newItemLabel.trim() === "") {
