@@ -253,6 +253,7 @@ main {
 /* Lister */
 
 .lister {
+  display: flex;
   margin: 0 1rem;
 }
 
@@ -268,12 +269,10 @@ main {
 /* bikube mønster */
 
 .beehive {
-  align-items: center;
   display: grid;
   grid-template-columns: repeat(6, auto);
-  justify-items: center;
   padding-top: calc(4rem + 22.5px);
-  width: 100%;
+  margin-inline: auto;
 }
 
 .hexagon {
@@ -287,26 +286,30 @@ main {
   height: 125px;
   margin-top: -22.5px;
   position: relative;
+  width: 107px;
 }
 
 .beehive .hexagon:nth-child(5n + 2) {
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  justify-self: center;
+  margin-inline: 10px;
+}
+
+.beehive .hexagon:nth-child(5n + 3) {
+  justify-self: end;
 }
 
 .beehive .hexagon:nth-child(5n + 4) {
   justify-self: end;
+  margin-right: 5px;
 }
 
 .beehive .hexagon:nth-child(5n + 5) {
-  justify-self: start;
+  margin-left: 5px;
 }
 
 .beehive .hexagon:nth-child(5n + 4),
 .beehive .hexagon:nth-child(5n + 5) {
   grid-column: span 3;
-  margin-left: 0.25rem;
-  margin-right: 0.25rem;
 }
 
 .hex_content {
@@ -576,6 +579,41 @@ main {
 /*-------------------------------------------------------------------------------------------------
 --------------------------------------------Media query--------------------------------------------
 --------------------------------------------------------------------------------------------------*/
+
+@media only screen and (max-width: 370px) {
+  /* beehive grid correct on smaller screen (min-width: ca. 287px) */
+  .beehive {
+    padding-top: calc(3rem + (22.5px * 0.75));
+  }
+
+  .hexagon {
+    height: calc(125px * 0.75);
+    margin-top: calc(-22.5px * 0.75);
+    width: calc(107px * 0.75);
+  }
+
+  .beehive .hexagon:nth-child(5n + 2) {
+    margin-inline: 7.5px;
+  }
+
+  .beehive .hexagon:nth-child(5n + 4) {
+    justify-self: end;
+    margin-right: 3.75px;
+  }
+
+  .beehive .hexagon:nth-child(5n + 5) {
+    margin-left: 3.75px;
+  }
+
+  .hexagon h6 {
+    font-size: var(--fontsizeS);
+  }
+
+  .hexagon img {
+    padding: 1% 0;
+    width: calc(26px * 0.5);
+  }
+}
 
 /*-------------------------------------------------------------------------------------------------
 ---------------------------------------------animation---------------------------------------------
