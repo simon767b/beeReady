@@ -229,6 +229,7 @@ main {
   display: flex;
   flex-direction: column;
   gap: 1rem;
+  min-width: 55dvw;
   padding: 20px;
   position: absolute;
   top: 90%;
@@ -239,12 +240,19 @@ main {
 }
 
 .sort_dropdown .option {
+  align-items: center;
   display: flex;
   gap: 10px;
 }
 
 .sort_dropdown .option p {
+  color: var(--color10);
+  font-weight: var(--regular);
   white-space: nowrap;
+}
+
+.sort_dropdown .option:has(.hex_check input:checked) p {
+  font-weight: var(--semiBold);
 }
 
 .sort_dropdown.hidden {
@@ -253,6 +261,73 @@ main {
 
 .sort_dropdown.visible {
   transform: translateY(0);
+}
+
+/* Checkbox */
+
+.hex_check {
+  border-radius: 1px;
+  /* clip-path makes hexagon shape */
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.hex_check.outer {
+  background-color: var(--background);
+  height: 27px;
+  position: relative;
+  width: 23px;
+}
+
+/* Hide the browser's default checkbox */
+.hex_check input {
+  cursor: pointer;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
+.hex_check.inner {
+  background-color: var(--color6);
+  display: none;
+  height: 23px;
+  left: 2px;
+  position: absolute;
+  top: 2px;
+  width: 19px;
+}
+
+.hex_check .tick_mark {
+  display: none;
+  height: 100%;
+  padding: 15%;
+  width: 100%;
+}
+
+.hex_check.inner:has(input:checked) {
+  display: block;
+}
+
+.hex_check.inner:has(input:checked) .tick_mark {
+  display: block;
+}
+
+.hex_check .plus {
+  height: 100%;
+  padding: 25%;
+  width: 100%;
+}
+
+/* Bruger */
+
+.bruger {
+  background-color: var(--color8);
+  height: 50dvh;
 }
 
 /* Lister */
@@ -606,7 +681,7 @@ height: 21.5px;
 --------------------------------------------------------------------------------------------------*/
 
 @media only screen and (max-width: 370px) {
-  /* beehive grid correct on smaller screen (min-width: ca. 287px) */
+  /* beehive grid correct on smaller screen (min-width: ca. 290px) */
   .beehive {
     padding-top: calc(3rem + (22.5px * 0.75));
   }
