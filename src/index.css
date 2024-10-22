@@ -326,15 +326,61 @@ main {
 /* Bruger */
 
 .bruger {
-  background-color: var(--color8);
-  height: 50dvh;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.hex_profile_img {
+  border-radius: 1px;
+  background-color: var(--color3);
+  /* clip-path makes hexagon shape */
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  height: 121px;
+  width: 105px;
+}
+
+.hex_profile_img img {
+  border-radius: 1px;
+  background-color: var(--color3);
+  /* clip-path makes hexagon shape */
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  height: 108px;
+  object-fit: cover;
+  width: 92px;
+}
+
+.user_info article {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user_info label {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
+.user_info input {
+  background-color: transparent;
+  border: none;
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeM);
+  font-weight: var(--regular);
+  outline: none;
+}
+
+.hex_bg_pattern {
+  bottom: 65px;
+  position: fixed;
+  user-select: none;
 }
 
 /* Lister */
 
 .lister {
   display: flex;
-  margin: 0 1rem;
 }
 
 .gradient {
