@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Check from "./Check";
+import RadioHex from "./RadioHex";
 
 export default function Sort() {
   //sort dropdown inspired from https://www.youtube.com/watch?v=gAGcjlJyKk0
@@ -37,26 +37,26 @@ export default function Sort() {
             alt="drop-down pil"
           />
           <section className={sortDropdownClass}>
-            <div className="option">
-              <Check />
+            <label className="option">
+              <RadioHex name={"sorting"} />
               <p>Senest ændret</p>
-            </div>
-            <div className="option">
-              <Check />
+            </label>
+            <label className="option">
+              <RadioHex name={"sorting"} />
               <p>A til Å</p>
-            </div>
-            <div className="option">
-              <Check />
+            </label>
+            <label className="option">
+              <RadioHex name={"sorting"} />
               <p>Å til A</p>
-            </div>
-            <div className="option">
-              <Check />
+            </label>
+            <label className="option">
+              <RadioHex name={"sorting"} />
               <p>Afrejse (nyeste)</p>
-            </div>
-            <div className="option">
-              <Check />
+            </label>
+            <label className="option">
+              <RadioHex name={"sorting"} />
               <p>Afrejse (ældste)</p>
-            </div>
+            </label>
           </section>
         </button>
       </form>
