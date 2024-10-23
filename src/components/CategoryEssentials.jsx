@@ -52,7 +52,6 @@ export default function Category() {
       setIsAddingItem(true); // Set adding item state to true
    };
 
-   const totalCheckedItems = items.filter((item) => item.checked).length;
    const totalItems = items.length - 1; // Assuming the last item is "Tilføj element"
 
    const toggleList = () => {
@@ -66,7 +65,7 @@ export default function Category() {
                <h2>Category</h2>{" "}
                {/* Or you can replace with dynamic category name */}
                <div>
-                  <h2>{`${totalCheckedItems}/${totalItems}`}</h2>
+                  <h2>{`${totalItems}`}</h2>
                   <img
                      src="img/icons/down-arrow.svg"
                      alt="Toggle list"
