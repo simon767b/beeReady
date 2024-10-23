@@ -1,4 +1,31 @@
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useState } from "react";
+import { Link } from "react-router-dom";
+import { auth } from "./firebase-config";
+
 export default function LogInd() {
+  const [errorMessage, setErrorMessage] = useState("");
+
+  function handleSignIn(event) {
+    event.preventDefault();
+    const mail = event.target.mail.value; // mail value from inout field in sign in form
+    const password = event.target.password.value; // password value from inout field in sign in form
+
+    // read the docs: https://firebase.google.com/docs/auth/web/password-auth#sign_in_a_user_with_an_email_address_and_password
+    signInWithEmailAndPassword(auth, mail, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        console.log(user); // for test purposes: logging the authenticated user
+      })
+      .catch((error) => {
+        let code = error.code; // saving error code in variable
+        console.log(code);
+        code = code.replaceAll("-", " "); // some JS string magic to display error message. See the log above in the console
+        code = code.replaceAll("auth/", "");
+        setErrorMessage(code);
+      });
+  }
   return (
     <>
       <img
@@ -13,27 +40,41 @@ export default function LogInd() {
           alt="lgog tekst"
           className="bi_skrift opacity_vis"
         />
-
-        <form className="logind_form opacity_vis">
+        <form className="opacity_vis" onSubmit={handleSignIn}>
           <h1>Log ind</h1>
-          <div>
-            <p>Email:</p>
-            <input type="text" placeholder="Patricia77@gmail.com" />
+          <label>
+            E-mail:
+            <input
+              type="email"
+              name="mail"
+              aria-label="mail"
+              placeholder="Skriv din e-mail"
+              required
+              autoComplete="on"
+            />
+          </label>
+          <label>
+            Adgangskode:
+            <input
+              type="password"
+              name="password"
+              aria-label="password"
+              placeholder="Skriv din adgangskode"
+              required
+              autoComplete="current-password"
+            />
+          </label>
+          <div className="error-message">
+            <p>{errorMessage}</p>{" "}
           </div>
-
-          <div>
-            <p>Kode:</p>
-            <input type="text" placeholder="***********" />
-          </div>
+          <button>Log ind</button>
         </form>
-
-        <button className="generelKnap opacity_vis">Log ind</button>
       </div>
 
-      <div className="opret_bruger opacity_vis">
-        <p>Har du ikke en bruger?</p>
-        <button className="generelKnap">Opret bruger</button>
-      </div>
+      <p className="opret_bruger opacity_vis">
+        Har du ikke en bruger?
+        <Link to="/opret-bruger">Opret bruger</Link>
+      </p>
     </>
   );
 }

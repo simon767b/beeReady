@@ -1,5 +1,5 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { useState } from "react";
 import Lister from "./pages/Lister";
 import Bruger from "./pages/Bruger";
 import Indstillinger from "./pages/Indstillinger";
@@ -8,39 +8,55 @@ import Header from "./components/Header";
 import Pakkeliste from "./pages/Pakkeliste";
 import LogInd from "./pages/LogInd";
 import Essentials from "./pages/Essentials";
+import OpretBruger from "./pages/OpretBruger";
+import "./pages/firebase-config";
+// import { auth } from "./pages/firebase-config";
+import { getAuth, onAuthStateChanged } from "@firebase/auth";
 
 function App() {
-  const [side, setSide] = useState(false);
-  const [mainUrl, setMainUrl] = useState(window.location.href);
+  const auth = getAuth();
+  const [isAuth, setIsAuth] = useState(localStorage.getItem("isAuth")); // start default value comes from localStorage
 
-  useEffect(() => {
-    let url = window.location.href;
-    if (url == "http://localhost:5173/LogInd") {
-      setSide(false);
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+      //user is authenticated / signed in
+      setIsAuth(true); // set isAuth to true
+      localStorage.setItem("isAuth", true); // also, save isAuth in localStorage
     } else {
-      setSide(true);
+      // user is not authenticated / not signed in
+      setIsAuth(false); // set isAuth to false
+      localStorage.removeItem("isAuth"); // remove isAuth from localStorage
     }
-    // console.log(side, url);
-  }, [side]);
+  });
+
+  // variable holding all private routes including the nav bar
+  const privateRoutes = (
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Lister />} />
+        <Route path="/bruger" element={<Bruger />} />
+        <Route path="/indstillinger" element={<Indstillinger />} />
+        <Route path="/pakkeliste" element={<Pakkeliste />} />
+        <Route path="/essentials" element={<Essentials />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+      <Nav />
+    </>
+  );
+
+  // variable holding all public routes without nav bar
+  const publicRoutes = (
+    <Routes>
+      <Route path="/log-ind" element={<LogInd />} />
+      <Route path="/opret-bruger" element={<OpretBruger />} />
+      <Route path="*" element={<Navigate to="/log-ind" />} />
+    </Routes>
+  );
 
   return (
-    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/beeReady/"}>
-      {side ? <Header /> : null}
-      <Routes>
-        <Route
-          index
-          element={<Lister />}
-          mainUrl={mainUrl}
-          setMainUrl={setMainUrl}
-        />
-        <Route path="/Bruger" element={<Bruger />} />
-        <Route path="/Indstillinger" element={<Indstillinger />} />
-        <Route path="/Pakkeliste" element={<Pakkeliste />} />
-        <Route path="/LogInd" element={<LogInd />} />
-        <Route path="/Essentials" element={<Essentials/>} />
-      </Routes>
-      {side ? <Nav /> : null}
-    </BrowserRouter>
+    // if user is authenticated, show privateRoutes, else show publicRoutes
+    <BrowserRouter>{isAuth ? privateRoutes : publicRoutes}</BrowserRouter>
   );
 }
 export default App;
