@@ -578,7 +578,7 @@ a:any-link {
 .linje-moenster {
   height: 1.5px;
   flex-direction: row;
-  background-image: url("../src/assets/img/linje-moenster.svg");
+  background-image: url("img/logo/linje-moenster.svg");
   background-size: cover;
   width: 100%;
   background-size: auto 100%;
@@ -755,7 +755,7 @@ a:any-link {
   font-size: var(--fontsizeS);
 } */
 
-/* --- opret bruger --------------------------------------------------------------------------------------------------- */
+/* --- opret bruger ------------------------------------------------------------------------------------------------- */
 
 .opret_bruger .biGIF {
   width: 150px;
@@ -778,7 +778,7 @@ a:any-link {
   font-size: var(--fontsizeL);
 }
 
-/* Indstillinger */
+/* --- indstillinger ------------------------------------------------------------------------------------------------ */
 
 /* .settings {
   display: flex;
@@ -790,7 +790,10 @@ a:any-link {
 .settings h1 {
   align-self: flex-start;
   font-size: var(--fontsizeL);
-  font-weight: var(--regular);
+}
+
+.settings .content_line {
+  padding-inline: 1rem;
 }
 
 /* .settings div {
