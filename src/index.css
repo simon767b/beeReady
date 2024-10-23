@@ -328,6 +328,10 @@ main {
   display: block;
 }
 
+.hex_check.outer.settings {
+  background-color: var(--color4);
+}
+
 /* Bruger */
 
 .bruger {
@@ -722,7 +726,6 @@ main {
 .settings h1 {
   font-size: var(--fontsizeL);
   font-weight: var(--regular);
-
 }
 
 /* .settings div {
@@ -737,8 +740,6 @@ main {
   flex-direction: column;
   gap: 1rem;
 }
-
-
 
 /* Plusknap */
 .plusButton_border {
