@@ -47,9 +47,9 @@ export default function OpretBruger() {
   return (
     <main className="opret_bruger">
       <section className="page">
-        <img src="img\bi-med-taske.gif" alt="flyvende bi" className="biGIF" />
+        <img src="img/bi-med-taske.gif" alt="flyvende bi" className="biGIF" />
         <img
-          src="img\logo\logo-tekst-kort.svg"
+          src="img/logo/logo-tekst-kort.svg"
           alt="Bee Ready, logo tekst"
           className="bi_skrift opacity_vis"
         />
@@ -92,7 +92,7 @@ export default function OpretBruger() {
               />
             </label>
             <label className="content_line">
-              Vælg adgangskode:
+              Kode:
               <input
                 type="password"
                 name="password"

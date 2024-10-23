@@ -767,12 +767,6 @@ a:any-link {
   gap: 1rem;
 }
 
-/* narrow input for password to fit */
-
-.opret_bruger .log_in_form .content_line:nth-child(5) input {
-  width: 50%;
-}
-
 .opret_bruger form button {
   align-self: center;
   font-size: var(--fontsizeL);
