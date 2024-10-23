@@ -31,7 +31,7 @@ export default function OpretBruger() {
   }
 
   async function createUser(uid, mail) {
-    const url = `https://console.firebase.google.com/project/beeready-8e5f5/database/beeready-8e5f5-default-rtdb/data/~2F/users/${uid}.json`;
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`;
     const response = await fetch(url, {
       method: "PUT",
       body: JSON.stringify({ name, mail }),
@@ -101,9 +101,7 @@ export default function OpretBruger() {
       </form>
       <p>
         Har du allerede en bruger?
-        <Link to="/log-ind">
-          Log ind
-        </Link>
+        <Link to="/log-ind">Log ind</Link>
       </p>
     </section>
   );

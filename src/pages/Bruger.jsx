@@ -8,20 +8,23 @@ export default function Bruger() {
   const [phone, setPhone] = useState("");
   const [image, setImage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-  const url = `https://console.firebase.google.com/project/beeready-8e5f5/database/beeready-8e5f5-default-rtdb/data/~2F/users/${auth.currentUser?.uid}.json`;
+  const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${auth.currentUser?.uid}.json`;
   const fileInputRef = useRef(null);
 
   const [isProfileChangeActive, setIsProfileChangeActive] = useState(false);
 
   const btnChangeProfile = (
-    <button type="button" onClick={handleChangeProfile}>
+    <button type="button" onClick={() => setIsProfileChangeActive(true)}>
       Rediger bruger
     </button>
   );
   const btnSaveProfile = (
-    <button onClick={handleSaveProfile}>Gem ændringer</button>
+    <button type="submit" onClick={() => setIsProfileChangeActive(false)}>
+      Gem ændringer
+    </button>
   );
 
+  //load existing user data
   useEffect(() => {
     async function getUser() {
       const response = await fetch(url);
@@ -36,7 +39,7 @@ export default function Bruger() {
       }
     }
     getUser();
-  }, [url]); // dependencies: useEffect is executed when url changes
+  }, [auth.currentUser, url]); // dependencies: useEffect is executed when url changes
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -57,6 +60,7 @@ export default function Bruger() {
   }
 
   function handleSignOut() {
+    console.log("hej");
     signOut(auth); // sign out from firebase/auth
   }
 
@@ -65,7 +69,7 @@ export default function Bruger() {
    * The event is fired by the input file field in the form
    */
   function handleImageChange(event) {
-    const file = event.target.file[0];
+    const file = event.target.files[0];
     if (file.size < 500000) {
       // image file size must be below 0,5MB
       const reader = new FileReader();
@@ -97,7 +101,7 @@ export default function Bruger() {
               accept="image/*"
               onChange={handleImageChange}
               ref={fileInputRef}
-              disabled
+              disabled={!isProfileChangeActive}
             />
           </div>
           <label>
@@ -106,8 +110,8 @@ export default function Bruger() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              readOnly
               name="name"
+              disabled={!isProfileChangeActive}
             />
           </label>
           <label>
@@ -116,8 +120,8 @@ export default function Bruger() {
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              readOnly
               name="email"
+              disabled={!isProfileChangeActive}
             />
           </label>
           <label>
@@ -126,16 +130,18 @@ export default function Bruger() {
               type="text"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
-              readOnly
               placeholder="Tilføj telefonnummer"
               name="phone"
+              disabled={!isProfileChangeActive}
             />
           </label>
           <p>{errorMessage}</p>
           {isProfileChangeActive ? btnSaveProfile : btnChangeProfile}
         </form>
         <button>Tilpas essentials</button>
-        <button onClick={handleSignOut}>Log ud</button>
+        <button type="button" onClick={handleSignOut}>
+          Log ud
+        </button>
       </main>
       <img
         className="hex_bg_pattern"

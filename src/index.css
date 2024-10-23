@@ -52,6 +52,7 @@ button {
   font-family: "Nunito", serif;
   font-weight: var(--regular);
   font-size: var(--fontsizeM);
+  z-index: 1;
 }
 
 /*-------------------------------------------------------------------------------------------------
