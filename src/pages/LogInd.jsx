@@ -33,11 +33,11 @@ export default function LogInd() {
         alt="flyvende bi"
         className="bi_fixed"
       />
-      <div className="logind_center page">
-        <img src="./img/bi-med-taske.gif" alt="flyvende bi" className="biGIF" />
+      <section className="logind_center page">
+        <img src="img/bi-med-taske.gif" alt="flyvende bi" className="biGIF" />
         <img
-          src="./img/logo/logo-tekst-kort.svg"
-          alt="lgog tekst"
+          src="img/logo/logo-tekst-kort.svg"
+          alt="Bee Ready, logo tekst"
           className="bi_skrift opacity_vis"
         />
         <form className="opacity_vis" onSubmit={handleSignIn}>
@@ -62,7 +62,7 @@ export default function LogInd() {
                 aria-label="password"
                 placeholder="Skriv din adgangskode"
                 required
-                autoComplete="current-password"
+                autoComplete="on"
               />
             </label>
             <div className="error-message">
@@ -71,11 +71,13 @@ export default function LogInd() {
           </section>
           <button>Log ind</button>
         </form>
-      </div>
+      </section>
 
-      <p className="opret_bruger opacity_vis">
+      <p className="option_bottom opret_bruger opacity_vis">
         Har du ikke en bruger?
-        <Link to="/opret-bruger">Opret bruger</Link>
+        <Link className="btn" to="/opret-bruger">
+          Opret bruger
+        </Link>
       </p>
     </main>
   );

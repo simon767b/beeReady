@@ -45,64 +45,76 @@ export default function OpretBruger() {
   }
 
   return (
-    <section className="page">
-      <form onSubmit={handleSignUp}>
-        <h1>Opret bruger</h1>
-        <label>
-          Navn:
-          <input
-            type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            name="name"
-            aria-label="name"
-            placeholder="Skriv dit navn"
-            required
-          />
-        </label>
-        <label>
-          E-mail:
-          <input
-            type="email"
-            name="mail"
-            aria-label="mail"
-            placeholder="Skriv din e-mail"
-            required
-            autoComplete="on"
-          />
-        </label>
-        <label>
-          Telefon:
-          <input
-            type="tel"
-            name="phone"
-            value={phone}
-            onChange={(e) => setPhone(e.target.value)}
-            aria-label="phone"
-            placeholder="Skriv dit telefonnummer"
-            autoComplete="on"
-          />
-        </label>
-        <label>
-          Vælg adgangskode:
-          <input
-            type="password"
-            name="password"
-            aria-label="password"
-            placeholder="Skriv din adgangskode"
-            required
-            autoComplete="on"
-          />
-        </label>
-        <div className="error-message">
-          <p>{errorMessage}</p>{" "}
-        </div>
-        <button>Opret</button>
-      </form>
-      <p>
+    <main className="opret_bruger">
+      <section className="page">
+        <img src="img\bi-med-taske.gif" alt="flyvende bi" className="biGIF" />
+        <img
+          src="img\logo\logo-tekst-kort.svg"
+          alt="Bee Ready, logo tekst"
+          className="bi_skrift opacity_vis"
+        />
+        <form onSubmit={handleSignUp}>
+          <section className="log_in_form">
+            <h1>Opret bruger</h1>
+            <label className="content_line">
+              Navn:
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                name="name"
+                aria-label="name"
+                placeholder="Skriv dit navn"
+                required
+              />
+            </label>
+            <label className="content_line">
+              E-mail:
+              <input
+                type="email"
+                name="mail"
+                aria-label="mail"
+                placeholder="Skriv din e-mail"
+                required
+                autoComplete="on"
+              />
+            </label>
+            <label className="content_line">
+              Telefon:
+              <input
+                type="tel"
+                name="phone"
+                value={phone}
+                onChange={(e) => setPhone(e.target.value)}
+                aria-label="phone"
+                placeholder="Skriv dit telefonnummer"
+                autoComplete="on"
+              />
+            </label>
+            <label className="content_line">
+              Vælg adgangskode:
+              <input
+                type="password"
+                name="password"
+                aria-label="password"
+                placeholder="Skriv din adgangskode"
+                required
+                autoComplete="on"
+              />
+            </label>
+            <div className="error-message">
+              <p>{errorMessage}</p>{" "}
+            </div>
+          </section>
+          <button>Opret</button>
+        </form>
+      </section>
+      <p className="option_bottom">
         Har du allerede en bruger?
-        <Link to="/log-ind">Log ind</Link>
+        <Link className="btn" to="/log-ind">
+          Log ind
+        </Link>
       </p>
-    </section>
+    </main>
   );
 }
