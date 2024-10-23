@@ -1,4 +1,4 @@
-export default function Check({ checked, onChange }) {
+export default function CheckSettings({ checked, onChange }) {
   return (
     <label className="hex_check outer settings">
       <div className="hex_check inner">

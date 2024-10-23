@@ -5,7 +5,7 @@ import Sort from "../components/Sort";
 export default function Lister() {
   return (
     <>
-      <main className="lister">
+      <main className="lister page">
         <Sort />
         <section className="beehive">
           <List />

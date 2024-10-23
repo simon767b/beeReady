@@ -27,13 +27,13 @@ export default function LogInd() {
       });
   }
   return (
-    <>
+    <main className="log_ind">
       <img
         src="./img/bi-med-taske.gif"
         alt="flyvende bi"
         className="bi_fixed"
       />
-      <div className="logind_center">
+      <div className="logind_center page">
         <img src="./img/bi-med-taske.gif" alt="flyvende bi" className="biGIF" />
         <img
           src="./img/logo/logo-tekst-kort.svg"
@@ -41,32 +41,34 @@ export default function LogInd() {
           className="bi_skrift opacity_vis"
         />
         <form className="opacity_vis" onSubmit={handleSignIn}>
-          <h1>Log ind</h1>
-          <label>
-            E-mail:
-            <input
-              type="email"
-              name="mail"
-              aria-label="mail"
-              placeholder="Skriv din e-mail"
-              required
-              autoComplete="on"
-            />
-          </label>
-          <label>
-            Adgangskode:
-            <input
-              type="password"
-              name="password"
-              aria-label="password"
-              placeholder="Skriv din adgangskode"
-              required
-              autoComplete="current-password"
-            />
-          </label>
-          <div className="error-message">
-            <p>{errorMessage}</p>{" "}
-          </div>
+          <section className="log_in_form">
+            <h1>Log ind</h1>
+            <label className="content_line">
+              E-mail:
+              <input
+                type="email"
+                name="mail"
+                aria-label="mail"
+                placeholder="Skriv din e-mail"
+                required
+                autoComplete="on"
+              />
+            </label>
+            <label className="content_line">
+              Kode:
+              <input
+                type="password"
+                name="password"
+                aria-label="password"
+                placeholder="Skriv din adgangskode"
+                required
+                autoComplete="current-password"
+              />
+            </label>
+            <div className="error-message">
+              <p>{errorMessage}</p>{" "}
+            </div>
+          </section>
           <button>Log ind</button>
         </form>
       </div>
@@ -75,6 +77,6 @@ export default function LogInd() {
         Har du ikke en bruger?
         <Link to="/opret-bruger">Opret bruger</Link>
       </p>
-    </>
+    </main>
   );
 }

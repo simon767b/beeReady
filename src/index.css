@@ -1,6 +1,4 @@
-/*-------------------------------------------------------------------------------------------------
--------------------------------root og generel styling---------------------------------------------
---------------------------------------------------------------------------------------------------*/
+/* --- root og generel styling ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
 
@@ -26,75 +24,73 @@
   --semiBold: 600;
 
   /* --- font sizes --- */
-  --fontsizeXS: 0.5rem; /* 8px */
-  --fontsizeS: 0.75rem; /* 12px */
-  --fontsizeSM: 0.875rem; /* 14px */
+  --fontsizeXXS: 0.5rem; /* 8px */
+  --fontsizeXS: 0.75rem; /* 12px */
+  --fontsizeS: 0.875rem; /* 14px */
   --fontsizeM: 1rem; /* 16px */
-  --fontsizeL: 1.5rem; /* 24px */
-  --fontsizeXL: 2rem; /* 32px */
+  --fontsizeL: 1.25rem; /* 20px */
+  --fontsizeXL: 1.5rem; /* 24px */
+  --fontsizeXXL: 2rem; /* 32px */
 }
 
 /* --- reset --- */
 * {
-  padding: 0;
-  margin: 0;
+  border-radius: 1px;
   box-sizing: border-box;
-  text-decoration: none;
+  font-family: "Nunito", sans-serif;
+  font-weight: var(--regular);
   list-style: none;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
-/* buttons */
-button {
-  padding: 10px 20px;
-  background-color: var(--color4);
-  color: var(--text);
-  border: none;
-  font-family: "Nunito", serif;
-  font-weight: var(--regular);
-  font-size: var(--fontsizeM);
-  z-index: 1;
-}
+/* --- general styles --- */
 
-input {
-  background-color: transparent;
-  border: none;
-  color: var(--text);
-  font-family: "Nunito", serif;
-  font-weight: var(--regular);
-  font-size: var(--fontsizeM);
-  outline: none;
+#root {
+  background-color: var(--background);
+  height: 100%;
+  /* max-width: 480px; */ /* mobil skærm på computer*/
+  min-height: 100dvh;
+  padding: 7rem 0;
+  /* position: relative; */
+  width: 100%;
 }
-
-/*-------------------------------------------------------------------------------------------------
------------------------------------------------forside---------------------------------------------
---------------------------------------------------------------------------------------------------*/
 
 body {
-  width: 100dvw;
-  /* height: 100dvh; */
-  display: flex;
-  justify-content: center;
   /* align-items: center; */
   background-color: var(--text);
-  border-radius: 1px;
+  display: flex;
+  /* height: 100dvh; */
+  justify-content: center;
+  width: 100dvw;
 }
 
 main {
   margin: 0 1rem;
 }
 
-#root {
-  background-color: var(--background);
-  width: 100%;
-  /* max-width: 480px; */ /* mobil skærm på computer*/
-  height: 100%;
-  font-family: "Nunito", sans-serif;
-  /* position: relative; */
-  padding: 7rem 0;
-  min-height: 100dvh;
+button {
+  padding: .6em 1.25em;
+  background-color: var(--color4);
+  color: var(--text);
+  border: none;
+  font-weight: var(--regular);
+  font-size: var(--fontsizeS);
 }
 
-/* Navbar */
+input {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-weight: var(--regular);
+  font-size: var(--fontsizeM);
+  outline: none;
+  padding: .1em .5em;
+}
+
+/* --- navigation --------------------------------------------------------------------------------------------------- */
+
 .navbar {
   background-color: var(--color7);
   width: 100%;
@@ -129,7 +125,8 @@ main {
   font-size: var(--fontsizeS);
 }
 
-/* header */
+/* --- header --------------------------------------------------------------------------------------------------------*/
+
 .header {
   background-color: var(--background);
   max-width: 100%;
@@ -163,7 +160,7 @@ main {
   object-position: left 50%;
 }
 
-/* Søg / Sortér */
+/* --- search & sorting --------------------------------------------------------------------------------------------- */
 
 .search_sort_container {
   background-color: var(--background);
@@ -275,7 +272,7 @@ main {
   transform: translateY(0);
 }
 
-/* Checkbox */
+/* --- checkboxes --------------------------------------------------------------------------------------------------- */
 
 .hex_check {
   border-radius: 1px;
@@ -320,21 +317,28 @@ main {
   display: block;
 }
 
+/* --- add element in category --- */
+
 .hex_check .plus {
   height: 100%;
   padding: 25%;
   width: 100%;
 }
 
+/* --- checkbox essentials --- */
+
 .hex_check.inner.essentials {
   display: block;
 }
+
+/* --- checkbox settings --- */
 
 .hex_check.outer.settings {
   background-color: var(--color4);
 }
 
 /* Hide the browser's default checkbox */
+
 .hex_check input {
   cursor: pointer;
   height: 0;
@@ -343,20 +347,36 @@ main {
   width: 0;
 }
 
-/* Bruger */
+/* --- reused styling for pages ---------------------------------------------------------------------------------- */
 
-.bruger {
+.page {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-.user_info {
+.content {
   align-items: center;
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
+
+.content_line {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.hex_bg_pattern {
+  bottom: 65px;
+  pointer-events: none;
+  position: fixed;
+}
+
+/* --- specific page styling ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
+
+/* --- bruger ------------------------------------------------------------------------------------------------------- */
 
 .hex_profile_img {
   border-radius: 1px;
@@ -381,46 +401,24 @@ main {
   width: 97px;
 }
 
-.user_info label {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.user_info input {  
+.user_info input {
   width: 75%;
-}
-
-.user_info button,
-.btn_log_out {
-  font-size: var(--fontsizeSM);
-  padding: 0.5em 1.25em;
 }
 
 .bruger button {
   align-self: center;
 }
 
-.hex_bg_pattern {
-  bottom: 65px;
-  pointer-events: none;
-  position: fixed;
-}
-
-/* Lister */
-
-.lister {
-  display: flex;
-}
+/* --- lister ------------------------------------------------------------------------------------------------------- */
 
 .gradient {
   background: linear-gradient(to top, var(--background), transparent);
   bottom: 0;
   left: 0;
+  pointer-events: none;
   position: fixed;
   transition: all ease-in-out 0.5s;
   width: 100%;
-  user-select: none;
 }
 
 .low {
@@ -431,7 +429,7 @@ main {
   height: 100%;
 }
 
-/* bikube mønster */
+/* --- bikube mønster --- */
 
 .beehive {
   display: grid;
@@ -441,7 +439,6 @@ main {
 }
 
 .hexagon {
-  aspect-ratio: cos(30deg);
   background: var(--color3);
   /* clip-path makes hexagon shape */
   clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
@@ -477,6 +474,8 @@ main {
   grid-column: span 3;
 }
 
+/* --- liste information --- */
+
 .hex_content {
   align-items: center;
   display: flex;
@@ -490,7 +489,7 @@ main {
 }
 
 .hexagon .date {
-  font-size: var(--fontsizeXS);
+  font-size: var(--fontsizeXXS);
 }
 
 .hexagon img {
@@ -498,7 +497,7 @@ main {
 }
 
 .hexagon .item_count {
-  font-size: var(--fontsizeS);
+  font-size: var(--fontsizeXS);
 }
 
 .hexagon .wave {
@@ -519,7 +518,7 @@ main {
   z-index: -1;
 }
 
-/* Pakkeliste */
+/* --- pakkeliste --------------------------------------------------------------------------------------------------- */
 
 .packinglist {
   padding-top: calc(1rem + 75px);
@@ -536,30 +535,30 @@ main {
   background-color: var(--color3);
   border: none;
   padding: 4px 6px;
-  font-size: var(--fontsizeS);
+  font-size: var(--fontsizeXS);
   height: 24px;
 }
 
-.packinglist h1,
+/* .packinglist h1,
 .packinglist h2,
 .packinglist h4,
 .packinglist p,
 .packinglist li {
   font-weight: var(--regular);
-}
+} */
 
 .packinglist h1,
 .packinglist h2 {
-  font-size: var(--fontsizeL);
+  font-size: var(--fontsizeXL);
 }
 
 .packinglist h4 {
-  font-size: var(--fontsizeS);
+  font-size: var(--fontsizeXS);
 }
 
-.packinglist li {
+/* .packinglist li {
   font-size: var(--fontsizeM);
-}
+} */
 
 .packinglist-fixed {
   position: fixed;
@@ -627,20 +626,18 @@ main {
   display: none;
 } */
 
-/* Essentials */
+/* --- essentials --------------------------------------------------------------------------------------------------- */
 .packinglist.essentials {
   padding-top: 66.5px;
 }
 
-/* Bruger */
-
-/* Log ind */
-.logind_center {
+/* --- log ind --------------------------------------------------------------------------------------------------- */
+/* .logind_center {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 16px;
-}
+} */
 
 .bi_fixed {
   position: absolute;
@@ -653,6 +650,7 @@ main {
 }
 
 .biGIF {
+  align-self: center;
   width: 210px;
   animation: flyvBi 2s 10s ease-in-out forwards;
   transform: translate(-150%, 50%);
@@ -660,16 +658,8 @@ main {
 }
 
 .bi_skrift {
+  align-self: center;
   width: 210px;
-}
-
-.logind_form {
-  background-color: var(--color5);
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  padding: 20px;
-  width: 90%;
 }
 
 .opacity_vis {
@@ -677,26 +667,54 @@ main {
   animation: vis 0.5s 11.8s ease-in-out forwards;
 }
 
-.logind_form div {
+.log_ind form {
   display: flex;
+  flex-direction: column;
+  gap: 1rem;
 }
 
-.logind_form div p {
+.log_in_form {
+  background-color: var(--color5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+}
+
+/* .logind_form div {
+  display: flex;
+} */
+
+/* .logind_form div p {
   width: 60px;
-}
+} */
 
-.logind_form div input {
+/* .logind_form div input {
   width: 100%;
   border: none;
   font-family: "Nunito", sans-serif;
   font-size: var(--fontsizeS);
   padding-left: 5px;
-}
+} */
 
-.logind_form h1 {
+/* .logind_form h1 {
   font-family: "Nunito", sans-serif;
   font-size: var(--fontsizeL);
   font-weight: var(--regular);
+} */
+
+.log_in_form h1 {
+  font-size: var(--fontsizeXL);
+}
+
+.log_in_form input {
+  background-color: var(--background);
+  width: 80%;
+}
+
+.log_ind form button {
+  align-self: center;
+  font-size: var(--fontsizeM);
 }
 
 .opret_bruger {
@@ -718,14 +736,15 @@ main {
 
 /* Indstillinger */
 
-.settings {
+/* .settings {
   display: flex;
   flex-direction: column;
   gap: 2rem;
   margin: 1.5rem 2.5rem;
-}
+} */
 
 .settings h1 {
+  align-self: flex-start;
   font-size: var(--fontsizeL);
   font-weight: var(--regular);
 }
@@ -736,12 +755,11 @@ main {
   flex-direction: column;
 } */
 
-.settings-div {
+/* .settings-div {
   display: flex;
-
   flex-direction: column;
   gap: 1rem;
-}
+} */
 
 /* Plusknap */
 .plusButton_border {

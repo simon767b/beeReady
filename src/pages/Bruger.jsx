@@ -88,8 +88,8 @@ export default function Bruger() {
 
   return (
     <>
-      <main className="bruger">
-        <form onSubmit={handleSubmit} className="user_info">
+      <main className="bruger page">
+        <form onSubmit={handleSubmit} className="user_info content">
           <div className="hex_profile_img">
             <img
               src={image ? image : "img/dummy_profile_img.jpg"}
@@ -106,7 +106,7 @@ export default function Bruger() {
               disabled={!isProfileChangeActive}
             />
           </div>
-          <label>
+          <label className="content_line">
             Navn:
             <input
               type="text"
@@ -116,7 +116,7 @@ export default function Bruger() {
               disabled={!isProfileChangeActive}
             />
           </label>
-          <label>
+          <label className="content_line">
             E-mail:
             <input
               type="mail"
@@ -126,7 +126,7 @@ export default function Bruger() {
               disabled={!isProfileChangeActive}
             />
           </label>
-          <label>
+          <label className="content_line">
             Telefon:
             <input
               type="tel"
@@ -137,7 +137,7 @@ export default function Bruger() {
               disabled={!isProfileChangeActive}
             />
           </label>
-          <label>
+          <label className="content_line">
             Kode:
             <input
               type="password"
