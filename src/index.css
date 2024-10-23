@@ -55,6 +55,16 @@ button {
   z-index: 1;
 }
 
+input {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  font-family: "Nunito", serif;
+  font-weight: var(--regular);
+  font-size: var(--fontsizeM);
+  outline: none;
+}
+
 /*-------------------------------------------------------------------------------------------------
 -----------------------------------------------forside---------------------------------------------
 --------------------------------------------------------------------------------------------------*/
@@ -258,7 +268,7 @@ main {
 }
 
 .sort_dropdown.hidden {
-  transform: translateY(-100%);
+  transform: translateY(-120%);
 }
 
 .sort_dropdown.visible {
@@ -283,15 +293,6 @@ main {
   height: 27px;
   position: relative;
   width: 23px;
-}
-
-/* Hide the browser's default checkbox */
-.hex_check input {
-  cursor: pointer;
-  height: 0;
-  opacity: 0;
-  position: absolute;
-  width: 0;
 }
 
 .hex_check.inner {
@@ -333,13 +334,28 @@ main {
   background-color: var(--color4);
 }
 
+/* Hide the browser's default checkbox */
+.hex_check input {
+  cursor: pointer;
+  height: 0;
+  opacity: 0;
+  position: absolute;
+  width: 0;
+}
+
 /* Bruger */
 
 .bruger {
-  align-items: center;
   display: flex;
   flex-direction: column;
   gap: 2rem;
+}
+
+.user_info {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
 }
 
 .hex_profile_img {
@@ -347,9 +363,9 @@ main {
   background-color: var(--color3);
   /* clip-path makes hexagon shape */
   clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
-  height: 121px;
+  height: 125px;
   position: relative;
-  width: 105px;
+  width: 107px;
 }
 
 .hex_profile_img img {
@@ -357,53 +373,38 @@ main {
   background-color: var(--color3);
   /* clip-path makes hexagon shape */
   clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
-  height: 108px;
-  left: 6.5px;
+  height: 115px;
+  left: 5px;
   object-fit: cover;
   position: absolute;
-  top: 6.5px;
-  width: 92px;
+  top: 5px;
+  width: 97px;
 }
 
-.user_info {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  width: 100%;
-}
-
-.bruger article {
+.user_info label {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
 
-.user_info button {
+.user_info input {  
+  width: 75%;
+}
+
+.user_info button,
+.btn_log_out {
   font-size: var(--fontsizeSM);
   padding: 0.5em 1.25em;
 }
 
-.user_info label {
-  align-items: center;
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.user_info input {
-  background-color: transparent;
-  border: none;
-  font-family: "Nunito", sans-serif;
-  font-size: var(--fontsizeM);
-  font-weight: var(--regular);
-  outline: none;
-  width: 70%;
+.bruger button {
+  align-self: center;
 }
 
 .hex_bg_pattern {
   bottom: 65px;
+  pointer-events: none;
   position: fixed;
-  user-select: none;
 }
 
 /* Lister */

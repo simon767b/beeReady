@@ -3,10 +3,11 @@ import { auth } from "./firebase-config";
 import { signOut } from "@firebase/auth";
 
 export default function Bruger() {
+  const [image, setImage] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [image, setImage] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${auth.currentUser?.uid}.json`;
   const fileInputRef = useRef(null);
@@ -36,6 +37,7 @@ export default function Bruger() {
         setEmail(auth.currentUser?.email);
         setPhone(userData.phone || "");
         setImage(userData.image || "img/dummy_profile_img.jpg");
+        setPassword(userData.password);
       }
     }
     getUser();
@@ -117,7 +119,7 @@ export default function Bruger() {
           <label>
             E-mail:
             <input
-              type="text"
+              type="mail"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               name="email"
@@ -127,7 +129,7 @@ export default function Bruger() {
           <label>
             Telefon:
             <input
-              type="text"
+              type="tel"
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               placeholder="Tilføj telefonnummer"
@@ -135,11 +137,21 @@ export default function Bruger() {
               disabled={!isProfileChangeActive}
             />
           </label>
-          <p>{errorMessage}</p>
+          <label>
+            Kode:
+            <input
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              name="password"
+              disabled={!isProfileChangeActive}
+            />
+          </label>
+          <p className="error_message">{errorMessage}</p>
           {isProfileChangeActive ? btnSaveProfile : btnChangeProfile}
         </form>
         <button>Tilpas essentials</button>
-        <button type="button" onClick={handleSignOut}>
+        <button className="btn_log_out" type="button" onClick={handleSignOut}>
           Log ud
         </button>
       </main>
