@@ -34,12 +34,12 @@ function App() {
     <>
       <Header />
       <Routes>
-        <Route path="/beeReady" element={<Lister />} />
-        <Route path="/beeReady/bruger" element={<Bruger />} />
-        <Route path="/beeReady/indstillinger" element={<Indstillinger />} />
-        <Route path="/beeReady/pakkeliste" element={<Pakkeliste />} />
-        <Route path="/beeReady/essentials" element={<Essentials />} />
-        <Route path="*" element={<Navigate to="/beeReady" />} />
+        <Route path="/" element={<Lister />} />
+        <Route path="/bruger" element={<Bruger />} />
+        <Route path="/indstillinger" element={<Indstillinger />} />
+        <Route path="/pakkeliste" element={<Pakkeliste />} />
+        <Route path="/essentials" element={<Essentials />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
       <Nav />
     </>
@@ -48,9 +48,9 @@ function App() {
   // variable holding all public routes without nav bar
   const publicRoutes = (
     <Routes>
-      <Route path="/beeReady/log-ind" element={<LogInd />} />
-      <Route path="/beeReady/opret-bruger" element={<OpretBruger />} />
-      <Route path="*" element={<Navigate to="/beeReady/log-ind" />} />
+      <Route path="/log-ind" element={<LogInd />} />
+      <Route path="/opret-bruger" element={<OpretBruger />} />
+      <Route path="*" element={<Navigate to="/log-ind" />} />
     </Routes>
   );
 
