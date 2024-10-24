@@ -123,7 +123,7 @@ export default function Bruger() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               name="email"
-              disabled={!isProfileChangeActive}
+              disabled
             />
           </label>
           <label className="content_line">
@@ -145,6 +145,7 @@ export default function Bruger() {
               onChange={(e) => setPassword(e.target.value)}
               name="password"
               disabled={!isProfileChangeActive}
+              autoComplete="current-password"
             />
           </label>
           <p className="error_message">{errorMessage}</p>

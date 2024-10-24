@@ -736,6 +736,10 @@ a:any-link {
 
 /* --- indstillinger ------------------------------------------------------------------------------------------------ */
 
+.settings.page {
+  gap: 1rem;
+}
+
 .settings h1 {
   align-self: flex-start;
   font-size: var(--fontsizeL);
@@ -744,7 +748,6 @@ a:any-link {
 .settings .content_line {
   padding-inline: 1rem;
   display: flex;
-  flex-direction: column;
   gap: 1rem;
 }
 

@@ -9,7 +9,7 @@ export default function Indstillinger() {
   return (
     <>
       <main className="settings page">
-        {/* <div className="linje-moenster"></div> */}
+        <div className="linje-moenster"></div>
         <section className="settings-div content">
           <h1>Notifikationer</h1>
           <div className="content_line">
@@ -27,7 +27,7 @@ export default function Indstillinger() {
             />
           </div>
         </section>
-        {/* <div className="linje-moenster"></div> */}
+        <div className="linje-moenster"></div>
         <section className="settings-div content">
           <h1>Tema</h1>
           <div className="content_line">
@@ -38,6 +38,7 @@ export default function Indstillinger() {
             />
           </div>
         </section>
+        <div className="linje-moenster"></div>
       </main>
       <img
         className="hex_bg_pattern"
