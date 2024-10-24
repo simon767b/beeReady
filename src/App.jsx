@@ -56,7 +56,7 @@ function App() {
 
   return (
     // if user is authenticated, show privateRoutes, else show publicRoutes
-    <main>{isAuth ? privateRoutes : publicRoutes}</main>
+    <>{isAuth ? privateRoutes : publicRoutes}</>
   );
 }
 export default App;
