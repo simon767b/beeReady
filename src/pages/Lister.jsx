@@ -11,6 +11,7 @@ export default function Lister({ uid }) {
       const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists.json?orderBy="uid"&equalTo="${uid}"`;
       const response = await fetch(url);
       const data = await response.json();
+      console.log(data);
       const listsArray = Object.keys(data).map((key) => ({
         id: key,
         ...data[key],

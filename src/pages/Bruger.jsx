@@ -7,6 +7,7 @@ export default function Bruger() {
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [confirmation, setConfirmation] = useState("");
   const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${auth.currentUser?.uid}.json`;
   const fileInputRef = useRef(null);
 
@@ -23,6 +24,13 @@ export default function Bruger() {
     </button>
   );
 
+  function giveConfirmation() {
+    setConfirmation("Dine ændringer er gemt.");
+    setTimeout(() => {
+      setConfirmation("");
+    }, 3000); // vis confirmation i 3 sekunder
+  }
+
   //load existing user data
   useEffect(() => {
     async function getUser() {
@@ -34,7 +42,7 @@ export default function Bruger() {
         setName(userData.name || "");
         setEmail(auth.currentUser?.email || "");
         setPhone(userData.phone || "");
-        setImage(userData.image || "img/dummy_profile_img.jpg");
+        setImage(userData.image || "img/icons/bruger.svg");
       }
     }
     getUser();
@@ -53,6 +61,7 @@ export default function Bruger() {
     if (response.ok) {
       const data = await response.json();
       console.log("User updated: ", data);
+      giveConfirmation();
     } else {
       console.log("Sorry, something went wrong");
     }
@@ -84,10 +93,22 @@ export default function Bruger() {
         <form onSubmit={handleSubmit} className="user_info content">
           <div className="hex_profile_img">
             <img
-              src={image ? image : "img/dummy_profile_img.jpg"}
-              onError={(e) => (e.target.src = "img/dummy_profile_img.jpg")}
+              src={image ? image : "img/icons/bruger.svg"}
+              onError={(e) => (e.target.src = "img/icons/bruger.svg")}
               onClick={() => fileInputRef.current.click()}
               alt="Vælg billede"
+              className="profile"
+              style={{
+                opacity: isProfileChangeActive ? "0.5" : "1",
+              }}
+            />
+            <img
+              src="img\icons\indstillinger.svg"
+              alt="Ændr profilbillede"
+              className="icon"
+              style={{
+                display: isProfileChangeActive ? "inline" : "none",
+              }}
             />
             <input
               className="hide"
@@ -99,16 +120,6 @@ export default function Bruger() {
             />
           </div>
           <label className="content_line">
-            Navn:
-            <input
-              type="text"
-              value={name}
-              onChange={(e) => setName(e.target.value)}
-              name="name"
-              disabled={!isProfileChangeActive}
-            />
-          </label>
-          <label className="content_line">
             E-mail:
             <input
               type="mail"
@@ -116,6 +127,21 @@ export default function Bruger() {
               onChange={(e) => setEmail(e.target.value)}
               name="email"
               disabled
+            />
+          </label>
+          <label className="content_line">
+            Navn:
+            <input
+              type="text"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              name="name"
+              disabled={!isProfileChangeActive}
+              style={{
+                backgroundColor: isProfileChangeActive
+                  ? "var(--color3)"
+                  : "transparent",
+              }}
             />
           </label>
           <label className="content_line">
@@ -127,9 +153,19 @@ export default function Bruger() {
               placeholder="Tilføj telefonnummer"
               name="phone"
               disabled={!isProfileChangeActive}
+              style={{
+                backgroundColor: isProfileChangeActive
+                  ? "var(--color3)"
+                  : "transparent",
+              }}
             />
           </label>
-          {errorMessage ? <p className="error_message">{errorMessage}</p> : ""}
+          {errorMessage ? <p className="error message">{errorMessage}</p> : ""}
+          {confirmation ? (
+            <p className="confirmation message">{confirmation}</p>
+          ) : (
+            ""
+          )}
           {isProfileChangeActive ? btnSaveProfile : btnChangeProfile}
         </form>
         <button>Tilpas essentials</button>
