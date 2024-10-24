@@ -15,12 +15,12 @@ export default function Bruger() {
   const [isProfileChangeActive, setIsProfileChangeActive] = useState(false);
 
   const btnChangeProfile = (
-    <button type="button" onClick={() => setIsProfileChangeActive(true)}>
+    <button onClick={() => setIsProfileChangeActive(true)}>
       Rediger bruger
     </button>
   );
   const btnSaveProfile = (
-    <button type="submit" onClick={() => setIsProfileChangeActive(false)}>
+    <button type="button" onClick={() => setIsProfileChangeActive(false)}>
       Gem ændringer
     </button>
   );
@@ -35,7 +35,7 @@ export default function Bruger() {
         // if userData exists set states with values from userData (data from firebase)
         setName(userData.name);
         setEmail(auth.currentUser?.email);
-        setPhone(userData.phone || "");
+        setPhone(userData.phone);
         setImage(userData.image || "img/dummy_profile_img.jpg");
         setPassword(userData.password);
       }
