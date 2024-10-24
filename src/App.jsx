@@ -56,9 +56,7 @@ function App() {
 
   return (
     // if user is authenticated, show privateRoutes, else show publicRoutes
-    <BrowserRouter basename={import.meta.env.DEV ? "/" : "/beeReady/"}>
-      {isAuth ? privateRoutes : publicRoutes}
-    </BrowserRouter>
+    <main>{isAuth ? privateRoutes : publicRoutes}</main>
   );
 }
 export default App;
