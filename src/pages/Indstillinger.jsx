@@ -1,10 +1,17 @@
 import { useState } from "react"; // Import useState to manage state
 import CheckSettings from "../components/CheckSettings";
+import { auth } from "./firebase-config";
+import { signOut } from "@firebase/auth";
 
 export default function Indstillinger() {
   const [emailChecked, setEmailChecked] = useState(true);
   const [smsChecked, setSmsChecked] = useState(false);
   const [darkModeChecked, setDarkModeChecked] = useState(false);
+
+  function handleSignOut() {
+    console.log("hej");
+    signOut(auth); // sign out from firebase/auth
+  }
 
   return (
     <>
@@ -39,6 +46,13 @@ export default function Indstillinger() {
           </div>
         </section>
         <div className="linje-moenster"></div>
+        <button
+          className="option_bottom btn_log_out"
+          type="button"
+          onClick={handleSignOut}
+        >
+          Log ud
+        </button>
       </main>
       <img
         className="hex_bg_pattern"

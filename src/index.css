@@ -710,7 +710,7 @@ a:any-link {
   gap: 0.5rem;
   position: absolute;
   text-align: center;
-  width: 90%;
+  width: calc(100dvw - 2rem);
 }
 
 .option_bottom .btn {
@@ -749,6 +749,12 @@ a:any-link {
   padding-inline: 1rem;
   display: flex;
   gap: 1rem;
+}
+
+.settings .option_bottom {
+  align-self: center;
+  bottom: 7rem;
+  width: fit-content;
 }
 
 /* Plusknap */

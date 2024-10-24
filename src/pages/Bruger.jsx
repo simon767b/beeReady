@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from "react";
 import { auth } from "./firebase-config";
-import { signOut } from "@firebase/auth";
 
 export default function Bruger() {
   const [image, setImage] = useState("");
@@ -33,11 +32,11 @@ export default function Bruger() {
 
       if (userData) {
         // if userData exists set states with values from userData (data from firebase)
-        setName(userData.name);
-        setEmail(auth.currentUser?.email);
-        setPhone(userData.phone);
+        setName(userData.name || "");
+        setEmail(auth.currentUser?.email || "");
+        setPhone(userData.phone || "");
         setImage(userData.image || "img/dummy_profile_img.jpg");
-        setPassword(userData.password);
+        setPassword(userData.password || "");
       }
     }
     getUser();
@@ -59,11 +58,6 @@ export default function Bruger() {
     } else {
       console.log("Sorry, something went wrong");
     }
-  }
-
-  function handleSignOut() {
-    console.log("hej");
-    signOut(auth); // sign out from firebase/auth
   }
 
   /**
@@ -148,13 +142,10 @@ export default function Bruger() {
               autoComplete="current-password"
             />
           </label>
-          <p className="error_message">{errorMessage}</p>
+          {errorMessage ? <p className="error_message">{errorMessage}</p> : ""}
           {isProfileChangeActive ? btnSaveProfile : btnChangeProfile}
         </form>
         <button>Tilpas essentials</button>
-        <button className="btn_log_out" type="button" onClick={handleSignOut}>
-          Log ud
-        </button>
       </main>
       <img
         className="hex_bg_pattern"
