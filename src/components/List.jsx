@@ -1,4 +1,14 @@
-export default function List() {
+import { useNavigate } from "react-router-dom";
+
+export default function List({ props }) {
+  const navigate = useNavigate();
+
+  function handleClick() {
+    navigate(`/lists/${props.id}`);
+  }
+
+  console.log(props.id);
+
   const itemsChecked = 17;
   const itemsTotal = 20;
   const hexHeight = 125;
@@ -10,11 +20,11 @@ export default function List() {
   }
 
   return (
-    <section className="hexagon">
+    <section onClick={handleClick} className="hexagon">
       <div className="hex_content">
-        <h6>Riga</h6>
-        <p className="date">Maj 2024</p>
-        <img src="img\icons\tourist.svg" alt="Turist ikon" />
+        <h6>{props.name}</h6>
+        <p className="date">{props.dateStart}</p>
+        <img src={props.icon} alt="Ikon" />
         <p className="item_count">
           {itemsChecked}/{itemsTotal}
         </p>
