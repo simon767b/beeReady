@@ -406,15 +406,23 @@ a:any-link {
 
 .hex_profile_img img {
   border-radius: 1px;
-  background-color: var(--color3);
-  /* clip-path makes hexagon shape */
-  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
   height: 115px;
   left: 5px;
-  object-fit: cover;
   position: absolute;
   top: 5px;
   width: 97px;
+}
+
+.hex_profile_img .profile {
+  background-color: var(--color3);
+  /* clip-path makes hexagon shape */
+  clip-path: polygon(-50% 50%, 50% 100%, 150% 50%, 50% 0);
+  object-fit: cover;
+}
+
+.hex_profile_img .icon {
+  opacity: 0.65;
+  scale: .40;
 }
 
 .user_info input {

@@ -7,8 +7,6 @@ export default function List({ props }) {
     navigate(`/lists/${props.id}`);
   }
 
-  console.log(props.id);
-
   const itemsChecked = 17;
   const itemsTotal = 20;
   const hexHeight = 125;
