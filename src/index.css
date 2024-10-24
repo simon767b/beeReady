@@ -24,19 +24,27 @@
   --semiBold: 600;
 
   /* --- font sizes --- */
-  --fontsizeXXS: 0.5rem; /* 8px */
-  --fontsizeXS: 0.75rem; /* 12px */
-  --fontsizeS: 0.875rem; /* 14px */
-  --fontsizeM: 1rem; /* 16px */
-  --fontsizeL: 1.25rem; /* 20px */
-  --fontsizeXL: 1.5rem; /* 24px */
-  --fontsizeXXL: 2rem; /* 32px */
+  --fontsizeXXS: 0.5rem;
+  /* 8px */
+  --fontsizeXS: 0.75rem;
+  /* 12px */
+  --fontsizeS: 0.875rem;
+  /* 14px */
+  --fontsizeM: 1rem;
+  /* 16px */
+  --fontsizeL: 1.25rem;
+  /* 20px */
+  --fontsizeXL: 1.5rem;
+  /* 24px */
+  --fontsizeXXL: 2rem;
+  /* 32px */
 }
 
 /* --- reset --- */
 * {
   border-radius: 1px;
   box-sizing: border-box;
+  color: var(--text);
   font-family: "Nunito", sans-serif;
   font-weight: var(--regular);
   list-style: none;
@@ -50,7 +58,8 @@
 #root {
   background-color: var(--background);
   height: 100%;
-  /* max-width: 480px; */ /* mobil skærm på computer*/
+  /* max-width: 480px; */
+  /* mobil skærm på computer*/
   min-height: 100dvh;
   padding: 7rem 0;
   /* position: relative; */
@@ -509,10 +518,8 @@ a:any-link {
 
 .hexagon .wave {
   /* to make the wave shape */
-  --mask: radial-gradient(89.44px at 25% 120px, #000 99%, #0000 101%)
-      calc(25% - 80px) 0/160px 100%,
-    radial-gradient(89.44px at 25% -80px, #0000 99%, #000 101%) 25% 40px/160px
-      100% repeat-x;
+  --mask: radial-gradient(89.44px at 25% 120px, #000 99%, #0000 101%) calc(25% - 80px) 0/160px 100%,
+    radial-gradient(89.44px at 25% -80px, #0000 99%, #000 101%) 25% 40px/160px 100% repeat-x;
   -webkit-mask: var(--mask);
   mask: var(--mask);
 
@@ -639,12 +646,6 @@ a:any-link {
 }
 
 /* --- log ind --------------------------------------------------------------------------------------------------- */
-/* .logind_center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 16px;
-} */
 
 .bi_fixed {
   position: absolute;
@@ -688,28 +689,6 @@ a:any-link {
   padding: 1rem;
 }
 
-/* .logind_form div {
-  display: flex;
-} */
-
-/* .logind_form div p {
-  width: 60px;
-} */
-
-/* .logind_form div input {
-  width: 100%;
-  border: none;
-  font-family: "Nunito", sans-serif;
-  font-size: var(--fontsizeS);
-  padding-left: 5px;
-} */
-
-/* .logind_form h1 {
-  font-family: "Nunito", sans-serif;
-  font-size: var(--fontsizeL);
-  font-weight: var(--regular);
-} */
-
 .log_in_form h1 {
   font-size: var(--fontsizeXL);
 }
@@ -738,23 +717,6 @@ a:any-link {
   align-self: center;
 }
 
-/* .opret_bruger {
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-} */
-
-/* .opret_bruger button {
-  font-family: "Nunito", sans-serif;
-  font-size: var(--fontsizeS);
-} */
-
 /* --- opret bruger ------------------------------------------------------------------------------------------------- */
 
 .opret_bruger .biGIF {
@@ -774,13 +736,6 @@ a:any-link {
 
 /* --- indstillinger ------------------------------------------------------------------------------------------------ */
 
-/* .settings {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  margin: 1.5rem 2.5rem;
-} */
-
 .settings h1 {
   align-self: flex-start;
   font-size: var(--fontsizeL);
@@ -788,19 +743,10 @@ a:any-link {
 
 .settings .content_line {
   padding-inline: 1rem;
-}
-
-/* .settings div {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-} */
-
-/* .settings-div {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-} */
+}
 
 /* Plusknap */
 .plusButton_border {
@@ -869,14 +815,17 @@ a:any-link {
   left: 0;
   width: 100%;
   height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.5); /* Faded background */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Faded background */
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 10; /* Make sure it appears above everything */
+  z-index: 10;
+  /* Make sure it appears above everything */
   opacity: 0;
   pointer-events: none;
-  transition: all 0.5s ease-in-out; /* Smooth fade-in/out */
+  transition: all 0.5s ease-in-out;
+  /* Smooth fade-in/out */
 }
 
 /* The dialog box content */
@@ -885,9 +834,12 @@ a:any-link {
   padding: 20px;
   border-radius: 2px;
   position: relative;
-  width: 90%; /* Full width but constrained by max-width */
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Drop shadow for depth */
-  transition: all 0.5s ease; /* Smooth scale-in/out */
+  width: 90%;
+  /* Full width but constrained by max-width */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  /* Drop shadow for depth */
+  transition: all 0.5s ease;
+  /* Smooth scale-in/out */
 
   display: flex;
   flex-direction: column;
@@ -981,8 +933,7 @@ a:any-link {
 }
 
 .skabelon_boxe a img {
-  filter: invert(59%) sepia(72%) saturate(432%) hue-rotate(9deg)
-    brightness(101%) contrast(103%);
+  filter: invert(59%) sepia(72%) saturate(432%) hue-rotate(9deg) brightness(101%) contrast(103%);
 }
 
 /* --- class to hide element --- */
@@ -996,6 +947,7 @@ a:any-link {
 --------------------------------------------------------------------------------------------------*/
 
 @media only screen and (max-width: 370px) {
+
   /* beehive grid correct on smaller screen (min-width: ca. 290px) */
   .beehive {
     padding-top: calc(3rem + (22.5px * 0.75));
@@ -1037,6 +989,7 @@ a:any-link {
   0% {
     opacity: 0;
   }
+
   100% {
     opacity: 1;
   }
@@ -1047,10 +1000,12 @@ a:any-link {
     transform: translate(-150%, 50%);
     scale: 2;
   }
+
   90% {
     transform: translate(0%, 50%);
     scale: 2;
   }
+
   100% {
     transform: translate(0%, 0%);
     scale: 1;
@@ -1079,6 +1034,7 @@ a:any-link {
     transform: scaleX(1);
     display: inline;
   }
+
   51% {
     top: 10%;
     left: 150%;
@@ -1089,6 +1045,7 @@ a:any-link {
     transform: scaleX(-1);
     display: inline;
   }
+
   99% {
     top: 30%;
     left: -60%;
