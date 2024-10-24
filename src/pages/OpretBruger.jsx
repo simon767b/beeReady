@@ -30,7 +30,7 @@ export default function OpretBruger() {
       });
   }
 
-  async function createUser(uid, mail, phone) {
+  async function createUser(uid, mail) {
     const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`;
     const response = await fetch(url, {
       method: "PUT",
