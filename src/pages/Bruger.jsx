@@ -160,9 +160,19 @@ export default function Bruger() {
               }}
             />
           </label>
-          {errorMessage ? <p className="error message">{errorMessage}</p> : ""}
+          {errorMessage ? (
+            <div className="message">
+              <img src="img\icons\error_x.svg" alt="X" />
+              <p className="error">{errorMessage}</p>
+            </div>
+          ) : (
+            ""
+          )}
           {confirmation ? (
-            <p className="confirmation message">{confirmation}</p>
+            <div className="message">
+              <img src="img\icons\confirmation_tick.svg" alt="flueben" />
+              <p className="confirmation">{confirmation}</p>
+            </div>
           ) : (
             ""
           )}
