@@ -131,17 +131,6 @@ export default function Bruger() {
               disabled={!isProfileChangeActive}
             />
           </label>
-          <label className="content_line">
-            Kode:
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              name="password"
-              disabled={!isProfileChangeActive}
-              autoComplete="current-password"
-            />
-          </label>
           {errorMessage ? <p className="error_message">{errorMessage}</p> : ""}
           {isProfileChangeActive ? btnSaveProfile : btnChangeProfile}
         </form>
