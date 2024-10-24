@@ -83,7 +83,7 @@ export default function Bruger() {
       setErrorMessage(""); //reset errorMessage state
     } else {
       // if not below 0.5MB display an error message using the errorMessage state
-      setErrorMessage("Den valgte billedefil er for stor.");
+      setErrorMessage("Den valgte billedfil er for stor.");
     }
   }
 
