@@ -720,6 +720,8 @@ a:any-link {
 /* --- opret bruger ------------------------------------------------------------------------------------------------- */
 
 .opret_bruger .biGIF {
+  animation: none;
+  transform: none;
   width: 150px;
 }
 

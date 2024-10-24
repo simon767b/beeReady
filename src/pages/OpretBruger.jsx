@@ -4,22 +4,23 @@ import { Link } from "react-router-dom";
 import { auth } from "./firebase-config";
 
 export default function OpretBruger() {
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
   function handleSignUp(event) {
     event.preventDefault();
+    const name = event.target.name.value;
     const mail = event.target.mail.value; // mail value from inout field in sign in form
+    const phone = event.target.phone.value;
     const password = event.target.password.value; // password value from inout field in sign in form
 
+    //function imported from firebase library
     // read the docs: https://firebase.google.com/docs/auth/web/password-auth#create_a_password-based_account
     createUserWithEmailAndPassword(auth, mail, password)
       .then((userCredential) => {
         // Created and signed in
         const user = userCredential.user;
         console.log(user);
-        createUser(user.uid, mail);
+        createUser(user.uid, name, mail, phone);
       })
       .catch((error) => {
         let code = error.code; // saving error code in variable
@@ -30,7 +31,8 @@ export default function OpretBruger() {
       });
   }
 
-  async function createUser(uid, mail) {
+  //our function to create users in the database
+  async function createUser(uid, name, mail, phone) {
     const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${uid}.json`;
     const response = await fetch(url, {
       method: "PUT",
@@ -51,7 +53,7 @@ export default function OpretBruger() {
         <img
           src="img/logo/logo-tekst-kort.svg"
           alt="Bee Ready, logo tekst"
-          className="bi_skrift opacity_vis"
+          className="bi_skrift"
         />
         <form onSubmit={handleSignUp}>
           <section className="log_in_form">
@@ -60,8 +62,6 @@ export default function OpretBruger() {
               Navn:
               <input
                 type="text"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
                 name="name"
                 aria-label="name"
                 placeholder="Skriv dit navn"
@@ -84,8 +84,6 @@ export default function OpretBruger() {
               <input
                 type="tel"
                 name="phone"
-                value={phone}
-                onChange={(e) => setPhone(e.target.value)}
                 aria-label="phone"
                 placeholder="Skriv dit telefonnummer"
                 autoComplete="on"
