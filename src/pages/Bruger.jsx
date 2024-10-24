@@ -6,7 +6,6 @@ export default function Bruger() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/users/${auth.currentUser?.uid}.json`;
   const fileInputRef = useRef(null);
@@ -36,7 +35,6 @@ export default function Bruger() {
         setEmail(auth.currentUser?.email || "");
         setPhone(userData.phone || "");
         setImage(userData.image || "img/dummy_profile_img.jpg");
-        setPassword(userData.password || "");
       }
     }
     getUser();
