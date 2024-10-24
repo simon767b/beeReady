@@ -42,7 +42,7 @@ export default function Bruger() {
         setName(userData.name || "");
         setEmail(auth.currentUser?.email || "");
         setPhone(userData.phone || "");
-        setImage(userData.image || "img/icons/bruger.svg");
+        setImage(userData.image || "img/icons/profile_dummy.webp");
       }
     }
     getUser();
@@ -93,8 +93,8 @@ export default function Bruger() {
         <form onSubmit={handleSubmit} className="user_info content">
           <div className="hex_profile_img">
             <img
-              src={image ? image : "img/icons/bruger.svg"}
-              onError={(e) => (e.target.src = "img/icons/bruger.svg")}
+              src={image ? image : "img/icons/profile_dummy.webp"}
+              onError={(e) => (e.target.src = "img/icons/profile_dummy.webp")}
               onClick={() => fileInputRef.current.click()}
               alt="Vælg billede"
               className="profile"
