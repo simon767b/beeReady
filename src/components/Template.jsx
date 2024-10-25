@@ -1,4 +1,4 @@
-export default function Skabelon({ isOpen, onClose }) {
+export default function Template({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   function handleSubmit() {

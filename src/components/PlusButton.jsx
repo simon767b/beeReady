@@ -1,8 +1,8 @@
 import { useState } from "react";
-import Manuel from "./Manuel";
-import Skabelon from "./Skabelon";
+import Manual from "./Manual";
+import Template from "./Template";
 import Auto from "./Auto";
-import Genbrug from "./Genbrug";
+import Recycle from "./Recycle";
 
 export default function PlusButton() {
   const [open, setOpen] = useState(false);
@@ -44,7 +44,7 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={() => showDialog("Manuel")}>
+        <section className="plusButton" onClick={() => showDialog("Manual")}>
           <p>Manuel</p>
         </section>
       </section>
@@ -58,7 +58,7 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={() => showDialog("Skabelon")}>
+        <section className="plusButton" onClick={() => showDialog("Template")}>
           <p>Skabelon</p>
         </section>
       </section>
@@ -86,7 +86,7 @@ export default function PlusButton() {
           transition: "all 0.5s ease-in-out",
         }}
       >
-        <section className="plusButton" onClick={() => showDialog("Genbrug")}>
+        <section className="plusButton" onClick={() => showDialog("Recycle")}>
           <p>Genbrug</p>
         </section>
       </section>
@@ -115,25 +115,25 @@ export default function PlusButton() {
       <div className={gradientClass}></div>
 
       {/* Dialogs */}
-      <Manuel
-        isOpen={openDialog === "Manuel" ? true : false}
+      <Manual
+        isOpen={openDialog === "Manual" ? true : false}
         onClose={closeDialog}
-      ></Manuel>
+      ></Manual>
 
-      <Skabelon
-        isOpen={openDialog === "Skabelon" ? true : false}
+      <Template
+        isOpen={openDialog === "Template" ? true : false}
         onClose={closeDialog}
-      ></Skabelon>
+      ></Template>
 
       <Auto
         isOpen={openDialog === "Auto" ? true : false}
         onClose={closeDialog}
       ></Auto>
 
-      <Genbrug
-        isOpen={openDialog === "Genbrug" ? true : false}
+      <Recycle
+        isOpen={openDialog === "Recycle" ? true : false}
         onClose={closeDialog}
-      ></Genbrug>
+      ></Recycle>
     </>
   );
 }

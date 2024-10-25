@@ -1,4 +1,4 @@
-export default function Genbrug({ isOpen, onClose }) {
+export default function Recycle({ isOpen, onClose }) {
   if (!isOpen) return null;
 
   function handleSubmit() {
