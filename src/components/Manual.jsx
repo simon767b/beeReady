@@ -85,7 +85,7 @@ export default function Manual({ isOpen, onClose }) {
       >
         <div>
           <h2>Manuel Liste</h2>
-          <button className="close-btn" onClick={onClose}>
+          <button type="button" className="close-btn" onClick={onClose}>
             <img src="./img/icons/x.svg" alt="Kryds ikon" />
           </button>
         </div>
