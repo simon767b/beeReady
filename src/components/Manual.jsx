@@ -16,7 +16,6 @@ export default function Manual({ isOpen, onClose }) {
     if (response.ok) {
       const data = await response.json();
       console.log("New list created: ", data);
-      navigate("/");
     } else {
       console.log("Sorry, something went wrong");
     }
@@ -28,7 +27,7 @@ export default function Manual({ isOpen, onClose }) {
   const [name, setName] = useState("");
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
-  const [editedAt, setEditedAt] = useState("");
+  const [editedAt, setEditedAt] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [chosenIcon, setChosenIcon] = useState("");
 
@@ -40,12 +39,12 @@ export default function Manual({ isOpen, onClose }) {
       setName(list.name);
       setDateStart(list.dateStart);
       setDateEnd(list.dateEnd);
-      setEditedAt(new Date().getTime());
     }
   }, [list]); // useEffect is called every time list changes
 
   function handleSubmit(event) {
     event.preventDefault();
+    setEditedAt(new Date().getTime());
     const formData = {
       // create a new objebt to store the value from states / input fields
       icon: icon,
@@ -56,19 +55,16 @@ export default function Manual({ isOpen, onClose }) {
     };
 
     const validForm =
-      formData.icon &&
-      formData.name &&
-      formData.dateStart &&
-      formData.dateEnd &&
-      formData.editedAt; // will return false if one of the properties doesn't have a value
+      formData.icon && formData.name && formData.dateStart && formData.dateEnd; // will return false if one of the properties doesn't have a value
 
-    if (new Date(formData.dateStart) > new Date(formData.dateEnd)) {
-      setErrorMessage("Afrejsedato skal være før hjemrejsedato.");
-    }
-
-    if (validForm) {
+    if (validForm && formData.dateStart <= formData.dateEnd) {
       // if all fields/ properties are filled, then call createList
       createList(formData);
+      setErrorMessage("");
+      navigate("/bruger");
+      // navigate(`/lists/${list.id}`)
+    } else if (formData.dateStart > formData.dateEnd) {
+      setErrorMessage("Afrejsedato skal være før hjemrejsedato.");
     } else {
       setErrorMessage("Venligst udfyld alle felter.");
     }
@@ -190,9 +186,7 @@ export default function Manual({ isOpen, onClose }) {
 
         <p className="error message">{errorMessage}</p>
 
-        <button onClick={console.log(editedAt)} className="opret-btn">
-          Opret liste
-        </button>
+        <button className="opret-btn">Opret liste</button>
       </form>
     </div>
   );

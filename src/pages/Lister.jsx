@@ -18,7 +18,15 @@ export default function Lister() {
         id: key,
         ...data[key],
       })); // from object to array
-      setLists(listsArray);
+
+      const sortedArray = listsArray.sort((a, b) => {
+        // Convert editedAt to numbers, handling cases where it's an empty string or invalid
+        const editedAtA = Number(a.editedAt) || 0;
+        const editedAtB = Number(b.editedAt) || 0;
+
+        return editedAtA - editedAtB;
+      });
+      setLists(sortedArray);
     }
 
     getLists();
