@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { auth } from "../pages/firebase-config";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Manual({ isOpen, onClose }) {
   const navigate = useNavigate();
@@ -30,6 +30,7 @@ export default function Manual({ isOpen, onClose }) {
   const [dateEnd, setDateEnd] = useState("");
   const [editedAt, setEditedAt] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [chosenIcon, setChosenIcon] = useState("");
 
   useEffect(() => {
     if (list?.icon && list?.name && list?.dateStart && list?.dateEnd) {
@@ -61,20 +62,21 @@ export default function Manual({ isOpen, onClose }) {
       formData.dateEnd &&
       formData.editedAt; // will return false if one of the properties doesn't have a value
 
+    if (new Date(formData.dateStart) > new Date(formData.dateEnd)) {
+      setErrorMessage("Afrejsedato skal være før hjemrejsedato.");
+    }
+
     if (validForm) {
-      // if all fields/ properties are filled, then call savePost
-      saveList(formData);
+      // if all fields/ properties are filled, then call createList
+      createList(formData);
     } else {
       setErrorMessage("Venligst udfyld alle felter.");
     }
   }
 
-  if (!isOpen) return null;
-
   return (
     <div
       className={"dialog-overlay"}
-      onClick={onClose}
       style={{
         opacity: isOpen ? 1 : 0,
         pointerEvents: isOpen ? "all" : "none",
@@ -95,12 +97,60 @@ export default function Manual({ isOpen, onClose }) {
         <div className="dialog_ikons">
           <p>Vælg ikon:</p>
           <label>
-            <img src="img/icons/hiker.svg" alt="Rejse ikon" />
-            <img src="img/icons/house.svg" alt="Rejse ikon" />
-            <img src="img/icons/skiier.svg" alt="Rejse ikon" />
-            <img src="img/icons/swimmer.svg" alt="Rejse ikon" />
-            <img src="./img/icons/tent.svg" alt="Rejse ikon" />
-            <img src="./img/icons/tourist.svg" alt="Rejse ikon" />
+            <img
+              onClick={() => {
+                setChosenIcon("hiker");
+                setIcon("img/icons/hiker.svg");
+              }}
+              src="img/icons/hiker.svg"
+              alt="Rejse ikon"
+              className={chosenIcon === "hiker" ? "chosen" : "unchosen"}
+            />
+            <img
+              onClick={() => {
+                setChosenIcon("house");
+                setIcon("img/icons/house.svg");
+              }}
+              src="img/icons/house.svg"
+              alt="Rejse ikon"
+              className={chosenIcon === "house" ? "chosen" : "unchosen"}
+            />
+            <img
+              onClick={() => {
+                setChosenIcon("skier");
+                setIcon("img/icons/skiier.svg");
+              }}
+              src="img/icons/skiier.svg"
+              alt="Rejse ikon"
+              className={chosenIcon === "skier" ? "chosen" : "unchosen"}
+            />
+            <img
+              onClick={() => {
+                setChosenIcon("swimmer");
+                setIcon("img/icons/swimmer.svg");
+              }}
+              src="img/icons/swimmer.svg"
+              alt="Rejse ikon"
+              className={chosenIcon === "swimmer" ? "chosen" : "unchosen"}
+            />
+            <img
+              onClick={() => {
+                setChosenIcon("tent");
+                setIcon("img/icons/tent.svg");
+              }}
+              src="./img/icons/tent.svg"
+              alt="Rejse ikon"
+              className={chosenIcon === "tent" ? "chosen" : "unchosen"}
+            />
+            <img
+              onClick={() => {
+                setChosenIcon("tourist");
+                setIcon("img/icons/tourist.svg");
+              }}
+              src="./img/icons/tourist.svg"
+              alt="Rejse ikon"
+              className={chosenIcon === "tourist" ? "chosen" : "unchosen"}
+            />
           </label>
         </div>
 
@@ -140,7 +190,7 @@ export default function Manual({ isOpen, onClose }) {
 
         <p className="error message">{errorMessage}</p>
 
-        <button className="opret-btn" onClick={onClose}>
+        <button onClick={console.log(editedAt)} className="opret-btn">
           Opret liste
         </button>
       </form>

@@ -963,6 +963,16 @@ a:any-link {
   display: none;
 }
 
+/* --- change svg fill color --- */
+
+.unchosen {
+  filter: brightness(0) saturate(100%) invert(81%) sepia(53%) saturate(1754%) hue-rotate(343deg) brightness(107%) contrast(101%);
+}
+
+.chosen {
+  filter: brightness(0) saturate(100%) invert(20%) sepia(12%) saturate(3679%) hue-rotate(14deg) brightness(90%) contrast(92%);
+}
+
 /*-------------------------------------------------------------------------------------------------
 --------------------------------------------Media query--------------------------------------------
 --------------------------------------------------------------------------------------------------*/
