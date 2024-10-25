@@ -435,6 +435,19 @@ a:any-link {
   align-self: center;
 }
 
+.message {
+  gap: .5rem;
+  justify-content: center;
+}
+
+.confirmation {
+  color: var(--confirmation);
+}
+
+.error {
+  color: var(--error);
+}
+
 /* --- lister ------------------------------------------------------------------------------------------------------- */
 
 .gradient {

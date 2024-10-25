@@ -161,7 +161,7 @@ export default function Bruger() {
             />
           </label>
           {errorMessage ? (
-            <div className="message">
+            <div className="message content_line">
               <img src="img\icons\error_x.svg" alt="X" />
               <p className="error">{errorMessage}</p>
             </div>
@@ -169,7 +169,7 @@ export default function Bruger() {
             ""
           )}
           {confirmation ? (
-            <div className="message">
+            <div className="message content_line">
               <img src="img\icons\confirmation_tick.svg" alt="flueben" />
               <p className="confirmation">{confirmation}</p>
             </div>
