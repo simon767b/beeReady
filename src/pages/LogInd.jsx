@@ -27,7 +27,7 @@ export default function LogInd() {
       });
   }
   return (
-    <main className="log_ind page">
+    <main className="log_ind">
       <img
         src="./img/bi-med-taske.gif"
         alt="flyvende bi"
