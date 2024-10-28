@@ -2,6 +2,8 @@ import { useState } from "react";
 import CheckEssentials from "./CheckEssentials";
 import AddElementHex from "./AddElementHex";
 
+import arrow from "../assets/img/icons/sort_arrow.svg";
+
 export default function Category() {
    const [isExpanded, setIsExpanded] = useState(true);
    const [newItemLabel, setNewItemLabel] = useState(""); // Track the new item label
@@ -67,7 +69,7 @@ export default function Category() {
                <div>
                   <h2>{`${totalItems}`}</h2>
                   <img
-                     src="/img/icons/down-arrow.svg"
+                     src={arrow}
                      alt="Toggle list"
                      onClick={toggleList}
                      style={{

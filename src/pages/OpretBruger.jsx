@@ -2,6 +2,8 @@ import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "./firebase-config";
+import biMedTaske from "../assets/img/bi-med-taske.gif";
+import logoTekstKort from "../assets/img/logo/logo-tekst-kort.svg";
 
 export default function OpretBruger() {
    const [errorMessage, setErrorMessage] = useState("");
@@ -49,13 +51,9 @@ export default function OpretBruger() {
    return (
       <main className="opret_bruger">
          <section className="page">
+            <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
             <img
-               src="/img/bi-med-taske.gif"
-               alt="flyvende bi"
-               className="biGIF"
-            />
-            <img
-               src="/img/logo/logo-tekst-kort.svg"
+               src={logoTekstKort}
                alt="Bee Ready, logo tekst"
                className="bi_skrift"
             />

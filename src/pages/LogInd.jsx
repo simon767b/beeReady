@@ -3,6 +3,9 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { auth } from "./firebase-config";
 
+import biMedTaske from "../assets/img/bi-med-taske.gif";
+import logoTekstKort from "../assets/img/logo/logo-tekst-kort.svg";
+
 export default function LogInd() {
    const [errorMessage, setErrorMessage] = useState("");
 
@@ -28,19 +31,11 @@ export default function LogInd() {
    }
    return (
       <main className="log_ind">
-         <img
-            src="/img/bi-med-taske.gif"
-            alt="flyvende bi"
-            className="bi_fixed"
-         />
+         <img src={biMedTaske} alt="flyvende bi" className="bi_fixed" />
          <section className="logind_center page">
+            <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
             <img
-               src="/img/bi-med-taske.gif"
-               alt="flyvende bi"
-               className="biGIF"
-            />
-            <img
-               src="/img/logo/logo-tekst-kort.svg"
+               src={logoTekstKort}
                alt="Bee Ready, logo tekst"
                className="bi_skrift opacity_vis"
             />

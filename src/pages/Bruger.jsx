@@ -1,6 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { auth } from "./firebase-config";
 
+import profileDummy from "../assets/img/icons/profile_dummy.webp";
+import errorX from "../assets/img/icons/error_x.svg";
+import confirmationTick from "../assets/img/icons/confirmation_tick.svg";
+import hexBgPattern from "../assets/img/hex_bg_pattern.svg";
+import indstillinger from "../assets/img/icons/indstillinger.svg";
+
 export default function Bruger() {
    const [image, setImage] = useState("");
    const [name, setName] = useState("");
@@ -42,7 +48,7 @@ export default function Bruger() {
             setName(userData.name || "");
             setEmail(auth.currentUser?.email || "");
             setPhone(userData.phone || "");
-            setImage(userData.image || "/img/icons/profile_dummy.webp");
+            setImage(userData.image || { profileDummy });
          }
       }
       getUser();
@@ -93,10 +99,8 @@ export default function Bruger() {
             <form onSubmit={handleSubmit} className="user_info content">
                <div className="hex_profile_img">
                   <img
-                     src={image ? image : "/img/icons/profile_dummy.webp"}
-                     onError={(e) =>
-                        (e.target.src = "/img/icons/profile_dummy.webp")
-                     }
+                     src={image ? image : { profileDummy }}
+                     onError={(e) => (e.target.src = { profileDummy })}
                      onClick={() => fileInputRef.current.click()}
                      alt="Vælg billede"
                      className="profile"
@@ -105,7 +109,7 @@ export default function Bruger() {
                      }}
                   />
                   <img
-                     src="/img/icons/indstillinger.svg"
+                     src={indstillinger}
                      alt="Ændr profilbillede"
                      className="icon"
                      style={{
@@ -164,7 +168,7 @@ export default function Bruger() {
                </label>
                {errorMessage ? (
                   <div className="message content_line">
-                     <img src="/img/icons/error_x.svg" alt="X" />
+                     <img src={errorX} alt="X" />
                      <p className="error">{errorMessage}</p>
                   </div>
                ) : (
@@ -172,10 +176,7 @@ export default function Bruger() {
                )}
                {confirmation ? (
                   <div className="message content_line">
-                     <img
-                        src="/img/icons/confirmation_tick.svg"
-                        alt="flueben"
-                     />
+                     <img src={confirmationTick} alt="flueben" />
                      <p className="confirmation">{confirmation}</p>
                   </div>
                ) : (
@@ -187,7 +188,7 @@ export default function Bruger() {
          </main>
          <img
             className="hex_bg_pattern"
-            src="/img/hex_bg_pattern.svg"
+            src={hexBgPattern}
             alt="Bikubemønster baggrund"
          />
       </>

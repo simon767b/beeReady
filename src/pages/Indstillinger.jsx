@@ -3,6 +3,8 @@ import CheckSettings from "../components/CheckSettings";
 import { auth } from "./firebase-config";
 import { signOut } from "@firebase/auth";
 
+import hexBgPattern from "../assets/img/hex_bg_pattern.svg";
+
 export default function Indstillinger() {
    const [emailChecked, setEmailChecked] = useState(true);
    const [smsChecked, setSmsChecked] = useState(false);
@@ -55,7 +57,7 @@ export default function Indstillinger() {
          </main>
          <img
             className="hex_bg_pattern"
-            src="/img/hex_bg_pattern.svg"
+            src={hexBgPattern}
             alt="Bikubemønster baggrund"
          />
       </>

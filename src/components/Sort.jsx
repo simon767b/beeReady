@@ -1,6 +1,9 @@
 import { useState } from "react";
 import RadioHex from "./RadioHex";
 
+import search from "../assets/img/icons/search.svg";
+import arrow from "../assets/img/icons/sort_arrow.svg";
+
 export default function Sort() {
    //sort dropdown inspired from https://www.youtube.com/watch?v=gAGcjlJyKk0
 
@@ -26,18 +29,14 @@ export default function Sort() {
       <section className="search_sort_container">
          <form className="search_sort_bar">
             <div className="search_bar">
-               <img
-                  className="search"
-                  src="/img/icons/search.svg"
-                  alt="Søg ikon"
-               />
+               <img className="search" src={search} alt="Søg ikon" />
                <input type="search" placeholder="Søg" />
             </div>
             <button type="button" className="sort_btn" onClick={showSorting}>
                Sortér{" "}
                <img
                   className={sortArrowClass}
-                  src="/img/icons/sort_arrow.svg"
+                  src={arrow}
                   alt="drop-down pil"
                />
                <section className={sortDropdownClass}>

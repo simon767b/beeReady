@@ -1,3 +1,11 @@
+import X from "../assets/img/icons/x.svg";
+import hiker from "../assets/img/icons/hiker.svg";
+import house from "../assets/img/icons/house.svg";
+import skier from "../assets/img/icons/skiier.svg";
+import swimmer from "../assets/img/icons/swimmer.svg";
+import tent from "../assets/img/icons/tent.svg";
+import tourist from "../assets/img/icons/tourist.svg";
+
 export default function Template({ isOpen, onClose }) {
    if (!isOpen) return null;
 
@@ -17,7 +25,7 @@ export default function Template({ isOpen, onClose }) {
             <div>
                <h2>Manuel Dialog</h2>
                <button className="close-btn" onClick={onClose}>
-                  <img src="/img/icons/x.svg" alt="Kryds ikon" />
+                  <img src={X} alt="Kryds ikon" />
                </button>
             </div>
 
@@ -26,32 +34,32 @@ export default function Template({ isOpen, onClose }) {
 
                <div className="skabelon_boxe">
                   <a href="#">
-                     <img src="/img/icons/hiker.svg" alt="Rejse ikon" />
+                     <img src={hiker} alt="Rejse ikon" />
                      <p>Vandreferie</p>
                   </a>
 
                   <a href="#">
-                     <img src="/img/icons/house.svg" alt="Rejse ikon" />
+                     <img src={house} alt="Rejse ikon" />
                      <p>Sommerhus</p>
                   </a>
 
                   <a href="#">
-                     <img src="/img/icons/skiier.svg" alt="Rejse ikon" />
+                     <img src={skier} alt="Rejse ikon" />
                      <p>Skiferie</p>
                   </a>
 
                   <a href="#">
-                     <img src="/img/icons/swimmer.svg" alt="Rejse ikon" />
+                     <img src={swimmer} alt="Rejse ikon" />
                      <p>Badeferie</p>
                   </a>
 
                   <a href="#">
-                     <img src="/img/icons/tent.svg" alt="Rejse ikon" />
+                     <img src={tent} alt="Rejse ikon" />
                      <p>Festival</p>
                   </a>
 
                   <a href="#">
-                     <img src="/img/icons/tourist.svg" alt="Rejse ikon" />
+                     <img src={tourist} alt="Rejse ikon" />
                      <p>Storbyferie</p>
                   </a>
                </div>

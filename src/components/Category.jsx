@@ -3,6 +3,8 @@ import Check from "./Check";
 import AddElementHex from "./AddElementHex";
 import { useParams } from "react-router-dom";
 
+import arrow from "../assets/img/icons/sort_arrow.svg";
+
 export default function Category({ category, setTotalChecked }) {
    const [isExpanded, setIsExpanded] = useState(true);
    const [name, setName] = useState("");
@@ -111,7 +113,7 @@ export default function Category({ category, setTotalChecked }) {
                <div>
                   <h2>{`${totalCheckedElements}/${totalElements}`}</h2>
                   <img
-                     src="/img/icons/sort_arrow.svg"
+                     src={arrow}
                      alt="Toggle list"
                      onClick={toggleList}
                      style={{
