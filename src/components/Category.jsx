@@ -12,29 +12,47 @@ export default function Category({ category, setTotalChecked }) {
   const [elements, setElements] = useState([]);
   const params = useParams();
 
-  useEffect(() => {
-    const checkedNum = elements.filter((element) => element.isChecked).length;
-    setTotalChecked((prevTotalChecked) => {
-      prevTotalChecked + checkedNum;
-    });
-  }, [elements]);
+  // useEffect(() => {
+  //   const checkedNum = elements.filter(element => element.isChecked).length;
+  //   console.log("Checked elements: ", checkedNum);
+  //   console.log("Total checked elements: ", totalChecked);
+
+  //   setTotalChecked(checkedNum);
+  // }, [elements]);
 
   // Handle checkbox toggle
-  const handleCheckboxChange = (id) => {
-    setElements((prevElements) =>
-      prevElements.map((element) =>
-        element.id === id
-          ? { ...element, isChecked: !element.isChecked }
-          : element
+  // const handleCheckboxChange = id => {
+
+  //   setElements(prevElements =>
+  //     prevElements.map(element =>
+  //       element.id === id
+  //         ? { ...element, isChecked: !element.isChecked }
+  //         : element
+  //     )
+  //   );
+  // };
+
+  function handleCheckboxChange(element) {
+    // Update the totalChecked state
+    if (element.isChecked) {
+      setTotalChecked(prevTotalChecked => prevTotalChecked - 1); // Decrement totalChecked
+    } else {
+      setTotalChecked(prevTotalChecked => prevTotalChecked + 1); // Increment totalChecked
+    }
+
+    // Update the isChecked state of the element
+    setElements(prevElements =>
+      prevElements.map(elm =>
+        elm.id === element.id ? { ...elm, isChecked: !elm.isChecked } : elm
       )
     );
-  };
+  }
 
   async function createElement(newElement) {
     const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/elements.json`;
     const response = await fetch(url, {
       method: "POST",
-      body: JSON.stringify(newElement),
+      body: JSON.stringify(newElement)
     });
     if (response.ok) {
       const data = await response.json();
@@ -54,12 +72,12 @@ export default function Category({ category, setTotalChecked }) {
     const newElement = {
       // id: elements.length + 1, // Assign a new ID
       name: name,
-      isChecked: isChecked,
+      isChecked: isChecked
     };
-    setElements((prevElements) => [
+    setElements(prevElements => [
       ...prevElements.slice(0, prevElements.length - 1), // Exclude "Tilføj element"
       newElement,
-      prevElements[prevElements.length - 1], // Add "Tilføj element" back at the end
+      prevElements[prevElements.length - 1] // Add "Tilføj element" back at the end
     ]);
     setIsInputVisible(false); // Hide the input field after adding the element
     setIsAddingElement(false); // Reset adding element state
@@ -73,20 +91,20 @@ export default function Category({ category, setTotalChecked }) {
   };
 
   const totalCheckedElements = elements.filter(
-    (element) => element.isChecked
+    element => element.isChecked
   ).length;
   const totalElements = elements.length; // Assuming the last element is "Tilføj element"
 
   const toggleList = () => {
-    setIsExpanded((prevState) => !prevState);
+    setIsExpanded(prevState => !prevState);
   };
 
   //map through a specific category's elements
   useEffect(() => {
     async function getElements() {
-      const elementsArray = Object.keys(category.elements).map((key) => ({
+      const elementsArray = Object.keys(category.elements).map(key => ({
         id: key,
-        ...category.elements[key],
+        ...category.elements[key]
       })); // from object to array
 
       // const sortedArray = listsArray.sort((a, b) => {
@@ -117,20 +135,20 @@ export default function Category({ category, setTotalChecked }) {
               style={{
                 transform: isExpanded ? "rotate(360deg)" : "rotate(270deg)",
                 transition: "transform 0.5s",
-                cursor: "pointer",
+                cursor: "pointer"
               }}
             />
           </div>
         </div>
         {isExpanded && (
           <ul style={{ transition: "transform 0.5s" }}>
-            {elements.map((element) => (
+            {elements.map(element => (
               <li key={element.id}>
                 {element.name !== "Tilføj element" && (
                   <>
                     <Check
                       checked={element.isChecked}
-                      onChange={() => handleCheckboxChange(element.id)}
+                      onChange={() => handleCheckboxChange(element)}
                     />
                     {element.name}
                   </>
@@ -144,13 +162,13 @@ export default function Category({ category, setTotalChecked }) {
                 <Check />
                 <input
                   style={{
-                    display: isAddingElement ? "block" : "none", // Change display based on isAddingElement
+                    display: isAddingElement ? "block" : "none" // Change display based on isAddingElement
                   }}
                   className="input-category"
                   type="text"
                   placeholder="Add new element"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={e => setName(e.target.value)}
                   onBlur={addElement} // Submit when user clicks away
                   autoFocus // Automatically focus on the input field when it's shown
                 />
