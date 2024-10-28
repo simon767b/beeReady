@@ -5,7 +5,7 @@ export default function Check({ checked, onChange }) {
         <input type="checkbox" checked={checked} onChange={onChange} />
         <img
           className="tick_mark"
-          src="img\icons\tick_mark.svg"
+          src="img/icons/tick_mark.svg"
           alt="Flueben"
         />
       </div>

@@ -68,7 +68,7 @@ export default function Category({ category }) {
           <div>
             <h2>{`${totalCheckedItems}/${totalItems}`}</h2>
             <img
-              src="img/icons/down-arrow.svg"
+              src="/img/icons/sort_arrow.svg"
               alt="Toggle list"
               onClick={toggleList}
               style={{
