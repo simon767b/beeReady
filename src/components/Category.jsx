@@ -3,7 +3,7 @@ import Check from "./Check";
 import AddElementHex from "./AddElementHex";
 import { useParams } from "react-router-dom";
 
-export default function Category({ category }) {
+export default function Category({ category, setTotalChecked }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [name, setName] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -11,6 +11,13 @@ export default function Category({ category }) {
   const [isAddingElement, setIsAddingElement] = useState(false); // Track if we are adding an element
   const [elements, setElements] = useState([]);
   const params = useParams();
+
+  useEffect(() => {
+    const checkedNum = elements.filter((element) => element.isChecked).length;
+    setTotalChecked((prevTotalChecked) => {
+      prevTotalChecked + checkedNum;
+    });
+  }, [elements]);
 
   // Handle checkbox toggle
   const handleCheckboxChange = (id) => {
@@ -68,7 +75,7 @@ export default function Category({ category }) {
   const totalCheckedElements = elements.filter(
     (element) => element.isChecked
   ).length;
-  const totalElements = elements.length - 1; // Assuming the last element is "Tilføj element"
+  const totalElements = elements.length; // Assuming the last element is "Tilføj element"
 
   const toggleList = () => {
     setIsExpanded((prevState) => !prevState);
