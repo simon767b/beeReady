@@ -37,7 +37,7 @@ function App() {
         <Route path="/" element={<Lister />} />
         <Route path="/bruger" element={<Bruger />} />
         <Route path="/indstillinger" element={<Indstillinger />} />
-        <Route path="/pakkeliste" element={<Pakkeliste />} />
+        <Route path="/lists/:listId" element={<Pakkeliste />} />
         <Route path="/essentials" element={<Essentials />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

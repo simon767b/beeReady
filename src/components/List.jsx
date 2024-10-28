@@ -4,6 +4,7 @@ export default function List({ props }) {
   const navigate = useNavigate();
 
   function handleClick() {
+    console.log(props.id);
     navigate(`/lists/${props.id}`);
   }
 
