@@ -1,63 +1,99 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Check from "./Check";
 import AddElementHex from "./AddElementHex";
+import { useParams } from "react-router-dom";
 
 export default function Category({ category }) {
   const [isExpanded, setIsExpanded] = useState(true);
-  const [newItemLabel, setNewItemLabel] = useState(""); // Track the new item label
+  const [name, setName] = useState("");
+  const [isChecked, setIsChecked] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false); // Track input field visibility
-  const [isAddingItem, setIsAddingItem] = useState(false); // Track if we are adding an item
-  const [items, setItems] = useState([
-    { id: 1, label: "Laptop 1", checked: false },
-    { id: 2, label: "Laptop 2", checked: false },
-    { id: 3, label: "Laptop 3", checked: false },
-    { id: 4, label: "Laptop 4", checked: false },
-    { id: 5, label: "Tilføj element", checked: false }, // This is the "Add item" button
-  ]);
+  const [isAddingElement, setIsAddingElement] = useState(false); // Track if we are adding an element
+  const [elements, setElements] = useState([]);
+  const params = useParams();
 
   // Handle checkbox toggle
   const handleCheckboxChange = (id) => {
-    setItems((prevItems) =>
-      prevItems.map((item) =>
-        item.id === id ? { ...item, checked: !item.checked } : item
+    setElements((prevElements) =>
+      prevElements.map((element) =>
+        element.id === id
+          ? { ...element, isChecked: !element.isChecked }
+          : element
       )
     );
   };
 
-  // Add a new item to the list when input loses focus
-  const addItem = () => {
-    if (newItemLabel.trim() === "") {
-      setIsInputVisible(false); // Hide the input field if no item was added
-      setIsAddingItem(false); // Reset adding item state
+  async function createElement(newElement) {
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/elements.json`;
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newElement),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("New element created: ", data);
+    } else {
+      console.log(name, isChecked, "Sorry, something went wrong");
+    }
+  }
+
+  // Add a new element to the list when input loses focus
+  const addElement = () => {
+    if (name.trim() === "") {
+      setIsInputVisible(false); // Hide the input field if no element was added
+      setIsAddingElement(false); // Reset adding element state
       return;
     }
-    const newItem = {
-      id: items.length + 1, // Assign a new ID
-      label: newItemLabel,
-      checked: false,
+    const newElement = {
+      // id: elements.length + 1, // Assign a new ID
+      name: name,
+      isChecked: isChecked,
     };
-    setItems((prevItems) => [
-      ...prevItems.slice(0, prevItems.length - 1), // Exclude "Tilføj element"
-      newItem,
-      prevItems[prevItems.length - 1], // Add "Tilføj element" back at the end
+    setElements((prevElements) => [
+      ...prevElements.slice(0, prevElements.length - 1), // Exclude "Tilføj element"
+      newElement,
+      prevElements[prevElements.length - 1], // Add "Tilføj element" back at the end
     ]);
-    setNewItemLabel(""); // Clear the input field after adding
-    setIsInputVisible(false); // Hide the input field after adding the item
-    setIsAddingItem(false); // Reset adding item state
+    setIsInputVisible(false); // Hide the input field after adding the element
+    setIsAddingElement(false); // Reset adding element state
+    createElement(newElement);
   };
 
   // Show input field when "Tilføj element" is clicked
   const showInputField = () => {
     setIsInputVisible(true);
-    setIsAddingItem(true); // Set adding item state to true
+    setIsAddingElement(true); // Set adding element state to true
   };
 
-  const totalCheckedItems = items.filter((item) => item.checked).length;
-  const totalItems = items.length - 1; // Assuming the last item is "Tilføj element"
+  const totalCheckedElements = elements.filter(
+    (element) => element.isChecked
+  ).length;
+  const totalElements = elements.length - 1; // Assuming the last element is "Tilføj element"
 
   const toggleList = () => {
     setIsExpanded((prevState) => !prevState);
   };
+
+  //map through a specific category's elements
+  useEffect(() => {
+    async function getElements() {
+      const elementsArray = Object.keys(category.elements).map((key) => ({
+        id: key,
+        ...category.elements[key],
+      })); // from object to array
+
+      // const sortedArray = listsArray.sort((a, b) => {
+      //   // Convert editedAt to numbers, handling cases where it's an empty string or invalid
+      //   const editedAtA = Number(a.editedAt) || 0;
+      //   const editedAtB = Number(b.editedAt) || 0;
+
+      //   return editedAtA - editedAtB;
+      // });
+      setElements(elementsArray); // Add new category to the list
+    }
+
+    getElements();
+  }, [category]);
 
   return (
     <>
@@ -66,7 +102,7 @@ export default function Category({ category }) {
           <h2>{category.name}</h2>{" "}
           {/* Or you can replace with dynamic category name */}
           <div>
-            <h2>{`${totalCheckedItems}/${totalItems}`}</h2>
+            <h2>{`${totalCheckedElements}/${totalElements}`}</h2>
             <img
               src="/img/icons/sort_arrow.svg"
               alt="Toggle list"
@@ -81,15 +117,15 @@ export default function Category({ category }) {
         </div>
         {isExpanded && (
           <ul style={{ transition: "transform 0.5s" }}>
-            {items.map((item) => (
-              <li key={item.id}>
-                {item.label !== "Tilføj element" && (
+            {elements.map((element) => (
+              <li key={element.id}>
+                {element.name !== "Tilføj element" && (
                   <>
                     <Check
-                      checked={item.checked}
-                      onChange={() => handleCheckboxChange(item.id)}
+                      checked={element.isChecked}
+                      onChange={() => handleCheckboxChange(element.id)}
                     />
-                    {item.label}
+                    {element.name}
                   </>
                 )}
               </li>
@@ -101,14 +137,14 @@ export default function Category({ category }) {
                 <Check />
                 <input
                   style={{
-                    display: isAddingItem ? "block" : "none", // Change display based on isAddingItem
+                    display: isAddingElement ? "block" : "none", // Change display based on isAddingElement
                   }}
                   className="input-category"
                   type="text"
-                  placeholder="Add new item"
-                  value={newItemLabel}
-                  onChange={(e) => setNewItemLabel(e.target.value)}
-                  onBlur={addItem} // Submit when user clicks away
+                  placeholder="Add new element"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  onBlur={addElement} // Submit when user clicks away
                   autoFocus // Automatically focus on the input field when it's shown
                 />
               </li>

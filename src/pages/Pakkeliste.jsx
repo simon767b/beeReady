@@ -5,6 +5,7 @@ import { useParams } from "react-router-dom";
 export default function Pakkeliste() {
   const [categories, setCategories] = useState([]); // State to hold categories
   const [list, setList] = useState({ categories: [] });
+  //useParams kæder route /lists/:listId sammen med url - listId er et parameter vi har defineret
   const params = useParams();
 
   const addCategory = () => {
@@ -32,7 +33,6 @@ export default function Pakkeliste() {
       // });
       setList(data);
       setCategories(categoryArray); // Add new category to the list
-      console.log(categoryArray);
     }
 
     getList();
