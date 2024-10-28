@@ -1,8 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../pages/firebase-config";
 import { useEffect, useState } from "react";
 
 export default function Manual({ isOpen, onClose }) {
+  const params = useParams();
   const navigate = useNavigate();
 
   async function createList(newList) {
@@ -61,8 +62,8 @@ export default function Manual({ isOpen, onClose }) {
       // if all fields/ properties are filled, then call createList
       createList(formData);
       setErrorMessage("");
-      navigate("/bruger");
-      // navigate(`/lists/${list.id}`)
+      // navigate("/lists/:listId");
+      navigate(`/lists/${params.id}`); //virker ikke korrekt
     } else if (formData.dateStart > formData.dateEnd) {
       setErrorMessage("Afrejsedato skal være før hjemrejsedato.");
     } else {
