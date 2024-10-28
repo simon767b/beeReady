@@ -4,7 +4,7 @@ import Template from "./Template";
 import Auto from "./Auto";
 import Recycle from "./Recycle";
 
-export default function PlusButton() {
+export default function PlusButton({ props }) {
   const [open, setOpen] = useState(false);
   const [gradientClass, setGradientClass] = useState("gradient low");
 
@@ -118,6 +118,7 @@ export default function PlusButton() {
       <Manual
         isOpen={openDialog === "Manual" ? true : false}
         onClose={closeDialog}
+        props={props}
       ></Manual>
 
       <Template
