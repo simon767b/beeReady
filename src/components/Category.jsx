@@ -5,7 +5,13 @@ import { useParams } from "react-router-dom";
 
 import arrow from "../assets/img/icons/sort_arrow.svg";
 
-export default function Category({ category, setTotalChecked }) {
+export default function Category({
+  category,
+  setTotalChecked,
+  categoryName,
+  setCategoryName,
+  addCategory,
+}) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [name, setName] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -62,13 +68,7 @@ export default function Category({ category, setTotalChecked }) {
 
   // Add a new element to the list when input loses focus
   const addElement = () => {
-    if (name.trim() === "") {
-      setIsInputVisible(false); // Hide the input field if no element was added
-      setIsAddingElement(false); // Reset adding element state
-      return;
-    }
     const newElement = {
-      // id: elements.length + 1, // Assign a new ID
       name: name,
       isChecked: isChecked
     };
@@ -123,7 +123,24 @@ export default function Category({ category, setTotalChecked }) {
     <>
       <div className="category">
         <div className="category-header">
-          <h2>{category.name}</h2>
+          <h2>
+            {category.name ? (
+              category.name
+            ) : (
+              <input
+                // style={{
+                //   display: isAddingElement ? "block" : "none", // Change display based on isAddingElement
+                // }}
+                className="input-category"
+                type="text"
+                placeholder="Add category"
+                value={categoryName}
+                onChange={(e) => setCategoryName(e.target.value)}
+                onBlur={addCategory} // Submit when user clicks away
+                autoFocus // Automatically focus on the input field when it's shown
+              />
+            )}
+          </h2>
           {/* Or you can replace with dynamic category name */}
           <div>
             <h2>{`${totalCheckedElements}/${totalElements}`}</h2>

@@ -30,7 +30,7 @@ export default function LogInd() {
          });
    }
    return (
-      <main className="log_ind">
+      <main className="public_pages">
          <img src={biMedTaske} alt="flyvende bi" className="bi_fixed" />
          <section className="logind_center page">
             <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
@@ -40,7 +40,7 @@ export default function LogInd() {
                className="bi_skrift opacity_vis"
             />
             <form className="opacity_vis" onSubmit={handleSignIn}>
-               <section className="log_in_form">
+               <section className="auth_form">
                   <h1>Log ind</h1>
                   <label className="content_line">
                      E-mail:
