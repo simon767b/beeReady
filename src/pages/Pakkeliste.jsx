@@ -10,16 +10,35 @@ export default function Pakkeliste() {
   //useParams kæder route /lists/:listId sammen med url - listId er et parameter vi har defineret
   const params = useParams();
 
-  const addCategory = () => {
-    const newCategory = { id: Date.now(), name: "New Category" }; // Create a new category with a unique ID
+  async function handleAddCategory() {
+    const newCategory = { name: "New Category" };
+    const id = await createCategory(newCategory);
+    newCategory.id = id;
     setCategories([newCategory, ...categories]); // Add new category to the list
-  };
+  }
+
+  async function createCategory(newCategory) {
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories.json`;
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newCategory)
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("New category created: ", data);
+      return data.name;
+    } else {
+      console.log("Sorry, something went wrong");
+    }
+  }
 
   useEffect(() => {
     let totalNum = 0;
     for (const category of categories) {
       console.log(category);
-      totalNum += Object.keys(category.elements).length;
+      if (category?.elements) {
+        totalNum += Object.keys(category.elements).length;
+      }
     }
     setTotal(totalNum); // Add element count to total when elements change
   }, [categories]);
@@ -30,11 +49,16 @@ export default function Pakkeliste() {
 
       const response = await fetch(url);
       const data = await response.json();
-      const categoryArray = Object.keys(data.categories).map((key) => ({
-        id: key,
-        ...data.categories[key],
-      })); // from object to array
+      console.log(data);
 
+      // Convert object to array of categories with id as key for each category
+      if (data.categories) {
+        const categoryArray = Object.keys(data?.categories).map(key => ({
+          id: key,
+          ...data?.categories[key]
+        })); // from object to array
+        setCategories(categoryArray); // Add new category to the list
+      }
       // const sortedArray = listsArray.sort((a, b) => {
       //   // Convert editedAt to numbers, handling cases where it's an empty string or invalid
       //   const editedAtA = Number(a.editedAt) || 0;
@@ -43,7 +67,6 @@ export default function Pakkeliste() {
       //   return editedAtA - editedAtB;
       // });
       setList(data);
-      setCategories(categoryArray); // Add new category to the list
     }
 
     getList();
@@ -63,12 +86,12 @@ export default function Pakkeliste() {
             <h4>
               {list.dateStart} - {list.dateEnd}
             </h4>
-            <button onClick={addCategory}>+ tilføj kategori</button>
+            <button onClick={handleAddCategory}>+ tilføj kategori</button>
           </div>
           <div className="linje-moenster"></div>
         </div>
         {/* Render categories dynamically */}
-        {categories.map((category) => (
+        {categories.map(category => (
           <Category
             key={category.id}
             category={category}
