@@ -709,7 +709,7 @@ a:any-link {
 
 .biGIF {
   align-self: center;
-  width: 50dvw;
+  width: 45dvw;
   animation: flyvBi 2s 3.5s ease-in-out forwards;
   transform: translate(-200%, 50%);
   z-index: 99;
@@ -717,7 +717,7 @@ a:any-link {
 
 .bi_skrift {
   align-self: center;
-  width: 50dvw;
+  width: 45dvw;
 }
 
 .opacity_vis {
@@ -776,10 +776,6 @@ a:any-link {
   animation: none;
   transform: none;
   /* width: 25dvw; */
-}
-
-.opret_bruger .bi_skrift {
-  /* width: 30dvw; */
 }
 
 /* --- indstillinger ------------------------------------------------------------------------------------------------ */
