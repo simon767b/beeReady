@@ -5,15 +5,11 @@ import { useParams } from "react-router-dom";
 export default function Pakkeliste() {
   const [categories, setCategories] = useState([]); // State to hold categories
   const [list, setList] = useState({ categories: [] });
+  const [categoryName, setCategoryName] = useState("");
   const [total, setTotal] = useState(0);
   const [totalChecked, setTotalChecked] = useState(0);
   //useParams kæder route /lists/:listId sammen med url - listId er et parameter vi har defineret
   const params = useParams();
-
-  const addCategory = () => {
-    const newCategory = { id: Date.now(), name: "New Category" }; // Create a new category with a unique ID
-    setCategories([newCategory, ...categories]); // Add new category to the list
-  };
 
   useEffect(() => {
     let totalNum = 0;
@@ -49,6 +45,32 @@ export default function Pakkeliste() {
     getList();
   }, [params.listId]);
 
+  async function createCategory(newCategory) {
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories.json`;
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newCategory),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("New category created: ", data);
+    } else {
+      console.log("Sorry, something went wrong");
+    }
+  }
+
+  // Add a new element to the list when input loses focus
+  const addCategory = (categoryName) => {
+    const newCategory = {
+      name: categoryName,
+      elements: {},
+    };
+    createCategory(newCategory);
+    setCategories([newCategory, ...categories]); // Add new category to the list
+    // setIsInputVisible(false); // Hide the input field after adding the element
+    // setIsAddingElement(false); // Reset adding element state
+  };
+
   return (
     <main>
       <div className="packinglist">
@@ -73,6 +95,9 @@ export default function Pakkeliste() {
             key={category.id}
             category={category}
             setTotalChecked={setTotalChecked}
+            categoryName={categoryName}
+            setCategoryName={setCategoryName}
+            addCategory={addCategory}
           />
         ))}
       </div>
