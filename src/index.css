@@ -691,6 +691,12 @@ a:any-link {
   padding: 4rem 0;
 }
 
+.splash_logo {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
 .bi_fixed {
   position: absolute;
   top: 0;
@@ -703,7 +709,7 @@ a:any-link {
 
 .biGIF {
   align-self: center;
-  width: 40dvw;
+  width: 50dvw;
   animation: flyvBi 2s 3.5s ease-in-out forwards;
   transform: translate(-200%, 50%);
   z-index: 99;
@@ -711,7 +717,7 @@ a:any-link {
 
 .bi_skrift {
   align-self: center;
-  width: 40dvw;
+  width: 50dvw;
 }
 
 .opacity_vis {
@@ -769,11 +775,11 @@ a:any-link {
 .opret_bruger .biGIF {
   animation: none;
   transform: none;
-  width: 25dvw;
+  /* width: 25dvw; */
 }
 
 .opret_bruger .bi_skrift {
-  width: 30dvw;
+  /* width: 30dvw; */
 }
 
 /* --- indstillinger ------------------------------------------------------------------------------------------------ */

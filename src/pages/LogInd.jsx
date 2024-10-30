@@ -34,12 +34,14 @@ export default function LogInd() {
     <main className="public_pages">
       <img src={biMedTaske} alt="flyvende bi" className="bi_fixed" />
       <section className="logind_center page">
-        <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
-        <img
-          src={logoTekstKort}
-          alt="Bee Ready, logo tekst"
-          className="bi_skrift opacity_vis"
-        />
+        <div className="splash_logo">
+          <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
+          <img
+            src={logoTekstKort}
+            alt="Bee Ready, logo tekst"
+            className="bi_skrift opacity_vis"
+          />
+        </div>
         <form className="opacity_vis" onSubmit={handleSignIn}>
           <section className="auth_form">
             <h1>Log ind</h1>

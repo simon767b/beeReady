@@ -52,12 +52,14 @@ export default function OpretBruger() {
   return (
     <main className="public_pages opret_bruger">
       <section className="page">
-        <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
-        <img
-          src={logoTekstKort}
-          alt="Bee Ready, logo tekst"
-          className="bi_skrift"
-        />
+        <div className="splash_logo">
+          <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
+          <img
+            src={logoTekstKort}
+            alt="Bee Ready, logo tekst"
+            className="bi_skrift"
+          />
+        </div>
         <form onSubmit={handleSignUp}>
           <section className="auth_form">
             <h1>Opret bruger</h1>
