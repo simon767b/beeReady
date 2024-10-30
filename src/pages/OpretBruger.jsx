@@ -49,7 +49,7 @@ export default function OpretBruger() {
    }
 
    return (
-      <main className="opret_bruger">
+      <main className="public_pages opret_bruger">
          <section className="page">
             <img src={biMedTaske} alt="flyvende bi" className="biGIF" />
             <img
@@ -58,7 +58,7 @@ export default function OpretBruger() {
                className="bi_skrift"
             />
             <form onSubmit={handleSignUp}>
-               <section className="log_in_form">
+               <section className="auth_form">
                   <h1>Opret bruger</h1>
                   <label className="content_line">
                      Navn:
