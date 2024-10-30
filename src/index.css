@@ -457,6 +457,10 @@ a:any-link {
   color: var(--error);
 }
 
+.error::first-letter {
+  text-transform: capitalize;
+}
+
 /* --- lister ------------------------------------------------------------------------------------------------------- */
 
 .gradient {
@@ -699,15 +703,15 @@ a:any-link {
 
 .biGIF {
   align-self: center;
-  width: 210px;
+  width: 40dvw;
   animation: flyvBi 2s 3.5s ease-in-out forwards;
-  transform: translate(-150%, 50%);
+  transform: translate(-200%, 50%);
   z-index: 99;
 }
 
 .bi_skrift {
   align-self: center;
-  width: 210px;
+  width: 40dvw;
 }
 
 .opacity_vis {
@@ -758,10 +762,18 @@ a:any-link {
 
 /* --- opret bruger ------------------------------------------------------------------------------------------------- */
 
+.opret_bruger {
+  padding: 2rem 0;
+}
+
 .opret_bruger .biGIF {
   animation: none;
   transform: none;
-  width: 150px;
+  width: 25dvw;
+}
+
+.opret_bruger .bi_skrift {
+  width: 30dvw;
 }
 
 /* --- indstillinger ------------------------------------------------------------------------------------------------ */
