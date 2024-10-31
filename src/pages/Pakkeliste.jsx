@@ -22,7 +22,7 @@ export default function Pakkeliste() {
     const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories.json`;
     const response = await fetch(url, {
       method: "POST",
-      body: JSON.stringify(newCategory)
+      body: JSON.stringify(newCategory),
     });
     if (response.ok) {
       const data = await response.json();
@@ -33,6 +33,7 @@ export default function Pakkeliste() {
     }
   }
 
+  // total elements in all categories number
   useEffect(() => {
     let totalNum = 0;
     for (const category of categories) {
@@ -42,6 +43,25 @@ export default function Pakkeliste() {
       }
     }
     setTotal(totalNum); // Add element count to total when elements change
+  }, [categories]);
+
+  // total checked elements in all categories number
+  useEffect(() => {
+    let totalCheckedNum = 0; //counter for checked elements
+    for (const category of categories) {
+      //loop through categories
+      if (category?.elements) {
+        //check if category has elements
+        for (const element of Object.values(category.elements)) {
+          //loop through elements
+          if (element.isChecked) {
+            //check if element is checked
+            totalCheckedNum++;
+          }
+        }
+      }
+    }
+    setTotalChecked(totalCheckedNum);
   }, [categories]);
 
   useEffect(() => {
@@ -54,9 +74,9 @@ export default function Pakkeliste() {
 
       // Convert object to array of categories with id as key for each category
       if (data.categories) {
-        const categoryArray = Object.keys(data?.categories).map(key => ({
+        const categoryArray = Object.keys(data?.categories).map((key) => ({
           id: key,
-          ...data?.categories[key]
+          ...data?.categories[key],
         })); // from object to array
         setCategories(categoryArray); // Add new category to the list
       }
@@ -74,10 +94,10 @@ export default function Pakkeliste() {
   }, [params.listId]);
 
   // Add a new element to the list when input loses focus
-  const addCategory = categoryName => {
+  const addCategory = (categoryName) => {
     const newCategory = {
       name: categoryName,
-      elements: {}
+      elements: {},
     };
     createCategory(newCategory);
     setCategories([newCategory, ...categories]); // Add new category to the list
@@ -104,7 +124,7 @@ export default function Pakkeliste() {
           <div className="linje-moenster"></div>
         </div>
         {/* Render categories dynamically */}
-        {categories.map(category => (
+        {categories.map((category) => (
           <Category
             key={category.id}
             category={category}
