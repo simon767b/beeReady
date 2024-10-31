@@ -92,18 +92,6 @@ export default function Pakkeliste() {
     getList();
   }, [params.listId]);
 
-  // Add a new element to the list when input loses focus
-  const addCategory = (categoryName) => {
-    const newCategory = {
-      name: categoryName,
-      elements: {},
-    };
-    createCategory(newCategory);
-    setCategories([newCategory, ...categories]); // Add new category to the list
-    // setIsInputVisible(false); // Hide the input field after adding the element
-    // setIsAddingElement(false); // Reset adding element state
-  };
-
   return (
     <main>
       <div className="packinglist">
