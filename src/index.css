@@ -445,6 +445,7 @@ a:any-link {
 }
 
 .message {
+  display: flex;
   gap: 0.5rem;
   justify-content: center;
 }
@@ -673,6 +674,36 @@ a:any-link {
   height: 100%;
   background-color: var(--background);
   padding-left: 5px;
+}
+
+input[type="range"],
+input[type="range"]::-webkit-slider-thumb,
+input[type="range"]::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  border-radius: 200px;
+}
+
+input[type="range" i] {
+  background-color: transparent;
+  border-radius: 200px;
+  margin-top: .5rem;
+}
+
+input[type="range"]::-webkit-slider-runnable-track {
+  background: url(assets/img/logo/linje-moenster.svg) no-repeat center;
+  border-radius: 200px;
+  height: .5rem;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  background-color: var(--color8);
+  border-radius: 0;
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  height: 28px;
+  width: 24px;
+  translate: 0 -10px;
 }
 
 /* The close button */
