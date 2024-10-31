@@ -35,8 +35,13 @@ export default function Category({ category, setTotalChecked }) {
     if (category.name) {
       setCategoryNameActive(false);
       setCategoryName(category.name);
+    } else if (category.name === "") {
+      // setCategoryNameActive(false);
+      setCategoryName("Intet navn");
+      console.log("Der skete en fejl med den tomme string");
     } else {
-      setCategoryName("Tilføj kategorinavn");
+      // setCategoryName("Intet navn");
+      console.log("Der skete en fejl");
     }
   }, [category.name]);
 
@@ -164,7 +169,7 @@ export default function Category({ category, setTotalChecked }) {
               // }}
               className="input-category"
               type="text"
-              placeholder="Add category"
+              placeholder="Tilføj kategorinavn"
               value={categoryName}
               onChange={(e) => setCategoryName(e.target.value)}
               onBlur={handleUpdateCategoryName} // Submit when user clicks away
