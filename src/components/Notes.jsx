@@ -18,7 +18,6 @@ export default function Notes({
   const [isAddingElement, setIsAddingElement] = useState(false); // Track if we are adding an element
   const [elements, setElements] = useState([]);
   const [categoryName, setCategoryName] = useState("");
-  const [categoryNameActive, setCategoryNameActive] = useState(true);
   const params = useParams();
 
   async function updateIsChecked(element) {
@@ -35,41 +34,6 @@ export default function Notes({
       console.log(name, isChecked, "Sorry, something went wrong");
     }
   }
-
-  async function handleUpdateCategoryName() {
-    // Only proceed if categoryName is non-empty
-    if (!categoryName.trim()) {
-      console.log("Category name is empty, not updating.");
-      return;
-    } //Another possible solution: if(categoryName !== category.name) / const [categoryName, setCategoryName] = useState(category.name || ""); / const [categoryNameActive, setCategoryNameActive] = useState(false);
-
-    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/name.json`;
-    setCategoryNameActive(false);
-    const response = await fetch(url, {
-      method: "PUT",
-      body: JSON.stringify(categoryName),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Category name updated: ", data);
-    } else {
-      console.log("Sorry, something went wrong");
-    }
-  }
-
-  useEffect(() => {
-    if (category.name) {
-      setCategoryNameActive(false);
-      setCategoryName(category.name);
-    } else if (category.name === "") {
-      // setCategoryNameActive(false);
-      setCategoryName("Intet navn");
-      console.log("Der skete en fejl med den tomme string");
-    } else {
-      // setCategoryName("Intet navn");
-      console.log("Der skete en fejl");
-    }
-  }, [category.name]);
 
   function handleCheckboxChange(element) {
     // Update the totalChecked state
@@ -125,12 +89,6 @@ export default function Notes({
   const handleEnterOnElement = (event) => {
     if (event.key === "Enter") {
       addElement();
-    }
-  };
-
-  const handleEnterOnCategoryName = (event) => {
-    if (event.key === "Enter") {
-      handleUpdateCategoryName();
     }
   };
 
