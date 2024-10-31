@@ -5,7 +5,12 @@ import { useParams } from "react-router-dom";
 
 import arrow from "../assets/img/icons/sort_arrow.svg";
 
-export default function Category({ category, setTotalChecked }) {
+export default function Category({
+  category,
+  setTotalChecked,
+  total,
+  setTotal,
+}) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [name, setName] = useState("");
   const [isChecked, setIsChecked] = useState(false);
@@ -28,6 +33,27 @@ export default function Category({ category, setTotalChecked }) {
       console.log("isChecked updated", data);
     } else {
       console.log(name, isChecked, "Sorry, something went wrong");
+    }
+  }
+
+  async function handleUpdateCategoryName() {
+    // Only proceed if categoryName is non-empty
+    if (!categoryName.trim()) {
+      console.log("Category name is empty, not updating.");
+      return;
+    } //Another possible solution: if(categoryName !== category.name) / const [categoryName, setCategoryName] = useState(category.name || ""); / const [categoryNameActive, setCategoryNameActive] = useState(false);
+
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/name.json`;
+    setCategoryNameActive(false);
+    const response = await fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(categoryName),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Category name updated: ", data);
+    } else {
+      console.log("Sorry, something went wrong");
     }
   }
 
@@ -79,6 +105,7 @@ export default function Category({ category, setTotalChecked }) {
 
   // Add a new element to the list when input loses focus
   const addElement = async () => {
+    setName("");
     const newElement = {
       name: name,
       isChecked: isChecked,
@@ -92,6 +119,7 @@ export default function Category({ category, setTotalChecked }) {
     ]);
     setIsInputVisible(false); // Hide the input field after adding the element
     setIsAddingElement(false); // Reset adding element state
+    setTotal(total+1);
   };
 
   const handleEnterOnElement = (event) => {
@@ -142,21 +170,6 @@ export default function Category({ category, setTotalChecked }) {
       getElements();
     }
   }, [category]);
-
-  async function handleUpdateCategoryName() {
-    setCategoryNameActive(false);
-    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/name.json`;
-    const response = await fetch(url, {
-      method: "PUT",
-      body: JSON.stringify(categoryName),
-    });
-    if (response.ok) {
-      const data = await response.json();
-      console.log("Category name updated: ", data);
-    } else {
-      console.log("Sorry, something went wrong");
-    }
-  }
 
   return (
     <>

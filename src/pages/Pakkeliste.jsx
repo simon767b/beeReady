@@ -116,6 +116,8 @@ export default function Pakkeliste() {
             key={category.id}
             category={category}
             setTotalChecked={setTotalChecked}
+            total={total}
+            setTotal={setTotal}
           />
         ))}
       </div>
