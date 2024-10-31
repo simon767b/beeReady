@@ -5,19 +5,15 @@ import { useParams } from "react-router-dom";
 
 import arrow from "../assets/img/icons/sort_arrow.svg";
 
-export default function Category({
-  category,
-  setTotalChecked,
-  categoryName,
-  setCategoryName,
-  addCategory,
-}) {
+export default function Category({ category, setTotalChecked }) {
   const [isExpanded, setIsExpanded] = useState(true);
   const [name, setName] = useState("");
   const [isChecked, setIsChecked] = useState(false);
   const [isInputVisible, setIsInputVisible] = useState(false); // Track input field visibility
   const [isAddingElement, setIsAddingElement] = useState(false); // Track if we are adding an element
   const [elements, setElements] = useState([]);
+  const [categoryName, setCategoryName] = useState("");
+  const [categoryNameActive, setCategoryNameActive] = useState(true);
   const params = useParams();
 
   async function updateIsChecked(element) {
@@ -34,6 +30,15 @@ export default function Category({
       console.log(name, isChecked, "Sorry, something went wrong");
     }
   }
+
+  useEffect(() => {
+    if (category.name) {
+      setCategoryNameActive(false);
+      setCategoryName(category.name);
+    } else {
+      setCategoryName("Tilføj kategorinavn");
+    }
+  }, [category.name]);
 
   function handleCheckboxChange(element) {
     // Update the totalChecked state
@@ -61,17 +66,20 @@ export default function Category({
     if (response.ok) {
       const data = await response.json();
       console.log("New element created: ", data);
+      return data.name;
     } else {
       console.log(name, isChecked, "Sorry, something went wrong");
     }
   }
 
   // Add a new element to the list when input loses focus
-  const addElement = () => {
+  const addElement = async () => {
     const newElement = {
       name: name,
       isChecked: isChecked
     };
+    const id = await createElement(newElement);
+    newElement.id = id;
     setElements(prevElements => [
       ...prevElements.slice(0, prevElements.length - 1), // Exclude "Tilføj element"
       newElement,
@@ -79,7 +87,6 @@ export default function Category({
     ]);
     setIsInputVisible(false); // Hide the input field after adding the element
     setIsAddingElement(false); // Reset adding element state
-    createElement(newElement);
   };
 
   // Show input field when "Tilføj element" is clicked
@@ -89,7 +96,7 @@ export default function Category({
   };
 
   const totalCheckedElements = elements.filter(
-    element => element.isChecked
+    element => element?.isChecked
   ).length;
   const totalElements = elements.length; // Assuming the last element is "Tilføj element"
 
@@ -119,28 +126,42 @@ export default function Category({
     }
   }, [category]);
 
+  async function handleUpdateCategoryName() {
+    setCategoryNameActive(false);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/name.json`;
+    const response = await fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(categoryName)
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("Category name updated: ", data);
+    } else {
+      console.log("Sorry, something went wrong");
+    }
+  }
+
   return (
     <>
       <div className="category">
         <div className="category-header">
-          <h2>
-            {category.name ? (
-              category.name
-            ) : (
-              <input
-                // style={{
-                //   display: isAddingElement ? "block" : "none", // Change display based on isAddingElement
-                // }}
-                className="input-category"
-                type="text"
-                placeholder="Add category"
-                value={categoryName}
-                onChange={(e) => setCategoryName(e.target.value)}
-                onBlur={addCategory} // Submit when user clicks away
-                autoFocus // Automatically focus on the input field when it's shown
-              />
-            )}
-          </h2>
+          {categoryNameActive ? (
+            <input
+              // style={{
+              //   display: isAddingElement ? "block" : "none", // Change display based on isAddingElement
+              // }}
+              className="input-category"
+              type="text"
+              placeholder="Add category"
+              value={categoryName}
+              onChange={e => setCategoryName(e.target.value)}
+              onBlur={handleUpdateCategoryName} // Submit when user clicks away
+              autoFocus // Automatically focus on the input field when it's shown
+            />
+          ) : (
+            <h2 onClick={() => setCategoryNameActive(true)}> {categoryName}</h2>
+          )}
+
           {/* Or you can replace with dynamic category name */}
           <div>
             <h2>{`${totalCheckedElements}/${totalElements}`}</h2>

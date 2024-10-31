@@ -5,14 +5,13 @@ import Category from "../components/Category";
 export default function Pakkeliste() {
   const [categories, setCategories] = useState([]); // State to hold categories
   const [list, setList] = useState({ categories: [] });
-  const [categoryName, setCategoryName] = useState("");
   const [total, setTotal] = useState(0);
   const [totalChecked, setTotalChecked] = useState(0);
   //useParams kæder route /lists/:listId sammen med url - listId er et parameter vi har defineret
   const params = useParams();
 
   async function handleAddCategory() {
-    const newCategory = { name: "New Category" };
+    const newCategory = { name: "" };
     const id = await createCategory(newCategory);
     newCategory.id = id;
     setCategories([newCategory, ...categories]); // Add new category to the list
@@ -129,9 +128,6 @@ export default function Pakkeliste() {
             key={category.id}
             category={category}
             setTotalChecked={setTotalChecked}
-            categoryName={categoryName}
-            setCategoryName={setCategoryName}
-            addCategory={addCategory}
           />
         ))}
       </div>
