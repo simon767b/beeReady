@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+// import { useNavigate, useParams } from "react-router-dom";
 import { auth } from "../pages/firebase-config";
 import { useEffect, useState } from "react";
 
@@ -9,10 +9,11 @@ import skier from "../assets/img/icons/skiier.svg";
 import swimmer from "../assets/img/icons/swimmer.svg";
 import tent from "../assets/img/icons/tent.svg";
 import tourist from "../assets/img/icons/tourist.svg";
+import errorX from "../assets/img/icons/error_x.svg";
 
 export default function Manual({ isOpen, onClose }) {
-  const params = useParams();
-  const navigate = useNavigate();
+  // const params = useParams();
+  // const navigate = useNavigate();
 
   async function createList(newList) {
     newList.uid = auth.currentUser.uid; //authenticated user id
@@ -74,7 +75,7 @@ export default function Manual({ isOpen, onClose }) {
       // navigate(`/lists/${params.id}`); //virker ikke korrekt
       location.reload();
     } else if (formData.dateStart > formData.dateEnd) {
-      setErrorMessage("Afrejsedato skal være før hjemrejsedato.");
+      setErrorMessage("Afrejse skal være før hjemrejse.");
     } else {
       setErrorMessage("Venligst udfyld alle felter.");
     }
@@ -93,14 +94,14 @@ export default function Manual({ isOpen, onClose }) {
         className="dialog-content"
         // onClick={(e) => e.stopPropagation()}
       >
-        <div>
-          <h2>Manuel Liste</h2>
+        <div className="container">
+          <h2>Manuel liste</h2>
           <button type="button" className="close-btn" onClick={onClose}>
             <img src={X} alt="Kryds ikon" />
           </button>
         </div>
 
-        <div className="dialog_ikons">
+        <div className="dialog_icons container">
           <p>Vælg ikon:</p>
           <label>
             <img
@@ -160,7 +161,7 @@ export default function Manual({ isOpen, onClose }) {
           </label>
         </div>
 
-        <div className="dialog_input_div">
+        <div className="dialog_input_div container">
           <p>Navn:</p>
           <input
             type="text"
@@ -172,7 +173,7 @@ export default function Manual({ isOpen, onClose }) {
           />
         </div>
 
-        <div className="dialog_input_div">
+        <div className="dialog_input_div container">
           <p>Fra:</p>
           <input
             type="date"
@@ -183,7 +184,7 @@ export default function Manual({ isOpen, onClose }) {
           />
         </div>
 
-        <div className="dialog_input_div">
+        <div className="dialog_input_div container">
           <p>Til:</p>
           <input
             type="date"
@@ -193,8 +194,13 @@ export default function Manual({ isOpen, onClose }) {
             onChange={(e) => setDateEnd(e.target.value)}
           />
         </div>
-
-        <p className="error message">{errorMessage}</p>
+        <div
+          className="message"
+          style={{ display: errorMessage ? "flex" : "none" }}
+        >
+          <img src={errorX} alt="X" />
+          <p className="error">{errorMessage}</p>
+        </div>
 
         <button className="opret-btn">Opret liste</button>
       </form>

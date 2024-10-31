@@ -900,7 +900,7 @@ a:any-link {
   border: 10px solid var(--color7);
 }
 
-.dialog-content div {
+.dialog-content .container {
   display: flex;
   justify-content: space-between;
   width: 100%;
@@ -927,10 +927,15 @@ a:any-link {
   align-self: center;
 }
 
-.dialog_ikons {
+.dialog_icons {
   display: flex;
   flex-direction: column;
   gap: 8px;
+}
+
+.dialog_icons label {
+  display: flex;
+  justify-content: space-between;
 }
 
 .dialog_input_div p {
