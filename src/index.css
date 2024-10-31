@@ -1063,7 +1063,11 @@ input[type="range"]::-webkit-slider-thumb {
   }
 
   .hexagon h6 {
-    font-size: var(--fontsizeS);
+    font-size: var(--fontsizeXS);
+  }
+
+  .hexagon .item_count {
+    font-size: 0.625rem;
   }
 
   .hexagon img {
