@@ -42,9 +42,9 @@ export default function Lister() {
           ) : (
             <p>Du har ikke nogen lister endnu.</p>
           )}
-          <PlusButton />
         </section>
       </main>
+      <PlusButton />
     </>
   );
 }

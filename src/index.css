@@ -568,6 +568,187 @@ a:any-link {
   z-index: -1;
 }
 
+/* --- plusknap --- */
+
+.plusButton_border {
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: var(--color6);
+  transition: all 0.5s ease-in-out;
+  transform-origin: bottom right;
+
+  /* Hexagon*/
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  height: 55px;
+  position: fixed;
+  right: 1rem;
+  bottom: 6rem;
+  width: 48px;
+}
+
+.plusButton {
+  background-color: var(--color5);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Hexagon*/
+  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
+  height: 51px;
+  width: 44px;
+}
+
+.plus_button_plus {
+  position: fixed;
+  height: 20px;
+  width: 2px;
+  background-color: var(--text);
+  border-radius: 200px;
+  rotate: 90deg;
+  transition: all 0.5s ease-in-out;
+}
+
+.rotate {
+  rotate: 0deg;
+}
+
+.plusButton p {
+  font-weight: var(--semiBold);
+  font-size: var(--fontsizeXXS);
+}
+
+/* dialog bokse */
+
+/* The overlay that covers the whole page */
+.dialog-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100dvh;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Faded background */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+  /* Make sure it appears above everything */
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+  /* Smooth fade-in/out */
+}
+
+/* The dialog box content */
+.dialog-content {
+  background-color: var(--color4);
+  padding: 20px;
+  border-radius: 2px;
+  position: relative;
+  width: 90%;
+  /* Full width but constrained by max-width */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
+  /* Drop shadow for depth */
+  transition: all 0.5s ease;
+  /* Smooth scale-in/out */
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border: 10px solid var(--color7);
+}
+
+.dialog-content .container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.dialog-content input {
+  height: 100%;
+  background-color: var(--background);
+  padding-left: 5px;
+}
+
+/* The close button */
+.close-btn {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+.opret-btn {
+  background-color: var(--color8);
+  width: fit-content;
+  align-self: center;
+}
+
+.dialog_icons {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dialog_icons label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dialog_input_div p {
+  width: 70px;
+}
+
+.dialog_input_div input {
+  width: 100%;
+  border: none;
+  background-color: var(--background);
+  font-family: "Nunito", sans-serif;
+  font-size: var(--fontsizeM);
+  padding-left: 5px;
+}
+
+::-webkit-calendar-picker-indicator {
+  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.05074 0.157715C6.27175 0.157715 6.48372 0.245512 6.64 0.401792C6.79628 0.558073 6.88407 0.770034 6.88407 0.991048V1.82438H15.2174V0.991048C15.2174 0.770034 15.3052 0.558073 15.4615 0.401792C15.6178 0.245512 15.8297 0.157715 16.0507 0.157715C16.2718 0.157715 16.4837 0.245512 16.64 0.401792C16.7963 0.558073 16.8841 0.770034 16.8841 0.991048V1.82438H19.3841C20.0471 1.82438 20.683 2.08777 21.1518 2.55661C21.6207 3.02546 21.8841 3.66134 21.8841 4.32438V19.3244C21.8841 19.9874 21.6207 20.6233 21.1518 21.0921C20.683 21.561 20.0471 21.8244 19.3841 21.8244H2.71741C2.05437 21.8244 1.41848 21.561 0.94964 21.0921C0.480799 20.6233 0.217407 19.9874 0.217407 19.3244V4.32438C0.217407 3.66134 0.480799 3.02546 0.94964 2.55661C1.41848 2.08777 2.05437 1.82438 2.71741 1.82438H5.21741V0.991048C5.21741 0.770034 5.3052 0.558073 5.46148 0.401792C5.61777 0.245512 5.82973 0.157715 6.05074 0.157715ZM15.2174 3.49105V4.32438C15.2174 4.54539 15.3052 4.75736 15.4615 4.91364C15.6178 5.06992 15.8297 5.15771 16.0507 5.15771C16.2718 5.15771 16.4837 5.06992 16.64 4.91364C16.7963 4.75736 16.8841 4.54539 16.8841 4.32438V3.49105H19.3841C19.6051 3.49105 19.817 3.57885 19.9733 3.73513C20.1296 3.89141 20.2174 4.10337 20.2174 4.32438V6.82438H1.88407V4.32438C1.88407 4.10337 1.97187 3.89141 2.12815 3.73513C2.28443 3.57885 2.49639 3.49105 2.71741 3.49105H5.21741V4.32438C5.21741 4.54539 5.3052 4.75736 5.46148 4.91364C5.61777 5.06992 5.82973 5.15771 6.05074 5.15771C6.27175 5.15771 6.48372 5.06992 6.64 4.91364C6.79628 4.75736 6.88407 4.54539 6.88407 4.32438V3.49105H15.2174ZM1.88407 8.49105V19.3244C1.88407 19.5454 1.97187 19.7574 2.12815 19.9136C2.28443 20.0699 2.49639 20.1577 2.71741 20.1577H19.3841C19.6051 20.1577 19.817 20.0699 19.9733 19.9136C20.1296 19.7574 20.2174 19.5454 20.2174 19.3244V8.49105H1.88407ZM10.2174 10.991C10.2174 10.77 10.3052 10.5581 10.4615 10.4018C10.6178 10.2455 10.8297 10.1577 11.0507 10.1577C11.2718 10.1577 11.4837 10.2455 11.64 10.4018C11.7963 10.5581 11.8841 10.77 11.8841 10.991C11.8841 11.2121 11.7963 11.424 11.64 11.5803C11.4837 11.7366 11.2718 11.8244 11.0507 11.8244C10.8297 11.8244 10.6178 11.7366 10.4615 11.5803C10.3052 11.424 10.2174 11.2121 10.2174 10.991ZM14.3841 10.1577C14.1631 10.1577 13.9511 10.2455 13.7948 10.4018C13.6385 10.5581 13.5507 10.77 13.5507 10.991C13.5507 11.2121 13.6385 11.424 13.7948 11.5803C13.9511 11.7366 14.1631 11.8244 14.3841 11.8244C14.6051 11.8244 14.817 11.7366 14.9733 11.5803C15.1296 11.424 15.2174 11.2121 15.2174 10.991C15.2174 10.77 15.1296 10.5581 14.9733 10.4018C14.817 10.2455 14.6051 10.1577 14.3841 10.1577ZM16.8841 10.991C16.8841 10.77 16.9719 10.5581 17.1282 10.4018C17.2844 10.2455 17.4964 10.1577 17.7174 10.1577C17.9384 10.1577 18.1504 10.2455 18.3067 10.4018C18.4629 10.5581 18.5507 10.77 18.5507 10.991C18.5507 11.2121 18.4629 11.424 18.3067 11.5803C18.1504 11.7366 17.9384 11.8244 17.7174 11.8244C17.4964 11.8244 17.2844 11.7366 17.1282 11.5803C16.9719 11.424 16.8841 11.2121 16.8841 10.991ZM17.7174 13.491C17.4964 13.491 17.2844 13.5788 17.1282 13.7351C16.9719 13.8914 16.8841 14.1034 16.8841 14.3244C16.8841 14.5454 16.9719 14.7574 17.1282 14.9136C17.2844 15.0699 17.4964 15.1577 17.7174 15.1577C17.9384 15.1577 18.1504 15.0699 18.3067 14.9136C18.4629 14.7574 18.5507 14.5454 18.5507 14.3244C18.5507 14.1034 18.4629 13.8914 18.3067 13.7351C18.1504 13.5788 17.9384 13.491 17.7174 13.491Z' fill='%23666666'/%3E%3C/svg%3E");
+}
+
+.dialogform {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Skabeloner */
+.skabelon_boxe {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.skabelon_boxe a {
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  background-color: var(--color2);
+  font-size: var(--fontsizeS);
+  aspect-ratio: 1 / 1;
+  border-radius: 2px;
+  color: var(--color9);
+}
+
+.skabelon_boxe a img {
+  filter: invert(59%) sepia(72%) saturate(432%) hue-rotate(9deg) brightness(101%) contrast(103%);
+}
+
 /* --- pakkeliste --------------------------------------------------------------------------------------------------- */
 
 .packinglist {
@@ -774,6 +955,8 @@ a:any-link {
 
 .opret_bruger .biGIF {
   animation: none;
+  max-height: 22dvh;
+  object-fit: contain;
   transform: none;
   /* width: 25dvw; */
 }
@@ -799,191 +982,6 @@ a:any-link {
   align-self: center;
   bottom: 7rem;
   width: fit-content;
-}
-
-/* Plusknap */
-.plusButton_border {
-  height: 54px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 10;
-
-  background-color: var(--color6);
-  scale: 0.5;
-
-  /* Hexagon*/
-  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  height: 125px;
-  /* overflow: hidden; */
-  position: relative;
-  width: 105px;
-}
-
-.plusButton {
-  height: 52px;
-  background-color: var(--color5);
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Hexagon*/
-  clip-path: polygon(0% 25%, 0% 75%, 50% 100%, 100% 75%, 100% 25%, 50% 0%);
-  height: 125px;
-  /* overflow: hidden; */
-  position: relative;
-  width: 105px;
-  scale: 0.9;
-}
-
-.plus_button_plus {
-  position: absolute;
-  height: 20px;
-  width: 2px;
-  background-color: var(--text);
-  border-radius: 200px;
-  rotate: 90deg;
-  scale: 2;
-}
-
-.plusButton p {
-  font-size: 7px;
-  font-weight: var(--semiBold);
-  scale: 3;
-}
-
-.rotated {
-  rotate: 0deg;
-  transition: all 2s ease-in-out;
-}
-
-/* dialog bokse */
-
-/* The overlay that covers the whole page */
-.dialog-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100dvh;
-  background-color: rgba(0, 0, 0, 0.5);
-  /* Faded background */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  /* Make sure it appears above everything */
-  opacity: 0;
-  pointer-events: none;
-  transition: all 0.5s ease-in-out;
-  /* Smooth fade-in/out */
-}
-
-/* The dialog box content */
-.dialog-content {
-  background-color: var(--color4);
-  padding: 20px;
-  border-radius: 2px;
-  position: relative;
-  width: 90%;
-  /* Full width but constrained by max-width */
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2);
-  /* Drop shadow for depth */
-  transition: all 0.5s ease;
-  /* Smooth scale-in/out */
-
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border: 10px solid var(--color7);
-}
-
-.dialog-content .container {
-  display: flex;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.dialog-content input {
-  height: 100%;
-  background-color: var(--background);
-  padding-left: 5px;
-}
-
-/* The close button */
-.close-btn {
-  cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-}
-
-.opret-btn {
-  background-color: var(--color8);
-  width: fit-content;
-  align-self: center;
-}
-
-.dialog_icons {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.dialog_icons label {
-  display: flex;
-  justify-content: space-between;
-}
-
-.dialog_input_div p {
-  width: 70px;
-}
-
-.dialog_input_div input {
-  width: 100%;
-  border: none;
-  background-color: var(--background);
-  font-family: "Nunito", sans-serif;
-  font-size: var(--fontsizeM);
-  padding-left: 5px;
-}
-
-::-webkit-calendar-picker-indicator {
-  background-image: url("data:image/svg+xml;charset=utf8,%3Csvg width='22' height='22' viewBox='0 0 22 22' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M6.05074 0.157715C6.27175 0.157715 6.48372 0.245512 6.64 0.401792C6.79628 0.558073 6.88407 0.770034 6.88407 0.991048V1.82438H15.2174V0.991048C15.2174 0.770034 15.3052 0.558073 15.4615 0.401792C15.6178 0.245512 15.8297 0.157715 16.0507 0.157715C16.2718 0.157715 16.4837 0.245512 16.64 0.401792C16.7963 0.558073 16.8841 0.770034 16.8841 0.991048V1.82438H19.3841C20.0471 1.82438 20.683 2.08777 21.1518 2.55661C21.6207 3.02546 21.8841 3.66134 21.8841 4.32438V19.3244C21.8841 19.9874 21.6207 20.6233 21.1518 21.0921C20.683 21.561 20.0471 21.8244 19.3841 21.8244H2.71741C2.05437 21.8244 1.41848 21.561 0.94964 21.0921C0.480799 20.6233 0.217407 19.9874 0.217407 19.3244V4.32438C0.217407 3.66134 0.480799 3.02546 0.94964 2.55661C1.41848 2.08777 2.05437 1.82438 2.71741 1.82438H5.21741V0.991048C5.21741 0.770034 5.3052 0.558073 5.46148 0.401792C5.61777 0.245512 5.82973 0.157715 6.05074 0.157715ZM15.2174 3.49105V4.32438C15.2174 4.54539 15.3052 4.75736 15.4615 4.91364C15.6178 5.06992 15.8297 5.15771 16.0507 5.15771C16.2718 5.15771 16.4837 5.06992 16.64 4.91364C16.7963 4.75736 16.8841 4.54539 16.8841 4.32438V3.49105H19.3841C19.6051 3.49105 19.817 3.57885 19.9733 3.73513C20.1296 3.89141 20.2174 4.10337 20.2174 4.32438V6.82438H1.88407V4.32438C1.88407 4.10337 1.97187 3.89141 2.12815 3.73513C2.28443 3.57885 2.49639 3.49105 2.71741 3.49105H5.21741V4.32438C5.21741 4.54539 5.3052 4.75736 5.46148 4.91364C5.61777 5.06992 5.82973 5.15771 6.05074 5.15771C6.27175 5.15771 6.48372 5.06992 6.64 4.91364C6.79628 4.75736 6.88407 4.54539 6.88407 4.32438V3.49105H15.2174ZM1.88407 8.49105V19.3244C1.88407 19.5454 1.97187 19.7574 2.12815 19.9136C2.28443 20.0699 2.49639 20.1577 2.71741 20.1577H19.3841C19.6051 20.1577 19.817 20.0699 19.9733 19.9136C20.1296 19.7574 20.2174 19.5454 20.2174 19.3244V8.49105H1.88407ZM10.2174 10.991C10.2174 10.77 10.3052 10.5581 10.4615 10.4018C10.6178 10.2455 10.8297 10.1577 11.0507 10.1577C11.2718 10.1577 11.4837 10.2455 11.64 10.4018C11.7963 10.5581 11.8841 10.77 11.8841 10.991C11.8841 11.2121 11.7963 11.424 11.64 11.5803C11.4837 11.7366 11.2718 11.8244 11.0507 11.8244C10.8297 11.8244 10.6178 11.7366 10.4615 11.5803C10.3052 11.424 10.2174 11.2121 10.2174 10.991ZM14.3841 10.1577C14.1631 10.1577 13.9511 10.2455 13.7948 10.4018C13.6385 10.5581 13.5507 10.77 13.5507 10.991C13.5507 11.2121 13.6385 11.424 13.7948 11.5803C13.9511 11.7366 14.1631 11.8244 14.3841 11.8244C14.6051 11.8244 14.817 11.7366 14.9733 11.5803C15.1296 11.424 15.2174 11.2121 15.2174 10.991C15.2174 10.77 15.1296 10.5581 14.9733 10.4018C14.817 10.2455 14.6051 10.1577 14.3841 10.1577ZM16.8841 10.991C16.8841 10.77 16.9719 10.5581 17.1282 10.4018C17.2844 10.2455 17.4964 10.1577 17.7174 10.1577C17.9384 10.1577 18.1504 10.2455 18.3067 10.4018C18.4629 10.5581 18.5507 10.77 18.5507 10.991C18.5507 11.2121 18.4629 11.424 18.3067 11.5803C18.1504 11.7366 17.9384 11.8244 17.7174 11.8244C17.4964 11.8244 17.2844 11.7366 17.1282 11.5803C16.9719 11.424 16.8841 11.2121 16.8841 10.991ZM17.7174 13.491C17.4964 13.491 17.2844 13.5788 17.1282 13.7351C16.9719 13.8914 16.8841 14.1034 16.8841 14.3244C16.8841 14.5454 16.9719 14.7574 17.1282 14.9136C17.2844 15.0699 17.4964 15.1577 17.7174 15.1577C17.9384 15.1577 18.1504 15.0699 18.3067 14.9136C18.4629 14.7574 18.5507 14.5454 18.5507 14.3244C18.5507 14.1034 18.4629 13.8914 18.3067 13.7351C18.1504 13.5788 17.9384 13.491 17.7174 13.491Z' fill='%23666666'/%3E%3C/svg%3E");
-}
-
-.dialogform {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Skabeloner */
-.skabelon_boxe {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 16px;
-}
-
-.skabelon_boxe a {
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 80px;
-  background-color: var(--color2);
-  font-size: var(--fontsizeS);
-  aspect-ratio: 1 / 1;
-  border-radius: 2px;
-  color: var(--color9);
-}
-
-.skabelon_boxe a img {
-  filter: invert(59%) sepia(72%) saturate(432%) hue-rotate(9deg) brightness(101%) contrast(103%);
 }
 
 /* --- class to hide element --- */

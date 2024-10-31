@@ -34,84 +34,80 @@ export default function PlusButton({ props }) {
 
   return (
     <>
+      {/* manual btn */}
       <section
         className="plusButton_border manuel"
         style={{
-          position: "fixed",
-          right: open ? "30%" : "0%",
-          bottom: open ? "10%" : "8%",
-          scale: open ? "0.75" : "0.5",
-          transition: "all 0.5s ease-in-out",
+          right: open ? "calc((48px * 1.5) + 2rem)" : "1rem",
+          bottom: open ? "6rem" : "6rem",
+          scale: open ? "1.5" : "1",
         }}
       >
         <section className="plusButton" onClick={() => showDialog("Manual")}>
           <p>Manuel</p>
         </section>
       </section>
-      <section
-        className="plusButton_border skabelon"
-        style={{
-          position: "fixed",
-          right: open ? "42.5%" : "0%",
-          bottom: open ? "20%" : "8%",
-          scale: open ? "0.75" : "0.5",
-          transition: "all 0.5s ease-in-out",
-        }}
-      >
-        <section className="plusButton" onClick={() => showDialog("Template")}>
-          <p>Skabelon</p>
-        </section>
-      </section>
+
+      {/* auto btn */}
       <section
         className="plusButton_border auto"
         style={{
-          position: "fixed",
-          right: open ? "17.5%" : "0%",
-          bottom: open ? "20%" : "8%",
-          scale: open ? "0.75" : "0.5",
-          transition: "all 0.5s ease-in-out",
+          right: open ? "calc((48px * 1.5) / 2 + 1.5rem)" : "1rem",
+          bottom: open ? "calc(6rem + ((55px * 1.5) - 55px * 0.15)" : "6rem",
+          scale: open ? "1.5" : "1",
         }}
       >
         <section className="plusButton" onClick={() => showDialog("Auto")}>
           <p>Auto</p>
         </section>
       </section>
+
+      {/* template btn */}
+      <section
+        className="plusButton_border skabelon"
+        style={{
+          right: open ? "calc((48px * 1.5) * 1.5 + 2.5rem)" : "1rem",
+          bottom: open ? "calc(6rem + ((55px * 1.5) - 55px * 0.15)" : "6rem",
+          scale: open ? "1.5" : "1",
+        }}
+      >
+        <section className="plusButton" onClick={() => showDialog("Template")}>
+          <p>Skabelon</p>
+        </section>
+      </section>
+
+      {/* recycle btn */}
       <section
         className="plusButton_border genbrug"
         style={{
-          position: "fixed",
-          right: open ? "55%" : "0%",
-          bottom: open ? "10%" : "8%",
-          scale: open ? "0.75" : "0.5",
-          transition: "all 0.5s ease-in-out",
+          right: open ? "calc((48px * 1.5) * 2 + 3rem)" : "1rem",
+          bottom: open ? "6rem" : "6rem",
+          scale: open ? "1.5" : "1",
         }}
       >
         <section className="plusButton" onClick={() => showDialog("Recycle")}>
           <p>Genbrug</p>
         </section>
       </section>
+
+      {/* plus btn */}
       <section
         className="plusButton_border"
         style={{
-          position: "fixed",
-          right: open ? "5%" : "0%",
-          bottom: open ? "10%" : "8%",
-          scale: open ? "0.75" : "0.5",
-          transition: "all 0.5s ease-in-out",
+          scale: open ? "1.5" : "1",
         }}
       >
         <section className="plusButton" onClick={handleClick}>
           <div className="plus_button_plus"></div>
           <div
-            className="plus_button_plus rotated"
+            className="plus_button_plus rotate"
             style={{
-              position: "fixed",
               height: open ? "1px" : "20px",
-              transition: "all 0.5s ease-in-out",
             }}
           ></div>
         </section>
       </section>
+
       <div className={gradientClass}></div>
 
       {/* Dialogs */}
