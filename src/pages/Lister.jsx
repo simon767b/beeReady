@@ -27,13 +27,8 @@ export default function Lister() {
 
       /* look at sorting */
       if (sortType === "Senest ændret") {
-        sortedArray = listsArray.sort((a, b) => {
-          // Convert editedAt to numbers, handling cases where it's an empty string or invalid
-          const editedAtA = Number(a.editedAt) || 0;
-          const editedAtB = Number(b.editedAt) || 0;
-
-          return editedAtA - editedAtB;
-        });
+        sortedArray = listsArray.sort((a, b) => a.editedAt - b.editedAt);
+        console.log(sortedArray);
       } else if (sortType === "A til Å") {
         sortedArray = listsArray.sort((a, b) => {
           // First, compare the names alphabetically
@@ -55,19 +50,20 @@ export default function Lister() {
       } else if (sortType === "Afrejse nyeste") {
         sortedArray = listsArray.sort((a, b) => {
           // First, compare the names alphabetically
-          if (a.name < b.name) return -1;
-          if (a.name > b.name) return 1;
+          if (a.dateStart > b.dateStart) return -1;
+          if (a.dateStart < b.dateStart) return 1;
 
           // If names are the same, compare the numbers numerically
-          return a.number - b.number;
+          return b.number - a.number;
         });
       } else {
         sortedArray = listsArray.sort((a, b) => {
-          // Convert editedAt to numbers, handling cases where it's an empty string or invalid
-          const editedAtA = Number(a.editedAt) || 0;
-          const editedAtB = Number(b.editedAt) || 0;
+          // First, compare the names alphabetically
+          if (a.dateStart < b.dateStart) return -1;
+          if (a.dateStart > b.dateStart) return 1;
 
-          return editedAtA - editedAtB;
+          // If names are the same, compare the numbers numerically
+          return a.number - b.number;
         });
       }
 

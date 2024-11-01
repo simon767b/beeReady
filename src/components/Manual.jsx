@@ -71,7 +71,6 @@ export default function Manual({ isOpen, onClose }) {
       itemsChecked: itemsChecked,
       notes: notes,
     };
-    console.log(formData);
 
     const validForm =
       formData.icon && formData.name && formData.dateStart && formData.dateEnd; // will return false if one of the properties doesn't have a value
@@ -88,7 +87,7 @@ export default function Manual({ isOpen, onClose }) {
       setErrorMessage("Venligst udfyld alle felter.");
     }
 
-    // location.reload();
+    location.reload();
   }
 
   return (
