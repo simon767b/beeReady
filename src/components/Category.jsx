@@ -106,23 +106,34 @@ export default function Category({
 
   // Add a new element to the list when input loses focus
   const addElement = async () => {
+    console.log("Adding element");
     setName("");
+
     const newElement = {
       name: name,
       isChecked: isChecked,
     };
-    const id = await createElement(newElement);
-    newElement.id = id;
-    setElements((prevElements) => [
-      ...prevElements.slice(0, prevElements.length - 1), // Exclude "Tilføj element"
-      newElement,
-      prevElements[prevElements.length - 1], // Add "Tilføj element" back at the end
-    ]);
-    setIsInputVisible(false); // Hide the input field after adding the element
-    setIsAddingElement(false); // Reset adding element state
-    setTotal(total + 1);
-  };
 
+    const id = await createElement(newElement);
+
+    if (id) {
+      // Ensure an ID was returned
+      newElement.id = id; // Assign the unique ID to the new element
+
+      setElements((prevElements) => [
+        ...prevElements, // Add the new element at the end of the list
+        newElement,
+      ]);
+
+      setTotal(total + 1);
+    } else {
+      console.log("Failed to add element: ID was not assigned.");
+    }
+
+    // Reset input and states
+    setIsInputVisible(false);
+    setIsAddingElement(false);
+  };
   const handleEnterOnElement = (event) => {
     if (event.key === "Enter") {
       addElement();

@@ -115,6 +115,42 @@ export default function Pakkeliste() {
     }
   }
 
+  useEffect(() => {
+    async function updateNumbers() {
+      const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/itemsTotal.json`;
+      console.log(url);
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(total),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Total updated", data);
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+    updateNumbers();
+  }, [total]);
+
+  useEffect(() => {
+    async function updateNumbers() {
+      const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/itemsChecked.json`;
+      console.log(url);
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(totalChecked),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Total updated", data);
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+    updateNumbers();
+  }, [totalChecked]);
+
   return (
     <main>
       <div className="packinglist">

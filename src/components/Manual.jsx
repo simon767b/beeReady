@@ -40,6 +40,8 @@ export default function Manual({ isOpen, onClose }) {
   const [editedAt, setEditedAt] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [chosenIcon, setChosenIcon] = useState("");
+  const [itemsTotal, setItemsTotal] = useState(0);
+  const [itemsChecked, setItemsChecked] = useState(0);
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
@@ -50,10 +52,12 @@ export default function Manual({ isOpen, onClose }) {
       setName(list.name);
       setDateStart(list.dateStart);
       setDateEnd(list.dateEnd);
+      setItemsTotal(list.itemsTotal);
+      setItemsChecked(list.itemsChecked);
     }
   }, [list]); // useEffect is called every time list changes
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
     setEditedAt(new Date().getTime());
     const formData = {
@@ -63,6 +67,8 @@ export default function Manual({ isOpen, onClose }) {
       dateStart: dateStart,
       dateEnd: dateEnd,
       editedAt: editedAt,
+      itemsTotal: itemsTotal,
+      itemsChecked: itemsChecked,
       notes: notes,
     };
 
@@ -71,11 +77,10 @@ export default function Manual({ isOpen, onClose }) {
 
     if (validForm && formData.dateStart <= formData.dateEnd) {
       // if all fields/ properties are filled, then call createList
-      createList(formData);
+      await createList(formData);
       setErrorMessage("");
       // navigate("/lists/:listId");
       // navigate(`/lists/${params.id}`); //virker ikke korrekt
-      console.log("list created", formData);
     } else if (formData.dateStart > formData.dateEnd) {
       setErrorMessage("Afrejse skal være før hjemrejse.");
     } else {
