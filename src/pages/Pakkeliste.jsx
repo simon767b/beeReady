@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Category from "../components/Category";
+import Notes from "../components/Notes";
+import deleteicon from "../assets/img/icons/delete.svg";
 
 export default function Pakkeliste() {
   const [categories, setCategories] = useState([]); // State to hold categories
   const [list, setList] = useState({ categories: [] });
   const [total, setTotal] = useState(0);
   const [totalChecked, setTotalChecked] = useState(0);
+  const navigate = useNavigate();
   //useParams kæder route /lists/:listId sammen med url - listId er et parameter vi har defineret
   const params = useParams();
 
@@ -92,6 +95,26 @@ export default function Pakkeliste() {
     getList();
   }, [params.listId]);
 
+  async function deleteList(itemToBeDeleted) {
+    console.log("Delete list", itemToBeDeleted);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}.json`;
+
+    const confirmDelete = window.confirm(
+      `Vil du slette listen: ${itemToBeDeleted.name}?`
+    );
+    if (confirmDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("List deleted");
+        navigate("/");
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+  }
+
   return (
     <main>
       <div className="packinglist">
@@ -101,6 +124,13 @@ export default function Pakkeliste() {
             <h1>
               {totalChecked} / {total}
             </h1>
+            <img
+              src={deleteicon}
+              alt="delete icon"
+              onClick={() => {
+                deleteList(list);
+              }}
+            />
           </div>
           <div className="packinglist-info">
             <h4>
@@ -120,6 +150,7 @@ export default function Pakkeliste() {
             setTotal={setTotal}
           />
         ))}
+        <Notes></Notes>
       </div>
     </main>
   );

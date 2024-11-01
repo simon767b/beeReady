@@ -1,7 +1,10 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function List({ props }) {
   const navigate = useNavigate();
+  // const [itemsTotal, setItemsTotal] = useState(0)
+  // const [itemsChecked, setItemsChecked] = useState(0);
 
   function handleClick() {
     console.log(props.id);

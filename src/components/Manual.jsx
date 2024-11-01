@@ -40,6 +40,7 @@ export default function Manual({ isOpen, onClose }) {
   const [editedAt, setEditedAt] = useState();
   const [errorMessage, setErrorMessage] = useState("");
   const [chosenIcon, setChosenIcon] = useState("");
+  const [notes, setNotes] = useState("");
 
   useEffect(() => {
     if (list?.icon && list?.name && list?.dateStart && list?.dateEnd) {
@@ -62,6 +63,7 @@ export default function Manual({ isOpen, onClose }) {
       dateStart: dateStart,
       dateEnd: dateEnd,
       editedAt: editedAt,
+      notes: notes,
     };
 
     const validForm =
@@ -73,12 +75,14 @@ export default function Manual({ isOpen, onClose }) {
       setErrorMessage("");
       // navigate("/lists/:listId");
       // navigate(`/lists/${params.id}`); //virker ikke korrekt
-      location.reload();
+      console.log("list created", formData);
     } else if (formData.dateStart > formData.dateEnd) {
       setErrorMessage("Afrejse skal være før hjemrejse.");
     } else {
       setErrorMessage("Venligst udfyld alle felter.");
     }
+
+    location.reload();
   }
 
   return (

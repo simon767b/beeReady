@@ -4,6 +4,7 @@ import AddElementHex from "./AddElementHex";
 import { useParams } from "react-router-dom";
 
 import arrow from "../assets/img/icons/sort_arrow.svg";
+import deleteicon from "../assets/img/icons/delete.svg";
 
 export default function Category({
   category,
@@ -119,7 +120,7 @@ export default function Category({
     ]);
     setIsInputVisible(false); // Hide the input field after adding the element
     setIsAddingElement(false); // Reset adding element state
-    setTotal(total+1);
+    setTotal(total + 1);
   };
 
   const handleEnterOnElement = (event) => {
@@ -171,6 +172,46 @@ export default function Category({
     }
   }, [category]);
 
+  async function deleteCategory(itemToBeDeleted) {
+    console.log("Delete category", itemToBeDeleted);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${itemToBeDeleted.id}.json`;
+
+    const confirmDelete = window.confirm(
+      `Vil du slette kategorien: ${itemToBeDeleted.name}?`
+    );
+    if (confirmDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("Category deleted");
+        location.reload();
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+  }
+
+  async function deleteElement(itemToBeDeleted) {
+    console.log("Delete element", itemToBeDeleted);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/elements/${itemToBeDeleted.id}.json`;
+
+    const confirmDelete = window.confirm(
+      `Vil du slette elementet: ${itemToBeDeleted.name}?`
+    );
+    if (confirmDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("Element deleted");
+        location.reload();
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+  }
+
   return (
     <>
       <div className="category">
@@ -206,6 +247,13 @@ export default function Category({
                 cursor: "pointer",
               }}
             />
+            <img
+              src={deleteicon}
+              alt="delete icon"
+              onClick={() => {
+                deleteCategory(category);
+              }}
+            />
           </div>
         </div>
         {isExpanded && (
@@ -219,6 +267,13 @@ export default function Category({
                       onChange={() => handleCheckboxChange(element)}
                     />
                     {element.name}
+                    <img
+                      src={deleteicon}
+                      alt="delete icon"
+                      onClick={() => {
+                        deleteElement(element);
+                      }}
+                    />
                   </>
                 )}
               </li>
