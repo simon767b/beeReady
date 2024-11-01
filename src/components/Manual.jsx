@@ -37,7 +37,7 @@ export default function Manual({ isOpen, onClose }) {
   const [name, setName] = useState("");
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
-  const [editedAt, setEditedAt] = useState();
+  const [editedAt, setEditedAt] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [chosenIcon, setChosenIcon] = useState("");
   const [itemsTotal, setItemsTotal] = useState(0);
@@ -56,21 +56,22 @@ export default function Manual({ isOpen, onClose }) {
       setItemsChecked(list.itemsChecked);
     }
   }, [list]); // useEffect is called every time list changes
-
   async function handleSubmit(event) {
     event.preventDefault();
-    setEditedAt(new Date().getTime());
+    const time = new Date().getTime();
+    setEditedAt(time);
     const formData = {
       // create a new objebt to store the value from states / input fields
       icon: icon,
       name: name,
       dateStart: dateStart,
       dateEnd: dateEnd,
-      editedAt: editedAt,
+      editedAt: time,
       itemsTotal: itemsTotal,
       itemsChecked: itemsChecked,
       notes: notes,
     };
+    console.log(formData);
 
     const validForm =
       formData.icon && formData.name && formData.dateStart && formData.dateEnd; // will return false if one of the properties doesn't have a value
@@ -87,7 +88,7 @@ export default function Manual({ isOpen, onClose }) {
       setErrorMessage("Venligst udfyld alle felter.");
     }
 
-    location.reload();
+    // location.reload();
   }
 
   return (
