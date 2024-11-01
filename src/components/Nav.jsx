@@ -24,6 +24,7 @@ export default function Nav() {
           alt="gif af bi med taske"
           className="mini_bi"
           style={{
+            display: animationActive === "Bruger" ? "inline" : "none",
             animation:
               animationActive === "Bruger"
                 ? "mini_flyv 1s ease-in-out"
@@ -45,6 +46,7 @@ export default function Nav() {
           alt="gif af bi med taske"
           className="mini_bi"
           style={{
+            display: animationActive === "Lister" ? "inline" : "none",
             animation:
               animationActive === "Lister"
                 ? "mini_flyv 1s ease-in-out"
@@ -66,6 +68,7 @@ export default function Nav() {
           alt="gif af bi med taske"
           className="mini_bi"
           style={{
+            display: animationActive === "Indstillinger" ? "inline" : "none",
             animation:
               animationActive === "Indstillinger"
                 ? "mini_flyv 1s ease-in-out"
