@@ -73,13 +73,26 @@ export default function Lister() {
     getLists();
   }, [auth?.currentUser?.uid, sortType]);
 
+  // Search query state
+  const [searchQuery, setSearchQuery] = useState("");
+
+  // Filter list based on search query
+  const filteredItems = lists.filter((list) =>
+    list.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <>
       <main className="lister page">
-        <Sort setSortType={setSortType} sortType={sortType} />
+        <Sort
+          setSortType={setSortType}
+          sortType={sortType}
+          searchQuery={searchQuery}
+          setSearchQuery={setSearchQuery}
+        />
         <section className="beehive">
           {lists.length ? (
-            lists.map((list) => <List props={list} key={list.id} />)
+            filteredItems.map((list) => <List props={list} key={list.id} />)
           ) : (
             <p>Du har ikke nogen lister endnu.</p>
           )}

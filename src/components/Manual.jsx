@@ -79,6 +79,7 @@ export default function Manual({ isOpen, onClose }) {
       // if all fields/ properties are filled, then call createList
       await createList(formData);
       setErrorMessage("");
+      location.reload();
       // navigate("/lists/:listId");
       // navigate(`/lists/${params.id}`); //virker ikke korrekt
     } else if (formData.dateStart > formData.dateEnd) {
@@ -86,8 +87,6 @@ export default function Manual({ isOpen, onClose }) {
     } else {
       setErrorMessage("Venligst udfyld alle felter.");
     }
-
-    location.reload();
   }
 
   return (

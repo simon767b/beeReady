@@ -9,7 +9,11 @@ export default function RadioHex({ name, sortType, setSortType }) {
       }}
     >
       <div className="hex_check inner">
-        {sortType === name ? <input type="radio" name={name} /> : ""}
+        {sortType === name ? (
+          <input type="radio" name={name} defaultChecked />
+        ) : (
+          ""
+        )}
         {sortType === name ? (
           <img className="tick_mark" src={tickMark} alt="Flueben" />
         ) : (
