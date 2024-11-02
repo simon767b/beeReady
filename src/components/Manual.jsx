@@ -177,6 +177,7 @@ export default function Manual({ isOpen, onClose }) {
             placeholder="Angiv listens navn"
             name="name"
             value={name}
+            maxLength="10" //Limits the user to 10 charaters, this is better for styling
             aria-label="Listens navn"
             onChange={(e) => setName(e.target.value)}
           />
