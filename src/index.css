@@ -60,7 +60,7 @@
 #root {
   background-color: var(--background);
   height: 100%;
-  /* max-width: 480px; */
+  
   /* mobil skærm på computer*/
   min-height: 100dvh;
   /* position: relative; */
@@ -74,11 +74,10 @@ html {
 
 body {
   /* align-items: center; */
-  background-color: var(--text);
   display: flex;
   /* height: 100dvh; */
   justify-content: center;
-  width: 100dvw;
+  /* width: 100dvw; */
   /* stopper den i at scrolle mere end den kan (på telefonen ligner det at den bouncer lidt) */
   overscroll-behavior: none;
 }
@@ -164,6 +163,8 @@ a:any-link {
 .navLinks {
   color: var(--text);
   font-size: var(--fontsizeS);
+  padding-bottom: .25rem;
+  padding-top: .5rem;
   transition: all 0.3s ease-in-out;
 }
 
@@ -283,7 +284,8 @@ a:any-link {
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  min-width: 55dvw;
+  min-width: max-content;
+  max-width: calc(480px - 2rem);
   padding: 20px;
   position: absolute;
   top: 90%;
@@ -416,8 +418,10 @@ a:any-link {
 
 .hex_bg_pattern {
   bottom: 65px;
+  max-width: 480px;
   pointer-events: none;
   position: fixed;
+  width: 100%;
 }
 
 /* --- specific page styling ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------*/
@@ -610,7 +614,7 @@ a:any-link {
   height: 55px;
   position: fixed;
   right: 1rem;
-  bottom: 6rem;
+  bottom: 7rem;
   width: 48px;
 }
 
@@ -826,6 +830,11 @@ input[type="range"]::-webkit-slider-thumb {
   height: 24px;
 }
 
+.delete_icon {
+  align-self: center;
+  height: var(--fontsizeL);
+}
+
 /* .packinglist h1,
 .packinglist h2,
 .packinglist h4,
@@ -843,6 +852,12 @@ input[type="range"]::-webkit-slider-thumb {
   font-size: var(--fontsizeXS);
 }
 
+.packinglist_num_delete {
+  align-items: center;
+  display: flex;
+  gap: 1rem;
+}
+
 /* .packinglist li {
   font-size: var(--fontsizeM);
 } */
@@ -850,7 +865,7 @@ input[type="range"]::-webkit-slider-thumb {
 .packinglist-fixed {
   position: fixed;
   background-color: var(--background);
-  width: calc(100% - 30px);
+  width: calc(100% - 2rem);
   top: 7rem;
   z-index: 7;
 }
@@ -875,6 +890,10 @@ input[type="range"]::-webkit-slider-thumb {
   gap: 0.8rem;
 }
 
+.category .arrow {
+  width: var(--fontsizeM);
+}
+
 .category-header {
   width: 100%;
   display: flex;
@@ -890,17 +909,27 @@ input[type="range"]::-webkit-slider-thumb {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-}
-
-.category li:last-child {
-  font-weight: var(--light);
-  font-style: italic;
+  width: 100%;
 }
 
 .category li {
   display: flex;
-  gap: 1rem;
+  justify-content: space-between;
   align-items: center;
+  width: 100%;
+}
+
+.category .element {
+  display: flex;
+  gap: 1rem;
+}
+
+.category li:last-child,
+.category .input_field {
+  font-weight: var(--light);
+  font-style: italic;
+  gap: 1rem;
+  justify-content: flex-start;
 }
 
 .input-category {
@@ -1103,77 +1132,54 @@ input[type="range"]::-webkit-slider-thumb {
 
 /* stor skærm */
 @media only screen and (min-width: 480px) {
+  #root, body {
+    max-width: 480px;
+  }
+
   html {
-    overflow-x: hidden;
-  }
-  /* udfold header*/
-  .header {
-    width: 100%;
-  }
-
-  .logo-header {
-    max-width: none;
+    align-items: center;
     display: flex;
-    align-items: center;
+    justify-content: center;
+    margin-inline: auto;
   }
-  .logo-text {
-    height: fit-content;
+
+  body {
     width: 100%;
   }
-  /* udfold navbar */
-  .navbar {
-    max-width: 100%;
-  }
 
-  .navLinks {
-    max-width: 100px;
-  }
-
-  /*fjern bi mønster i baggrunden */
-  .hex_bg_pattern {
-    display: none;
-  }
-
-  /*lister */
-  .search_sort_container {
-    max-width: none;
-    left: 50%;
-    transform: translate(-50%, 0);
-  }
-
-  /* logind */
-
-  .public_pages {
-    align-items: center;
+  .biGIF,
+  .bi_skrift {
+    max-width: calc(480px * 0.45);
   }
 
   .biGIF {
-    width: 100px;
-    transform: translate(-70dvw, 50%);
-    animation: flyvBi_stor_screen 2s 3s ease-in-out forwards;
+    transform: translate(-300%, 50%);
   }
 
-  .bi_skrift {
-    align-self: center;
-    width: 200px;
+  .option_bottom {
+    max-width: calc(480px - 2rem);
   }
 
-  @keyframes flyvBi_stor_screen {
-    0% {
-      transform: translate(-70dvw, 50%);
-      scale: 2;
+    .packinglist-fixed {
+      max-width: calc(480px - 2rem);
     }
 
-    90% {
-      transform: translate(0dvw, 50%);
-      scale: 2;
+    @keyframes flyvBi {
+      0% {
+        transform: translate(-200%, 50%);
+        scale: 2;
+      }
+  
+      90% {
+        transform: translate(0%, 50%);
+        scale: 2;
+      }
+  
+      100% {
+        transform: translate(0%, 0%);
+        scale: 1;
+      }
     }
-
-    100% {
-      transform: translate(0dvw, 0%);
-      scale: 1;
-    }
-  }
 }
 
 /*-------------------------------------------------------------------------------------------------

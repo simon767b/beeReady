@@ -4,7 +4,7 @@ import AddElementHex from "./AddElementHex";
 import { useParams } from "react-router-dom";
 
 import arrow from "../assets/img/icons/sort_arrow.svg";
-import deleteicon from "../assets/img/icons/delete.svg";
+import deleteIcon from "../assets/img/icons/delete.svg";
 
 export default function Category({
   category,
@@ -249,6 +249,15 @@ export default function Category({
           <div>
             <h2>{`${totalCheckedElements}/${totalElements}`}</h2>
             <img
+              className="delete_icon"
+              src={deleteIcon}
+              alt="delete icon"
+              onClick={() => {
+                deleteCategory(category);
+              }}
+            />
+            <img
+              className="arrow"
               src={arrow}
               alt="Toggle list"
               onClick={toggleList}
@@ -256,13 +265,6 @@ export default function Category({
                 transform: isExpanded ? "rotate(360deg)" : "rotate(270deg)",
                 transition: "transform 0.5s",
                 cursor: "pointer",
-              }}
-            />
-            <img
-              src={deleteicon}
-              alt="delete icon"
-              onClick={() => {
-                deleteCategory(category);
               }}
             />
           </div>
@@ -273,13 +275,16 @@ export default function Category({
               <li key={element.id}>
                 {element.name !== "Tilføj element" && (
                   <>
-                    <Check
-                      checked={element.isChecked}
-                      onChange={() => handleCheckboxChange(element)}
-                    />
-                    {element.name}
+                    <div className="element">
+                      <Check
+                        checked={element.isChecked}
+                        onChange={() => handleCheckboxChange(element)}
+                      />
+                      {element.name}
+                    </div>
                     <img
-                      src={deleteicon}
+                      className="delete_icon"
+                      src={deleteIcon}
                       alt="delete icon"
                       onClick={() => {
                         deleteElement(element);
@@ -292,7 +297,7 @@ export default function Category({
 
             {/* Conditionally render input field only when isInputVisible is true */}
             {isInputVisible && (
-              <li key="input-field">
+              <li key="input-field" className="input_field">
                 <Check />
                 <input
                   style={{

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Category from "../components/Category";
 import Notes from "../components/Notes";
-import deleteicon from "../assets/img/icons/delete.svg";
+import deleteIcon from "../assets/img/icons/delete.svg";
 
 export default function Pakkeliste() {
   const [categories, setCategories] = useState([]); // State to hold categories
@@ -157,16 +157,19 @@ export default function Pakkeliste() {
         <div className="packinglist-fixed">
           <div className="packinglist-header">
             <h1>{list.name}</h1>
-            <h1>
-              {totalChecked} / {total}
-            </h1>
-            <img
-              src={deleteicon}
-              alt="delete icon"
-              onClick={() => {
-                deleteList(list);
-              }}
-            />
+            <div className="packinglist_num_delete">
+              <h1>
+                {totalChecked} / {total}
+              </h1>
+              <img
+                className="delete_icon"
+                src={deleteIcon}
+                alt="delete icon"
+                onClick={() => {
+                  deleteList(list);
+                }}
+              />
+            </div>
           </div>
           <div className="packinglist-info">
             <h4>
