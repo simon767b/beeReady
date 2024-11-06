@@ -1,3 +1,6 @@
+// LAVET AF ANDREA
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Category from "../components/Category";

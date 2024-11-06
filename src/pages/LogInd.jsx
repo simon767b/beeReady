@@ -1,3 +1,7 @@
+// LAVET AF SIMON
+// SPLASH-SCREEN LAVET AF SIMON
+// AUTHENTICATION LAVET I FÆLLESSKAB
+
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";

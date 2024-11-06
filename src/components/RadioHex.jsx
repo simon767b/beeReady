@@ -1,3 +1,5 @@
+// LAVET AF INGER-MARGRETHE
+
 import tickMark from "../assets/img/icons/tick_mark.svg";
 
 export default function RadioHex({ name, sortType, setSortType }) {

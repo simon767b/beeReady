@@ -1,3 +1,5 @@
+// LAVET AF SIMON
+
 import { useState } from "react";
 import Manual from "./Manual";
 import Template from "./Template";

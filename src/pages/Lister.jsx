@@ -1,3 +1,7 @@
+// LAVET AF INGER-MARGRETHE
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+// FUNKTIONALITET AF SØG/SORTER AF SIMON
+
 import { useEffect, useState } from "react";
 import List from "../components/List";
 import PlusButton from "../components/PlusButton";

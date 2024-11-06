@@ -1,3 +1,5 @@
+// LAVET AF INGER-MARGRETHE
+
 export default function CheckEssentials() {
   return (
     <label className="hex_check outer">

@@ -1,3 +1,6 @@
+// LAVET AF INGER-MARGRETHE
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { useEffect, useRef, useState } from "react";
 import { auth } from "./firebase-config";
 

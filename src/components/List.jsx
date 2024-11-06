@@ -1,3 +1,6 @@
+// LAVET AF INGER-MARGRETHE
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { useNavigate } from "react-router-dom";
 
 export default function List({ props }) {

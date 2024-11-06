@@ -1,4 +1,6 @@
-// import { useNavigate, useParams } from "react-router-dom";
+// LAVET AF SIMON
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { auth } from "../pages/firebase-config";
 import { useEffect, useState } from "react";
 
@@ -46,8 +48,8 @@ export default function Manual({ isOpen, onClose }) {
 
   useEffect(() => {
     if (list?.icon && list?.name && list?.dateStart && list?.dateEnd) {
-      // if post, set the states with values from the post object.
-      // The post object is a prop, passed from UpdatePage
+      // if list, set the states with values from the list object.
+      // The list object is a prop, passed from Lister
       setIcon(list.icon);
       setName(list.name);
       setDateStart(list.dateStart);
@@ -100,7 +102,6 @@ export default function Manual({ isOpen, onClose }) {
       <form
         onSubmit={handleSubmit}
         className="dialog-content"
-        // onClick={(e) => e.stopPropagation()}
       >
         <div className="container">
           <h2>Manuel liste</h2>

@@ -1,3 +1,5 @@
+// LAVET AF SIMON
+
 import X from "../assets/img/icons/x.svg";
 
 export default function Recycle({ isOpen, onClose }) {

@@ -1,3 +1,6 @@
+// LAVET AF SIMON
+// AUTHENTICATION OG DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { Link } from "react-router-dom";

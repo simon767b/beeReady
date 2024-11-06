@@ -1,3 +1,6 @@
+// LAVET AF SIMON
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { useEffect, useState } from "react";
 import { auth } from "../pages/firebase-config";
 

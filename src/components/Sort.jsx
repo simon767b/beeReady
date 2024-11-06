@@ -1,3 +1,6 @@
+// LAVET AF INGER-MARGRETHE
+// SORTERING- OG SØGE-FUNKTIONALITET AF SIMON
+
 import { useState } from "react";
 import RadioHex from "./RadioHex";
 

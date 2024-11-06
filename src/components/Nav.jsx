@@ -1,3 +1,5 @@
+// LAVET AF SIMON
+
 import { Link, NavLink } from "react-router-dom";
 import bruger from "../assets/img/icons/bruger.svg";
 import lister from "../assets/img/icons/lister.svg";

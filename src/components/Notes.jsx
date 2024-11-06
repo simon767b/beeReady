@@ -1,3 +1,6 @@
+// LAVET AF SIMON
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 

@@ -1,3 +1,6 @@
+// LAVET AF ANDREA
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import { useEffect, useState } from "react";
 import Check from "./Check";
 import AddElementHex from "./AddElementHex";

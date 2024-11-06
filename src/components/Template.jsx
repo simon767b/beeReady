@@ -1,3 +1,6 @@
+// LAVET AF SIMON
+// DATA-IMPLEMENTERING LAVET I FÆLLESSKAB
+
 import X from "../assets/img/icons/x.svg";
 import hiker from "../assets/img/icons/hiker.svg";
 import house from "../assets/img/icons/house.svg";
@@ -8,144 +11,144 @@ import tourist from "../assets/img/icons/tourist.svg";
 import { useEffect, useState } from "react";
 
 export default function Template({ isOpen, onClose }) {
-   async function createList(newList) {
-     newList.uid = auth.currentUser.uid; //authenticated user id
+  async function createList(newList) {
+    newList.uid = auth.currentUser.uid; //authenticated user id
 
-     const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists.json`;
-     const response = await fetch(url, {
-       method: "POST",
-       body: JSON.stringify(newList),
-     });
-     if (response.ok) {
-       const data = await response.json();
-       console.log("New list created: ", data);
-     } else {
-       console.log("Sorry, something went wrong");
-     }
-   }
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists.json`;
+    const response = await fetch(url, {
+      method: "POST",
+      body: JSON.stringify(newList),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      console.log("New list created: ", data);
+    } else {
+      console.log("Sorry, something went wrong");
+    }
+  }
 
-   // functionality for the form with input data
-   const [list, setList] = useState("");
-   const [icon, setIcon] = useState("");
-   const [name, setName] = useState("");
-   const [dateStart, setDateStart] = useState("");
-   const [dateEnd, setDateEnd] = useState("");
-   const [editedAt, setEditedAt] = useState();
-   const [errorMessage, setErrorMessage] = useState("");
-   const [chosenIcon, setChosenIcon] = useState("");
+  // functionality for the form with input data
+  const [list, setList] = useState("");
+  const [icon, setIcon] = useState("");
+  const [name, setName] = useState("");
+  const [dateStart, setDateStart] = useState("");
+  const [dateEnd, setDateEnd] = useState("");
+  const [editedAt, setEditedAt] = useState();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [chosenIcon, setChosenIcon] = useState("");
 
-   useEffect(() => {
-     if (list?.icon && list?.name && list?.dateStart && list?.dateEnd) {
-       // if post, set the states with values from the post object.
-       // The post object is a prop, passed from UpdatePage
-       setIcon(list.icon);
-       setName(list.name);
-       setDateStart(list.dateStart);
-       setDateEnd(list.dateEnd);
-     }
-   }, [list]); // useEffect is called every time list changes
+  useEffect(() => {
+    if (list?.icon && list?.name && list?.dateStart && list?.dateEnd) {
+      // if post, set the states with values from the post object.
+      // The post object is a prop, passed from UpdatePage
+      setIcon(list.icon);
+      setName(list.name);
+      setDateStart(list.dateStart);
+      setDateEnd(list.dateEnd);
+    }
+  }, [list]); // useEffect is called every time list changes
 
-   function handleSubmit(event) {
-     event.preventDefault();
-     setEditedAt(new Date().getTime());
-     const formData = {
-       // create a new objebt to store the value from states / input fields
-       icon: icon,
-       name: name,
-       dateStart: dateStart,
-       dateEnd: dateEnd,
-       editedAt: editedAt,
-     };
+  function handleSubmit(event) {
+    event.preventDefault();
+    setEditedAt(new Date().getTime());
+    const formData = {
+      // create a new objebt to store the value from states / input fields
+      icon: icon,
+      name: name,
+      dateStart: dateStart,
+      dateEnd: dateEnd,
+      editedAt: editedAt,
+    };
 
-     const validForm =
-       formData.icon && formData.name && formData.dateStart && formData.dateEnd; // will return false if one of the properties doesn't have a value
+    const validForm =
+      formData.icon && formData.name && formData.dateStart && formData.dateEnd; // will return false if one of the properties doesn't have a value
 
-     if (validForm && formData.dateStart <= formData.dateEnd) {
-       // if all fields/ properties are filled, then call createList
-       createList(formData);
-       setErrorMessage("");
-       // navigate("/lists/:listId");
-       // navigate(`/lists/${params.id}`); //virker ikke korrekt
-       location.reload();
-     } else if (formData.dateStart > formData.dateEnd) {
-       setErrorMessage("Afrejse skal være før hjemrejse.");
-     } else {
-       setErrorMessage("Venligst udfyld alle felter.");
-     }
-   }
+    if (validForm && formData.dateStart <= formData.dateEnd) {
+      // if all fields/ properties are filled, then call createList
+      createList(formData);
+      setErrorMessage("");
+      // navigate("/lists/:listId");
+      // navigate(`/lists/${params.id}`); //virker ikke korrekt
+      location.reload();
+    } else if (formData.dateStart > formData.dateEnd) {
+      setErrorMessage("Afrejse skal være før hjemrejse.");
+    } else {
+      setErrorMessage("Venligst udfyld alle felter.");
+    }
+  }
 
-   return (
-     <div
-       className={"dialog-overlay"}
-       onClick={onClose}
-       style={{
-         opacity: isOpen ? 1 : 0,
-         pointerEvents: isOpen ? "all" : "none",
-       }}
-     >
-       <form onSubmit={handleSubmit} className="dialog-content">
-         <div className="container">
-           <h2>Vælg skabelon</h2>
-           <button className="close-btn" onClick={onClose}>
-             <img src={X} alt="Kryds ikon" />
-           </button>
-         </div>
+  return (
+    <div
+      className={"dialog-overlay"}
+      onClick={onClose}
+      style={{
+        opacity: isOpen ? 1 : 0,
+        pointerEvents: isOpen ? "all" : "none",
+      }}
+    >
+      <form onSubmit={handleSubmit} className="dialog-content">
+        <div className="container">
+          <h2>Vælg skabelon</h2>
+          <button className="close-btn" onClick={onClose}>
+            <img src={X} alt="Kryds ikon" />
+          </button>
+        </div>
 
-         <div className="dialog_icons">
-           <p>Vælg ikon:</p>
+        <div className="dialog_icons">
+          <p>Vælg ikon:</p>
 
-           <div className="skabelon_boxe">
-             <a href="#">
-               <img src={hiker} alt="Rejse ikon" />
-               Vandreferie
-             </a>
+          <div className="skabelon_boxe">
+            <a href="#">
+              <img src={hiker} alt="Rejse ikon" />
+              Vandreferie
+            </a>
 
-             <a href="#">
-               <img src={house} alt="Rejse ikon" />
-               Sommerhus
-             </a>
+            <a href="#">
+              <img src={house} alt="Rejse ikon" />
+              Sommerhus
+            </a>
 
-             <a href="#">
-               <img src={skier} alt="Rejse ikon" />
-               Skiferie
-             </a>
+            <a href="#">
+              <img src={skier} alt="Rejse ikon" />
+              Skiferie
+            </a>
 
-             <a href="#">
-               <img src={swimmer} alt="Rejse ikon" />
-               Badeferie
-             </a>
+            <a href="#">
+              <img src={swimmer} alt="Rejse ikon" />
+              Badeferie
+            </a>
 
-             <a href="#">
-               <img src={tent} alt="Rejse ikon" />
-               Festival
-             </a>
+            <a href="#">
+              <img src={tent} alt="Rejse ikon" />
+              Festival
+            </a>
 
-             <a href="#">
-               <img src={tourist} alt="Rejse ikon" />
-               Storbyferie
-             </a>
-           </div>
-         </div>
+            <a href="#">
+              <img src={tourist} alt="Rejse ikon" />
+              Storbyferie
+            </a>
+          </div>
+        </div>
 
-         <div className="dialog_input_div container">
-           <p>Navn:</p>
-           <input type="text" placeholder="Riga" />
-         </div>
+        <div className="dialog_input_div container">
+          <p>Navn:</p>
+          <input type="text" placeholder="Riga" />
+        </div>
 
-         <div className="dialog_input_div container">
-           <p>Fra:</p>
-           <input type="date" />
-         </div>
+        <div className="dialog_input_div container">
+          <p>Fra:</p>
+          <input type="date" />
+        </div>
 
-         <div className="dialog_input_div container">
-           <p>Til:</p>
-           <input type="date" />
-         </div>
+        <div className="dialog_input_div container">
+          <p>Til:</p>
+          <input type="date" />
+        </div>
 
-         <div className="message">
-           <p className="error">Denne funktion virker desværre ikke.</p>
-         </div>
-       </form>
-     </div>
-   );
+        <div className="message">
+          <p className="error">Denne funktion virker desværre ikke.</p>
+        </div>
+      </form>
+    </div>
+  );
 }
