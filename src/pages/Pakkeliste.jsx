@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import Category from "../components/Category";
+import Notes from "../components/Notes";
+import deleteIcon from "../assets/img/icons/delete.svg";
 
 export default function Pakkeliste() {
   const [categories, setCategories] = useState([]); // State to hold categories
   const [list, setList] = useState({ categories: [] });
   const [total, setTotal] = useState(0);
   const [totalChecked, setTotalChecked] = useState(0);
+  const navigate = useNavigate();
   //useParams kæder route /lists/:listId sammen med url - listId er et parameter vi har defineret
   const params = useParams();
 
@@ -92,15 +95,81 @@ export default function Pakkeliste() {
     getList();
   }, [params.listId]);
 
+  async function deleteList(itemToBeDeleted) {
+    console.log("Delete list", itemToBeDeleted);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}.json`;
+
+    const confirmDelete = window.confirm(
+      `Vil du slette listen: ${itemToBeDeleted.name}?`
+    );
+    if (confirmDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("List deleted");
+        navigate("/");
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+  }
+
+  useEffect(() => {
+    async function updateNumbers() {
+      const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/itemsTotal.json`;
+      console.log(url);
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(total),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Total updated", data);
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+    updateNumbers();
+  }, [total]);
+
+  useEffect(() => {
+    async function updateNumbers() {
+      const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/itemsChecked.json`;
+      console.log(url);
+      const response = await fetch(url, {
+        method: "PUT",
+        body: JSON.stringify(totalChecked),
+      });
+      if (response.ok) {
+        const data = await response.json();
+        console.log("Total updated", data);
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+    updateNumbers();
+  }, [totalChecked]);
+
   return (
     <main>
       <div className="packinglist">
         <div className="packinglist-fixed">
           <div className="packinglist-header">
             <h1>{list.name}</h1>
-            <h1>
-              {totalChecked} / {total}
-            </h1>
+            <div className="packinglist_num_delete">
+              <h1>
+                {totalChecked} / {total}
+              </h1>
+              <img
+                className="delete_icon"
+                src={deleteIcon}
+                alt="delete icon"
+                onClick={() => {
+                  deleteList(list);
+                }}
+              />
+            </div>
           </div>
           <div className="packinglist-info">
             <h4>
@@ -120,6 +189,7 @@ export default function Pakkeliste() {
             setTotal={setTotal}
           />
         ))}
+        <Notes></Notes>
       </div>
     </main>
   );

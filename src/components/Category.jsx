@@ -4,6 +4,7 @@ import AddElementHex from "./AddElementHex";
 import { useParams } from "react-router-dom";
 
 import arrow from "../assets/img/icons/sort_arrow.svg";
+import deleteIcon from "../assets/img/icons/delete.svg";
 
 export default function Category({
   category,
@@ -105,23 +106,34 @@ export default function Category({
 
   // Add a new element to the list when input loses focus
   const addElement = async () => {
+    console.log("Adding element");
     setName("");
+
     const newElement = {
       name: name,
       isChecked: isChecked,
     };
-    const id = await createElement(newElement);
-    newElement.id = id;
-    setElements((prevElements) => [
-      ...prevElements.slice(0, prevElements.length - 1), // Exclude "Tilføj element"
-      newElement,
-      prevElements[prevElements.length - 1], // Add "Tilføj element" back at the end
-    ]);
-    setIsInputVisible(false); // Hide the input field after adding the element
-    setIsAddingElement(false); // Reset adding element state
-    setTotal(total+1);
-  };
 
+    const id = await createElement(newElement);
+
+    if (id) {
+      // Ensure an ID was returned
+      newElement.id = id; // Assign the unique ID to the new element
+
+      setElements((prevElements) => [
+        ...prevElements, // Add the new element at the end of the list
+        newElement,
+      ]);
+
+      setTotal(total + 1);
+    } else {
+      console.log("Failed to add element: ID was not assigned.");
+    }
+
+    // Reset input and states
+    setIsInputVisible(false);
+    setIsAddingElement(false);
+  };
   const handleEnterOnElement = (event) => {
     if (event.key === "Enter") {
       addElement();
@@ -171,6 +183,46 @@ export default function Category({
     }
   }, [category]);
 
+  async function deleteCategory(itemToBeDeleted) {
+    console.log("Delete category", itemToBeDeleted);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${itemToBeDeleted.id}.json`;
+
+    const confirmDelete = window.confirm(
+      `Vil du slette kategorien: ${itemToBeDeleted.name}?`
+    );
+    if (confirmDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("Category deleted");
+        location.reload();
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+  }
+
+  async function deleteElement(itemToBeDeleted) {
+    console.log("Delete element", itemToBeDeleted);
+    const url = `https://beeready-8e5f5-default-rtdb.europe-west1.firebasedatabase.app/lists/${params.listId}/categories/${category.id}/elements/${itemToBeDeleted.id}.json`;
+
+    const confirmDelete = window.confirm(
+      `Vil du slette elementet: ${itemToBeDeleted.name}?`
+    );
+    if (confirmDelete) {
+      const response = await fetch(url, {
+        method: "DELETE",
+      });
+      if (response.ok) {
+        console.log("Element deleted");
+        location.reload();
+      } else {
+        console.log("Sorry, something went wrong");
+      }
+    }
+  }
+
   return (
     <>
       <div className="category">
@@ -197,6 +249,15 @@ export default function Category({
           <div>
             <h2>{`${totalCheckedElements}/${totalElements}`}</h2>
             <img
+              className="delete_icon"
+              src={deleteIcon}
+              alt="delete icon"
+              onClick={() => {
+                deleteCategory(category);
+              }}
+            />
+            <img
+              className="arrow"
               src={arrow}
               alt="Toggle list"
               onClick={toggleList}
@@ -214,11 +275,21 @@ export default function Category({
               <li key={element.id}>
                 {element.name !== "Tilføj element" && (
                   <>
-                    <Check
-                      checked={element.isChecked}
-                      onChange={() => handleCheckboxChange(element)}
+                    <div className="element">
+                      <Check
+                        checked={element.isChecked}
+                        onChange={() => handleCheckboxChange(element)}
+                      />
+                      {element.name}
+                    </div>
+                    <img
+                      className="delete_icon"
+                      src={deleteIcon}
+                      alt="delete icon"
+                      onClick={() => {
+                        deleteElement(element);
+                      }}
                     />
-                    {element.name}
                   </>
                 )}
               </li>
@@ -226,7 +297,7 @@ export default function Category({
 
             {/* Conditionally render input field only when isInputVisible is true */}
             {isInputVisible && (
-              <li key="input-field">
+              <li key="input-field" className="input_field">
                 <Check />
                 <input
                   style={{

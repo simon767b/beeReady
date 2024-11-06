@@ -37,9 +37,12 @@ export default function Manual({ isOpen, onClose }) {
   const [name, setName] = useState("");
   const [dateStart, setDateStart] = useState("");
   const [dateEnd, setDateEnd] = useState("");
-  const [editedAt, setEditedAt] = useState();
+  const [editedAt, setEditedAt] = useState(0);
   const [errorMessage, setErrorMessage] = useState("");
   const [chosenIcon, setChosenIcon] = useState("");
+  const [itemsTotal, setItemsTotal] = useState(0);
+  const [itemsChecked, setItemsChecked] = useState(0);
+  const [notes, setNotes] = useState("");
 
   useEffect(() => {
     if (list?.icon && list?.name && list?.dateStart && list?.dateEnd) {
@@ -49,19 +52,24 @@ export default function Manual({ isOpen, onClose }) {
       setName(list.name);
       setDateStart(list.dateStart);
       setDateEnd(list.dateEnd);
+      setItemsTotal(list.itemsTotal);
+      setItemsChecked(list.itemsChecked);
     }
   }, [list]); // useEffect is called every time list changes
-
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    setEditedAt(new Date().getTime());
+    const time = new Date().getTime();
+    setEditedAt(time);
     const formData = {
       // create a new objebt to store the value from states / input fields
       icon: icon,
       name: name,
       dateStart: dateStart,
       dateEnd: dateEnd,
-      editedAt: editedAt,
+      editedAt: time,
+      itemsTotal: itemsTotal,
+      itemsChecked: itemsChecked,
+      notes: notes,
     };
 
     const validForm =
@@ -69,11 +77,11 @@ export default function Manual({ isOpen, onClose }) {
 
     if (validForm && formData.dateStart <= formData.dateEnd) {
       // if all fields/ properties are filled, then call createList
-      createList(formData);
+      await createList(formData);
       setErrorMessage("");
+      location.reload();
       // navigate("/lists/:listId");
       // navigate(`/lists/${params.id}`); //virker ikke korrekt
-      location.reload();
     } else if (formData.dateStart > formData.dateEnd) {
       setErrorMessage("Afrejse skal være før hjemrejse.");
     } else {
@@ -168,6 +176,7 @@ export default function Manual({ isOpen, onClose }) {
             placeholder="Angiv listens navn"
             name="name"
             value={name}
+            maxLength="10" //Limits the user to 10 charaters, this is better for styling
             aria-label="Listens navn"
             onChange={(e) => setName(e.target.value)}
           />

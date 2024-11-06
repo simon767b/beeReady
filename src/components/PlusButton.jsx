@@ -39,7 +39,7 @@ export default function PlusButton({ props }) {
         className="plusButton_border manuel"
         style={{
           right: open ? "calc((48px * 1.5) + 2rem)" : "1rem",
-          bottom: open ? "6rem" : "6rem",
+          bottom: open ? "7rem" : "7rem",
           scale: open ? "1.5" : "1",
         }}
       >
@@ -53,7 +53,7 @@ export default function PlusButton({ props }) {
         className="plusButton_border auto"
         style={{
           right: open ? "calc((48px * 1.5) / 2 + 1.5rem)" : "1rem",
-          bottom: open ? "calc(6rem + ((55px * 1.5) - 55px * 0.15)" : "6rem",
+          bottom: open ? "calc(7rem + ((55px * 1.5) - 55px * 0.15)" : "7rem",
           scale: open ? "1.5" : "1",
         }}
       >
@@ -67,7 +67,7 @@ export default function PlusButton({ props }) {
         className="plusButton_border skabelon"
         style={{
           right: open ? "calc((48px * 1.5) * 1.5 + 2.5rem)" : "1rem",
-          bottom: open ? "calc(6rem + ((55px * 1.5) - 55px * 0.15)" : "6rem",
+          bottom: open ? "calc(7rem + ((55px * 1.5) - 55px * 0.15)" : "7rem",
           scale: open ? "1.5" : "1",
         }}
       >
@@ -81,7 +81,7 @@ export default function PlusButton({ props }) {
         className="plusButton_border genbrug"
         style={{
           right: open ? "calc((48px * 1.5) * 2 + 3rem)" : "1rem",
-          bottom: open ? "6rem" : "6rem",
+          bottom: open ? "7rem" : "7rem",
           scale: open ? "1.5" : "1",
         }}
       >
