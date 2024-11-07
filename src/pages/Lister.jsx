@@ -31,7 +31,7 @@ export default function Lister() {
 
       /* look at sorting */
       if (sortType === "Senest ændret") {
-        sortedArray = listsArray.sort((a, b) => a.editedAt - b.editedAt);
+        sortedArray = listsArray.sort((a, b) => b.editedAt - a.editedAt);
         console.log(sortedArray);
       } else if (sortType === "A til Å") {
         sortedArray = listsArray.sort((a, b) => {
